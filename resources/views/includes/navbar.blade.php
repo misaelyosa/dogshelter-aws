@@ -1,5 +1,5 @@
 
-<nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+<nav class="nav_bg">
     <div class="flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="" class="flex items-center space-x-3 rtl:space-x-reverse ms-2 md:ms-5 lg:ms-5">
             <img src="{{ asset('assets/icons/supaw-logo.png') }}" class="w-10 md:w-16 lg:w-20 rounded-lg" alt="Flowbite Logo">
