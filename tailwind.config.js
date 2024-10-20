@@ -10,11 +10,14 @@ module.exports = {
     extend: {
       colors: {
         'darkgreen' : '#052E16',
-        'supaw-green' : '#31DB7A',
-        'comp-orange' : '#FF934F',
+        'supaw_green' : '#31DB7A',
+        'comp_orange' : '#FF934F',
       },
       spacing: {
         '18' : '4.5rem'
+      },
+      fontFamily: {
+        'dmsans': ['Dm Sans']
       }
     },
   },

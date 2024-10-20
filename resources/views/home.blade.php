@@ -1,13 +1,12 @@
 @extends('base.base')
 
 @section('section')
-    <div class="bg">    
-        <img class="object-fill w-full absolute z-0" src=" {{asset('assets/images/layer2.jpg')}} " alt="bg">
-        <div class="quote">
-            <h1 class="text-3xl text-bold absolute z-20">“Changing the world one set of paws at a time”</h1>
-        </div>
+    <div class="bg">
+        <div class="w-full h-full bg-black absolute z-10 opacity-45 top-0 left-0"></div>    
+        <img class="object-cover absolute z-0" src=" {{asset('assets/images/bg_hz.jpg')}} " alt="bg">
+        <h1 class="quote">Changing the world one set of paws at a time</h1>
         <div class="doge">
-            <img src=" {{asset('assets/images/layer1.png')}} " alt="doge">
+            <img src=" {{asset('assets/images/doge.png')}} " alt="doge">
         </div>
     </div>
 @endsection
