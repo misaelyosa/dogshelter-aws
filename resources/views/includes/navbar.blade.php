@@ -79,5 +79,22 @@
         }
         
     });
+
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.nav_bg');
+
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) {
+            // User is scrolling down - hide navbar
+            navbar.classList.add('nav-hidden');
+        } else {
+            // User is scrolling up - show navbar
+            navbar.classList.remove('nav-hidden');
+        }
+
+        lastScrollTop = scrollTop;
+    });
 </script>
 @endsection

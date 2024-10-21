@@ -17,10 +17,11 @@
     </script>
 </head>
 <body>
+    @include('includes.navbar')
     <div class="container">
-        @include('includes.navbar')
-        @yield('section')
+        @yield('parallax')
     </div>
+    @yield('content')
 </body>
 </html>
 

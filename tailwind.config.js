@@ -14,7 +14,12 @@ module.exports = {
         'comp_orange' : '#FF934F',
       },
       spacing: {
-        '18' : '4.5rem'
+        '18' : '4.5rem',
+        '32' : '7.5rem',
+        '110': '110vh'
+      },
+      screens: {
+        '2xl' : '1920px'
       },
       fontFamily: {
         'dmsans': ['Dm Sans']
