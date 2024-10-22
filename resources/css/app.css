@@ -8,13 +8,7 @@
 @layer components{
     /* base */
     .container{
-        @apply w-full h-screen;
-        grid-template-areas: "stack";
-    }
-    .container > *{
-        grid-area: stack;
-        animation: parallax linear;
-        animation-timeline: scroll();
+        @apply w-full h-screen overflow-x-hidden;
     }
     /* nav */
     .nav_bg{
@@ -61,8 +55,4 @@
     }
 }
 
-@keyframes parallax {
-    to {
-        transform: translateY();
-    }
-}
+
