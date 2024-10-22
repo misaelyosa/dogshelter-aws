@@ -16,10 +16,23 @@
 @endsection
 
 @section('content')
+<div class="wrapper">
+<div class="containerscrollx">
     <!-- page 2 -->
-    <div class="about">
+    <section class="about">
         <h2 class="title1">About Us</h2>
-        <h3 class="font-dmsans tracking-wide text-center italic text-3xl lg:text-5xl font-extrabold text-black max-w-full mt-4">Surabaya Paw Warriors</h3>
-        <p class="font-dmsans tracking-wide text-center leading-relaxed text-lg">"Supaw Warriors" adalah sebuah komunitas atau shelter yang berfokus pada penyelamatan anjing, terutama yang membutuhkan perhatian khusus, seperti anjing yang terlantar, sakit, atau terluka. Mereka aktif di Instagram, membagikan kisah penyelamatan anjing-anjing tersebut, serta menggalang dukungan dan donasi untuk membantu operasional dan kebutuhan medis anjing-anjing tersebut.</p>
-    </div>  
+        <h3 class="font-dmsans tracking-wide px-6 text-left text-2xl mt-6 lg:text-4xl font-extrabold text-black">Surabaya Paw Warriors</h3>
+        <p class="font-dmsans tracking-wide text-left px-6 py-4 leading-relaxed text-xl">"Supaw Warriors" adalah sebuah komunitas atau shelter yang berfokus pada penyelamatan anjing, terutama yang membutuhkan perhatian khusus, seperti anjing yang terlantar, sakit, atau terluka. Kami aktif di Instagram, membagikan kisah penyelamatan anjing-anjing tersebut, serta menggalang dukungan dan donasi untuk membantu operasional dan kebutuhan medis anjing-anjing tersebut.</p>
+    </section>
+
+    <!-- page 3 -->
+    <section class="faq">
+    </section>
+
+    <!-- page 4 -->
+     <section class="programs">
+
+     </section>
+</div>
+</div>
 @endsection

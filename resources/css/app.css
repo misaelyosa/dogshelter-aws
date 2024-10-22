@@ -10,6 +10,12 @@
     .container{
         @apply w-full h-screen overflow-x-hidden;
     }
+    .containerscrollx{
+        @apply w-[300vw] h-screen flex;
+    }
+    .wrapper{
+        @apply w-[100vw] overflow-x-hidden;
+    }
     /* nav */
     .nav_bg{
         @apply bg-transparent dark:bg-transparent fixed w-full z-20 top-0 start-0;
@@ -48,10 +54,18 @@
     }
     /* About */
     .about{ 
-        @apply w-full h-screen max-w-full bg-comp_orange grid overflow-x-hidden overflow-y-hidden;   
+        @apply w-[100vw] h-screen max-w-full bg-comp_orange grid-rows-4 overflow-y-hidden;   
     }
     .title1{
-        @apply font-dmsans text-4xl text-center mt-12 lg:text-6xl font-extrabold text-black max-w-full
+        @apply font-dmsans text-3xl text-left px-6 lg:text-6xl font-extrabold text-black  mt-20;
+    }
+    /* faq */
+    .faq{
+        @apply w-[100vw] h-screen bg-supaw_green;
+    }
+    /* list doge */
+    .programs{
+        @apply w-[100vw] h-screen bg-comp_orange;
     }
 }
 

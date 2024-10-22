@@ -41,7 +41,7 @@ gsap.to(".bg_hz", {
   }
 });
 gsap.to(".bg_vert", {
-  y: 100, 
+  y: 200, 
   scrollTrigger: {
     trigger: ".bg", 
     start: "10% top",
@@ -49,3 +49,39 @@ gsap.to(".bg_vert", {
     scrub: 0.01 
   }
 });
+
+
+const containerscrollx = document.querySelector('.containerscrollx')
+const sections = gsap.utils.toArray('.containerscrollx section')
+
+
+let scrollTween = gsap.to(sections, {
+  xPercent: -100 * (sections.length - 1),
+  ease : "none",
+  scrollTrigger : {
+    trigger : containerscrollx,
+    pin: true,
+    scrub : 1,
+    end : "+=3000",
+    snap : {
+      snapTo: 1 / (sections.length - 1), 
+      duration: 0.5, 
+      ease: "power1.inOut" 
+    }
+  }
+});
+
+const text = gsap.utils.toArray('.about h2 h3 p');
+console.log(text);
+gsap.from(text, {
+  y: -120,
+  opacity : 0,
+  duration : 2,
+  ease : "elastic",
+  stagger : 0.1,
+  scrollTrigger : {
+    trigger : sections,
+    containerAnimation: scrollTween,
+    start : "left center"
+  }
+})
