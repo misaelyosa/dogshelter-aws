@@ -4,9 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
+
+@layer components{
+    /* base */
     .container{
-        @apply w-screen h-screen;
+        @apply w-full h-screen;
         grid-template-areas: "stack";
     }
     .container > *{
@@ -14,9 +16,7 @@
         animation: parallax linear;
         animation-timeline: scroll();
     }
-}
-
-@layer components{
+    /* nav */
     .nav_bg{
         @apply bg-transparent dark:bg-transparent fixed w-full z-20 top-0 start-0;
     }
@@ -35,20 +35,29 @@
     }
     /* Home */
     .bg{
-        @apply w-full h-full max-w-full max-h-full bg-cover absolute z-0 overflow-y-visible;
+        @apply w-full h-full bg-cover absolute z-0 overflow-x-hidden overflow-y-hidden;
+    }
+    .bg_hz{
+        @apply hidden md:block md:object-cover md:absolute md:z-0;
+    }
+    .bg_vert{
+        @apply object-cover w-full h-full absolute z-0 md:hidden;
     }
     .doge{
-        @apply md:w-3/5 md:bottom-6 2xl:w-2/3 absolute right-0 bottom-0 z-30;
+        @apply w-full scale-125 bottom-1/4 md:w-3/5 md:bottom-10 md:right-0 2xl:w-2/3 absolute z-30;
     }
     .quote{
-        @apply font-dmsans font-black italic absolute z-20 lg:text-8xl lg:inset-x-32 lg:inset-y-36 text-left text-comp_orange tracking-normal;
+        @apply font-dmsans font-black italic absolute z-20 text-5xl text-left inset-x-8 top-1/4 md:text-6xl lg:text-8xl lg:inset-x-32 lg:inset-y-32 2xl:text-9xl 2xl:inset-x-32 2xl:inset-y-40 text-left text-comp_orange tracking-normal;
     }
     .bridge{
-        @apply w-full absolute z-10 -bottom-24;
+        @apply w-full absolute z-30 scale-125 bottom-0 left-12 md:scale-100 md:left-0 md:-bottom-8 lg:-bottom-14;
     }
     /* About */
-    .about{
-        @apply w-full h-screen bg-comp_orange  absolute z-0 overflow-y-visible;   
+    .about{ 
+        @apply w-full h-screen max-w-full bg-comp_orange grid overflow-x-hidden overflow-y-hidden;   
+    }
+    .title1{
+        @apply font-dmsans text-4xl text-center mt-12 lg:text-6xl font-extrabold text-black max-w-full
     }
 }
 
