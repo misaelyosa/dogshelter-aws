@@ -35,7 +35,7 @@
     }
     /* Home */
     .bg{
-        @apply w-full h-full bg-cover absolute z-0 overflow-x-hidden overflow-y-hidden;
+        @apply w-full h-screen bg-cover absolute z-0 overflow-x-hidden overflow-y-hidden;
     }
     .bg_hz{
         @apply hidden md:block md:object-cover md:absolute md:z-0;
@@ -47,10 +47,10 @@
         @apply w-full scale-125 bottom-1/4 md:w-3/5 md:bottom-10 md:right-0 2xl:w-2/3 absolute z-30;
     }
     .quote{
-        @apply font-dmsans font-black italic absolute z-20 text-5xl text-left inset-x-8 top-1/4 md:text-6xl lg:text-8xl lg:inset-x-32 lg:inset-y-32 2xl:text-9xl 2xl:inset-x-32 2xl:inset-y-40 text-left text-comp_orange tracking-normal;
+        @apply font-dmsans font-black italic absolute z-20 text-5xl text-left inset-x-8 top-1/4 md:text-6xl lg:text-8xl lg:inset-x-32 lg:inset-y-32 2xl:text-9xl 2xl:inset-x-32 2xl:inset-y-40 text-comp_orange tracking-normal;
     }
     .bridge{
-        @apply w-full absolute z-30 scale-125 bottom-0 left-12 md:scale-100 md:left-0 md:-bottom-8 lg:-bottom-14;
+        @apply w-full absolute z-30 scale-125 bottom-0 left-12 md:scale-100 md:left-0 md:-bottom-8 lg:-bottom-14 2xl:-bottom-36;
     }
     /* About */
     .about{ 
@@ -61,7 +61,10 @@
     }
     /* faq */
     .faq{
-        @apply w-[100vw] h-screen bg-supaw_green;
+        @apply w-[100vw] h-screen bg-supaw_green py-20 px-4;
+    }
+    .title2{
+        @apply font-dmsans text-2xl font-extrabold text-center pb-6
     }
     /* list doge */
     .programs{

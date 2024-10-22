@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 ScrollTrigger.defaults({
-    markers : true
+    // markers : true
 });
 
 // Parallax effect for the quote
@@ -71,8 +71,9 @@ let scrollTween = gsap.to(sections, {
   }
 });
 
-const text = gsap.utils.toArray('.about h2 h3 p');
-console.log(text);
+const text = gsap.utils.toArray(".about h2, .about h3, .about p, .about img");
+// console.log(text);
+
 gsap.from(text, {
   y: -120,
   opacity : 0,
@@ -80,8 +81,13 @@ gsap.from(text, {
   ease : "elastic",
   stagger : 0.1,
   scrollTrigger : {
-    trigger : sections,
-    containerAnimation: scrollTween,
-    start : "left center"
+    markers:true,
+    trigger : ".about",
+    start : "top 70%",
+    end : "right top",
+    toggleActions : "play reset play reset",
+    onEnter: () => console.log("Entered viewport"),
+    onLeaveBack: () => console.log("leaveback viewport"),
+    onEnterBack: () => console.log("enter Back viewport"),
   }
 })
