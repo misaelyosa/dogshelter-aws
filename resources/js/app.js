@@ -81,7 +81,6 @@ gsap.from(text, {
   ease : "elastic",
   stagger : 0.1,
   scrollTrigger : {
-    markers:true,
     trigger : ".about",
     start : "top 70%",
     end : "right top",

@@ -31,8 +31,8 @@
         <h1 class="title2">Frequently Asked Question</h1>
         <div id="accordion-collapse" data-accordion="collapse">
         <h2 id="accordion-collapse-heading-1">
-            <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
-            <span>What is Flowbite?</span>
+            <button type="button" class="accordion-head-top" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
+            <span>Dimana alamat shelter supaw? </span>
             <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
             </svg>
@@ -40,13 +40,13 @@
         </h2>
         <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
             <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-            <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
-            <p class="text-gray-500 dark:text-gray-400">Check out this guide to learn how to <a href="/docs/getting-started/introduction/" class="text-blue-600 dark:text-blue-500 hover:underline">get started</a> and start developing websites even faster with components on top of Tailwind CSS.</p>
+            <p class="mb-2 text-gray-500 dark:text-gray-400">Mohon maaf tapi kami sengaja nggak membuka lokasi dan alamat supaya nggak disalahgunakan berbagai oknum. Disalahgunakan gimana? Ya macem-macem, orang bisa makin mudah buang anjing atau kucing di shelter kami atau bahkan ada yang jahat dan nggak suka mungkin berniat
+            ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
             </div>
         </div>
         <h2 id="accordion-collapse-heading-2">
-            <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
-            <span>Is there a Figma file available?</span>
+            <button type="button" class="accordion-head" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
+            <span>Bolehkah kalau ingin visit shelter? Mungkin bisa bantu bantu disana.</span>
             <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
             </svg>
@@ -54,13 +54,12 @@
         </h2>
         <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
             <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-            <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is first conceptualized and designed using the Figma software so everything you see in the library has a design equivalent in our Figma file.</p>
-            <p class="text-gray-500 dark:text-gray-400">Check out the <a href="https://flowbite.com/figma/" class="text-blue-600 dark:text-blue-500 hover:underline">Figma design system</a> based on the utility classes from Tailwind CSS and components from Flowbite.</p>
+            <p class="mb-2 text-gray-500 dark:text-gray-400">Bukannya tidak boleh, namun karena kami tidak disclose alamat maka akan cukup sulit. Kedepannya mungkin bisa direncanakan, ditunggu ya.</p>
             </div>
         </div>
         <h2 id="accordion-collapse-heading-3">
-            <button type="button" class="flex items-center justify-between text-left w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 rounded-b-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-            <span>What are the differences between Flowbite and Tailwind UI?</span>
+            <button type="button" class="accordion-head" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
+            <span>Dimana alamat shelter supaw? </span>
             <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
             </svg>
@@ -68,13 +67,22 @@
         </h2>
         <div id="accordion-collapse-body-3" class="hidden" aria-labelledby="accordion-collapse-heading-3">
             <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-            <p class="mb-2 text-gray-500 dark:text-gray-400">The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone components, whereas Tailwind UI offers sections of pages.</p>
-            <p class="mb-2 text-gray-500 dark:text-gray-400">However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no technical reason stopping you from using the best of two worlds.</p>
-            <p class="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
-            <ul class="ps-5 text-gray-500 list-disc dark:text-gray-400">
-                <li><a href="https://flowbite.com/pro/" class="text-blue-600 dark:text-blue-500 hover:underline">Flowbite Pro</a></li>
-                <li><a href="https://tailwindui.com/" rel="nofollow" class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a></li>
-            </ul>
+            <p class="mb-2 text-gray-500 dark:text-gray-400">Mohon maaf tapi kami sengaja nggak membuka lokasi dan alamat supaya nggak disalahgunakan berbagai oknum. Disalahgunakan gimana? Ya macem-macem, orang bisa makin mudah buang anjing atau kucing di shelter kami atau bahkan ada yang jahat dan nggak suka mungkin berniat
+ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
+            </div>
+        </div>
+
+        <h2 id="accordion-collapse-heading-4">
+            <button type="button" class="accordion-head-bt" data-accordion-target="#accordion-collapse-body-4" aria-expanded="false" aria-controls="accordion-collapse-body-4">
+            <span>Apakah bisa menitipkan anjing di sini?</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+            </button>
+        </h2>
+        <div id="accordion-collapse-body-4" class="hidden" aria-labelledby="accordion-collapse-heading-4">
+            <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+            <p class="mb-2 text-gray-500 dark:text-gray-400">Supaw warriors bukan tempat penitipan anjing atau kucing. Kami memiliki kapasitas yang terbatas dan tidak bersedia bertanggung jawab atas anjing dan kucing teman-teman ya. Sebaiknya dititipkan di pet hotel saja yang lebih profesional dan aman. "Gapapa, saya bayar kok." Maaf tetap tidak bisa.</p>
             </div>
         </div>
         </div>
@@ -82,7 +90,26 @@
 
     <!-- page 4 -->
      <section class="programs">
+        <h1 class="font-dmsans text-left text-2xl font-bold">Our Programs</h1>
+        <p class="font-dmsans text-left text-lg font-semibold mt-4">T&C Adoption</p>
+        <ul class="font-dmsans text-left text-md">
+            <li>1. Untuk disayang</li>
+            <li>2. Ditaruh dalam rumah</li>
+            <li>3. Tidak dikandang dan/atau dirantai</li>
+            <li>4. Tidak untuk dijualbelikan atau dihibahkan lagi</li>
+            <li>5. Wajib steril dan bersedia vaksin rutin</li>
+            <li>6. Seluruh anggota keluarga di rumah suka anjing dan setuju pelihara</li>
+            <li>7. Siap dengan segala biayanya</li>
+            <li>8. Siap merawat hingga tua dan meninggal</li>
+            <li>9. Rumah bersedia disurvey</li>
+            <li>10. Area Surabaya dan sekitarnya diutamakan</li>
+            <li>11. Rumah berpagar diutamakan</li>
+            <li>12. Bersedia melalui trial adopsi selama sebulan</li>
+            <li>13. Memberi kabar rutin setelah adopsi dan tidak putus komunikasi dengan pihak Supaw Warrior</li>
+            <li>14. Kita yang akan antar anabulnya ke rumah calon pawrent karena tidak menerima visitor</li>
+        </ul>
 
+        <h1 class="font-dmsans text-xl text-left font-bold mt-8">To be announced, Program OTA (Orang Tua Asuh)</h1>
      </section>
 </div>
 </div>
