@@ -94,33 +94,35 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
 
     <!-- page 4 -->
      <section class="programs">
-        <h1 class="font-dmsans text-left text-2xl font-bold">Our Programs</h1>
-        <p class="font-dmsans text-left text-lg font-semibold mt-4">T&C Adoption</p>
-        <ul class="font-dmsans text-left text-md">
-            <li>1. Untuk disayang</li>
-            <li>2. Ditaruh dalam rumah</li>
-            <li>3. Tidak dikandang dan/atau dirantai</li>
-            <li>4. Tidak untuk dijualbelikan atau dihibahkan lagi</li>
-            <li>5. Wajib steril dan bersedia vaksin rutin</li>
-            <li>6. Seluruh anggota keluarga di rumah suka anjing dan setuju pelihara</li>
-            <li>7. Siap dengan segala biayanya</li>
-            <li>8. Siap merawat hingga tua dan meninggal</li>
-            <li>9. Rumah bersedia disurvey</li>
-            <li>10. Area Surabaya dan sekitarnya diutamakan</li>
-            <li>11. Rumah berpagar diutamakan</li>
-            <li>12. Bersedia melalui trial adopsi selama sebulan</li>
-            <li>13. Memberi kabar rutin setelah adopsi dan tidak putus komunikasi dengan pihak Supaw Warrior</li>
-            <li>14. Kita yang akan antar anabulnya ke rumah calon pawrent karena tidak menerima visitor</li>
-        </ul>
+        <h1 class="font-dmsans text-left text-3xl font-bold">Our Programs</h1>
+        <div>
+            <p class="font-dmsans text-left text-lg font-semibold mt-4">T&C Adoption</p>
+            <ul class="font-dmsans text-left text-md ps-2">
+                <li>1. Untuk disayang</li>
+                <li>2. Ditaruh dalam rumah</li>
+                <li>3. Tidak dikandang dan/atau dirantai</li>
+                <li>4. Tidak untuk dijualbelikan atau dihibahkan lagi</li>
+                <li>5. Wajib steril dan bersedia vaksin rutin</li>
+                <li>6. Seluruh anggota keluarga di rumah suka anjing dan setuju pelihara</li>
+                <li>7. Siap dengan segala biayanya</li>
+                <li>8. Siap merawat hingga tua dan meninggal</li>
+                <li>9. Rumah bersedia disurvey</li>
+                <li>10. Area Surabaya dan sekitarnya diutamakan</li>
+                <li>11. Rumah berpagar diutamakan</li>
+                <li>12. Bersedia melalui trial adopsi selama sebulan</li>
+                <li>13. Memberi kabar rutin setelah adopsi dan tidak putus komunikasi dengan pihak Supaw Warrior</li>
+                <li>14. Kita yang akan antar anabulnya ke rumah calon pawrent karena tidak menerima visitor</li>
+            </ul>
 
-        <h1 class="font-dmsans text-xl text-left font-bold mt-8">To be announced, Program OTA (Orang Tua Asuh)</h1>
+            <h1 class="font-dmsans text-xl text-left font-semibold mt-8 italic">To be announced, Program OTA (Orang Tua Asuh)</h1>
+        </div>
      </section>
-</div>
-</div>
-
-<div class="container-listDoge">
-    <div class="card"></div>
-    <div class="card"></div>
+    </div>
+    <section class="container-listDoge">
+        <h1 class="font-dmsans text-3xl font-bold ">Adopt Me!</h1>
+        <div class="card"></div>
+        <div class="card"></div>
+    </section>
 </div>
 
 @endsection

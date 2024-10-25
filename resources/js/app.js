@@ -9,6 +9,30 @@ ScrollTrigger.defaults({
     // markers : true
 });
 
+
+gsap.fromTo(".loading-screen", {
+  opacity: 1
+},
+{
+  opacity: 0,
+  duration : 2.5, //nnti ganti algo loading
+  delay : 2,
+  onComplete: () => {
+    document.querySelector(".loading-screen").style.display = "none";
+  }
+});
+
+gsap.fromTo(".loading-text",{
+  y : 50,
+  opacity : 0,
+},{
+  y: 0,
+  opacity : 1,
+  duration : 1.5,
+  delay : .5,
+});
+
+
 // Parallax effect for the quote
 gsap.to(".quote", {
   y: 700, 
@@ -60,16 +84,17 @@ let scrollTween = gsap.to(sections, {
   ease : "none",
   scrollTrigger : {
     trigger : containerscrollx,
-    pin: true,
+    pin : true,
     scrub : 1,
-    end : "+=3000",
+    end : () => "+=" + containerscrollx.offsetWidth,
     snap : {
       snapTo: 1 / (sections.length - 1), 
-      duration: 0.5, 
+      duration: 0.3, 
       ease: "power1.inOut" 
     }
   }
 });
+
 
 const text = gsap.utils.toArray(".about h2, .about h3, .about p, .about img");
 // console.log(text);
@@ -85,23 +110,8 @@ gsap.from(text, {
     start : "top 70%",
     end : "right top",
     toggleActions : "play none replay reset",
-    onEnter: () => console.log("Entered viewport"),
-    onLeaveBack: () => console.log("leaveback viewport"),
-    onEnterBack: () => console.log("enter Back viewport"),
+    // onEnter: () => console.log("Entered viewport"),
+    // onLeaveBack: () => console.log("leaveback viewport"),
+    // onEnterBack: () => console.log("enter Back viewport"),
   }
 })
-
-// back to vertical scrolling
-gsap.from(".container-listDoge", {
-  opacity: 0,
-  y: 100,
-  duration: 1,
-  scrollTrigger: {
-    markers: true,
-
-    trigger: ".containerscrollx", // Vertical section trigger
-    start: "top center", // Start when it enters the center of the viewport
-    end: "bottom top", // End after the section scrolls out
-    scrub: true,
-  }
-}); 
