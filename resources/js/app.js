@@ -84,9 +84,24 @@ gsap.from(text, {
     trigger : ".about",
     start : "top 70%",
     end : "right top",
-    toggleActions : "play reset play reset",
+    toggleActions : "play none replay reset",
     onEnter: () => console.log("Entered viewport"),
     onLeaveBack: () => console.log("leaveback viewport"),
     onEnterBack: () => console.log("enter Back viewport"),
   }
 })
+
+// back to vertical scrolling
+gsap.from(".container-listDoge", {
+  opacity: 0,
+  y: 100,
+  duration: 1,
+  scrollTrigger: {
+    markers: true,
+
+    trigger: ".containerscrollx", // Vertical section trigger
+    start: "top center", // Start when it enters the center of the viewport
+    end: "bottom top", // End after the section scrolls out
+    scrub: true,
+  }
+}); 

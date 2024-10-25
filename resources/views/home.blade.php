@@ -21,15 +21,17 @@
     <!-- page 2 -->
     <section class="about">
         <h2 class="title1">About Us</h2>
-        <h3 class="font-dmsans tracking-wide px-6 text-left text-2xl mt-6 lg:text-4xl font-extrabold text-black">Surabaya Paw Warriors</h3>
+        <div class="lg:col-span-2">
+            <h3 class="font-dmsans tracking-wide px-6 text-left text-2xl mt-6 lg:text-4xl font-extrabold text-black">Surabaya Paw Warriors</h3>
+        </div>
         <p class="font-dmsans tracking-wide text-left px-6 py-4 leading-relaxed text-lg">"Supaw Warriors" adalah sebuah komunitas atau shelter yang berfokus pada penyelamatan anjing, terutama yang membutuhkan perhatian khusus, seperti anjing yang terlantar, sakit, atau terluka. Kami aktif di Instagram, membagikan kisah penyelamatan anjing-anjing tersebut, serta menggalang dukungan dan donasi untuk membantu operasional kebutuhan medis anjing-anjing.</p>
-        <!-- <img class="object-fit w-full h-2/5" src="{{asset('assets/images/splash_about.jpg')}}" alt="splash-about"> -->
+        <img class="object-cover w-full h-1/5 my-4" src="{{asset('assets/images/splash_about.jpg')}}" alt="splash-about">
     </section>
 
     <!-- page 3 -->
     <section class="faq">
         <h1 class="title2">Frequently Asked Question</h1>
-        <div id="accordion-collapse" data-accordion="collapse">
+        <div id="accordion-collapse" class="mb-4 relative z-20" data-accordion="collapse">
         <h2 id="accordion-collapse-heading-1">
             <button type="button" class="accordion-head-top" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
             <span>Dimana alamat shelter supaw? </span>
@@ -86,6 +88,8 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
             </div>
         </div>
         </div>
+
+        <h1 class="font-dmsans text-black italic font-black text-[10rem] absolute z-0 -rotate-12 -bottom-5 right-2 drop-shadow-xl">QNA</h1>
     </section>
 
     <!-- page 4 -->
@@ -113,4 +117,10 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
      </section>
 </div>
 </div>
+
+<div class="container-listDoge">
+    <div class="card"></div>
+    <div class="card"></div>
+</div>
+
 @endsection
