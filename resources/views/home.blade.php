@@ -1,18 +1,21 @@
 @extends('base.base')
+@include('includes.navbar')
 
 @section('parallax')
+<div class="container">
     <div class="bg">
         <div class="w-full h-full md:h-110 bg-black absolute z-10 opacity-45 top-0 left-0"></div>    
         <!-- bg md up -->
         <img class="bg_hz" src=" {{asset('assets/images/bg_hz.jpg')}} " alt="bg"> 
         <!-- bg md down -->
-         <img class="bg_vert" src="{{asset('assets/images/bg_vert.jpg')}}" alt="bgvert">
+        <img class="bg_vert" src="{{asset('assets/images/bg_vert.jpg')}}" alt="bgvert">
         <h1 class="quote">Changing the world one set of paws at a time.</h1>
         <div class="doge">
             <img src=" {{asset('assets/images/doge.png')}} " alt="doge">
         </div>
         <img class="bridge" src="{{asset('assets/images/aaa.png')}}" alt="bridge">
     </div>
+</div>
 @endsection
 
 @section('content')
@@ -89,7 +92,7 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
         </div>
         </div>
 
-        <h1 class="font-dmsans text-black italic font-black text-[10rem] absolute z-0 -rotate-12 -bottom-5 right-2 drop-shadow-xl">QNA</h1>
+        <h3 class="font-dmsans text-black italic font-black text-[10rem] absolute z-0 -rotate-12 -bottom-5 right-2 drop-shadow-xl">QNA</h3>
     </section>
 
     <!-- page 4 -->
@@ -119,10 +122,34 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
      </section>
     </div>
     <section class="container-listDoge">
-        <h1 class="font-dmsans text-3xl font-bold ">Adopt Me!</h1>
-        <div class="card"></div>
-        <div class="card"></div>
+        <h1 class="font-dmsans text-3xl font-bold col-span-2 italic ps-1">Adopt Me!</h1>
+        @foreach ($doges as $doge)
+        <div class="card">
+            <div class="card-overlay">
+                <div class="card-content">
+                    <h1 class="nama-doge">{{ $doge->nama }}</h1>
+                    <h1 class="dob-doge">{{ $doge->dob }}</h1>
+                    <h1 class="trait">{{ $doge->trait }}</h1>
+                    <button class="btn-moreinfo">more info...</button>
+                </div>
+            </div>
+        </div>
+        @endforeach
     </section>
 </div>
+@endsection
 
+@section('script2')
+    <script>
+        function loadRandomDogImages() {
+            var inc = 0;
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const randomImage = `https://placedog.net/400/800?id=${inc+=1}`;
+                card.style.backgroundImage = `url(${randomImage})`;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadRandomDogImages);
+    </script>
 @endsection

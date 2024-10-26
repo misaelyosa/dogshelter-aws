@@ -10,27 +10,27 @@ ScrollTrigger.defaults({
 });
 
 
-gsap.fromTo(".loading-screen", {
-  opacity: 1
-},
-{
-  opacity: 0,
-  duration : 2.5, //nnti ganti algo loading
-  delay : 2,
-  onComplete: () => {
-    document.querySelector(".loading-screen").style.display = "none";
-  }
-});
+// gsap.fromTo(".loading-screen", {
+//   opacity: 1
+// },
+// {
+//   opacity: 0,
+//   duration : 2.5, //nnti ganti algo loading
+//   delay : 2,
+//   onComplete: () => {
+//     document.querySelector(".loading-screen").style.display = "none";
+//   }
+// });
 
-gsap.fromTo(".loading-text",{
-  y : 50,
-  opacity : 0,
-},{
-  y: 0,
-  opacity : 1,
-  duration : 1.5,
-  delay : .5,
-});
+// gsap.fromTo(".loading-text",{
+//   y : 50,
+//   opacity : 0,
+// },{
+//   y: 0,
+//   opacity : 1,
+//   duration : 1.5,
+//   delay : .5,
+// });
 
 
 // Parallax effect for the quote
@@ -110,8 +110,45 @@ gsap.from(text, {
     start : "top 70%",
     end : "right top",
     toggleActions : "play none replay reset",
+    // markers : true
     // onEnter: () => console.log("Entered viewport"),
     // onLeaveBack: () => console.log("leaveback viewport"),
     // onEnterBack: () => console.log("enter Back viewport"),
   }
 })
+
+const faq = gsap.utils.toArray(".faq h1, .faq h2, .faq p, .faq div");
+gsap.from(faq, { 
+  y : -50,
+  opacity : 0,
+  duration : 1,
+  ease : "elastic",
+  stagger : 0.1,
+  scrollTrigger : {
+    trigger : ".faq",
+    containerAnimation : scrollTween,
+    start : "left center",
+    // markers : true,
+    // onEnter: () => console.log("Entered viewport"),
+    // onLeaveBack: () => console.log("leaveback viewport"),
+    // onEnterBack: () => console.log("enter Back viewport"),
+  }
+});
+
+const textPrograms = gsap.utils.toArray(".programs h1, .programs p, .programs ul");
+gsap.from(textPrograms, { 
+  y : -50,
+  opacity : 0,
+  duration : 2,
+  ease : "elastic",
+  stagger : 0.1,
+  scrollTrigger : {
+    trigger : ".programs",
+    containerAnimation : scrollTween,
+    start : "left center",
+    // markers : true,
+    // onEnter: () => console.log("Entered viewport"),
+    // onLeaveBack: () => console.log("leaveback viewport"),
+    // onEnterBack: () => console.log("enter Back viewport"),
+  }
+});
