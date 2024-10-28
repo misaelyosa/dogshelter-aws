@@ -2,7 +2,7 @@
 @include('includes.navbar')
 
 @section('parallax')
-<div class="container">
+<div class="container" id="container">
     <div class="bg">
         <div class="w-full h-full md:h-110 bg-black absolute z-10 opacity-45 top-0 left-0"></div>    
         <!-- bg md up -->
@@ -22,7 +22,7 @@
 <div class="wrapper">
 <div class="containerscrollx">
     <!-- page 2 -->
-    <section class="about">
+    <section class="about" id="about">
         <h2 class="title1">About Us</h2>
         <div class="lg:col-span-2">
             <h3 class="font-dmsans tracking-wide px-6 text-left text-2xl mt-6 lg:text-4xl font-extrabold text-black">Surabaya Paw Warriors</h3>
@@ -32,7 +32,7 @@
     </section>
 
     <!-- page 3 -->
-    <section class="faq">
+    <section class="faq" id="faq">
         <h1 class="title2">Frequently Asked Question</h1>
         <div id="accordion-collapse" class="mb-4 relative z-20" data-accordion="collapse">
         <h2 id="accordion-collapse-heading-1">
@@ -96,7 +96,7 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
     </section>
 
     <!-- page 4 -->
-     <section class="programs">
+     <section class="programs" id="programs">
         <h1 class="font-dmsans text-left text-3xl font-bold">Our Programs</h1>
         <div>
             <p class="font-dmsans text-left text-lg font-semibold mt-4">T&C Adoption</p>
@@ -121,7 +121,7 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
         </div>
      </section>
     </div>
-    <section class="container-listDoge">
+    <section class="container-listDoge" id="adoptionlist">
         <h1 class="font-dmsans text-3xl font-bold col-span-2 italic ps-1">Adopt Me!</h1>
         @foreach ($doges as $doge)
         <div class="card">

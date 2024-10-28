@@ -30,11 +30,31 @@
                     <a href="#" class="nav_options">About</a>
                 </li>
                 <li>
-                    <a href="#" class="nav_options">Services</a>
+                    <a href="#" class="nav_options">FAQ</a>
                 </li>
                 <li>
-                    <a href="#" class="nav_options">Contact</a>
+                    <a href="#" class="nav_options">Programs</a>
                 </li>
+                <li>
+                    <a href="#" class="nav_options">Adoption List</a>
+                </li>
+                @if (Auth::check())
+                <li>
+                    <h1 href="#" class="nav_options">Hello, {{session('name') }}</h1>
+                </li>                  
+                <li>
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav_options">
+                        Logout
+                    </a>
+                </li>
+                @else
+                <li>
+                    <a href="/login" class="nav_options">Login</a>
+                </li>
+                @endif`
             </ul>
         </div>
     </div>

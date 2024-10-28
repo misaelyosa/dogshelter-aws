@@ -16,14 +16,16 @@ use App\Http\Controllers\SessionController;
 |
 */
 
-Route::get('/', [SessionController::class, 'index']); //return view login
+Route::get('/login', [SessionController::class, 'index'])->name('login'); //return view login
 
 Route::get('/register', function () {
     return view('register.index');
 });
-Route::post('/register', [RegisterController::class, 'store']);
+Route::post('/register.store', [RegisterController::class, 'store']);
 
 Route::post('/login', [SessionController::class, 'login']);
 Route::post('/logout', [SessionController::class, 'logout']);
 
 Route::get('/home', [DogeController::class, 'fetch'])->name('home');
+Route::get('/', [DogeController::class, 'fetch'])->name('home');
+

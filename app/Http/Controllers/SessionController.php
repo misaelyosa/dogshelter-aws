@@ -19,18 +19,23 @@ class SessionController extends Controller
         ]);
 
         if(Auth::attempt($data)){
-            return redirect()->route('home');
+            $request->session()->regenerate();
 
-            if (Auth::User()->role === 'admin') {
-                return redirect()->route('home');
-            } elseif (Auth::User()->role === 'user') {
-                return redirect()->route('home');
-            }
+            $name = Auth::user()->name;
+
+            return redirect()->intended('/home')
+            ->with('name', $name);
+
+            // if (Auth::User()->role === 'admin') {
+            //     return redirect()->intended('home');
+            // } elseif (Auth::User()->role === 'user') {
+            //     return redirect()->intended('home');
+            // }
 
         }
         else {
             return back()->withErrors([
-                'email'=>'Email or password is incorrect',
+                'email'=>'Login Failed',
             ])->withInput();
         }
     }
