@@ -39,14 +39,13 @@
                     <a href="#" class="nav_options">Adoption List</a>
                 </li>
                 @if (Auth::check())
+                <h1 class="md:hidden font-dmsans text-2xl italic font-semibold text-white absolute top-20 left-15">Hello, {{Auth::user()->name}}</h1>
+                                  
                 <li>
-                    <h1 href="#" class="nav_options">Hello, {{session('name') }}</h1>
-                </li>                  
-                <li>
-                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                    <form id="logout-form" action="/logout" method="POST" style="display: none;">
                         @csrf
                     </form>
-                    <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav_options">
+                    <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav_options">
                         Logout
                     </a>
                 </li>

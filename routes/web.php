@@ -16,15 +16,18 @@ use App\Http\Controllers\SessionController;
 |
 */
 
-Route::get('/login', [SessionController::class, 'index'])->name('login'); //return view login
 
-Route::get('/register', function () {
-    return view('register.index');
+
+Route::middleware('guest')->group(function() {
+    Route::get('/login', [SessionController::class, 'index'])->name('login'); //return view login
+    Route::post('/login', [SessionController::class, 'login']);
+    Route::get('/register', function () {return view('register.index');});
+    Route::post('/register.store', [RegisterController::class, 'store']);
 });
-Route::post('/register.store', [RegisterController::class, 'store']);
 
-Route::post('/login', [SessionController::class, 'login']);
-Route::post('/logout', [SessionController::class, 'logout']);
+Route::middleware('auth')->group(function(){
+    Route::post('/logout', [SessionController::class, 'logout'])->name('logout');
+});
 
 Route::get('/home', [DogeController::class, 'fetch'])->name('home');
 Route::get('/', [DogeController::class, 'fetch'])->name('home');
