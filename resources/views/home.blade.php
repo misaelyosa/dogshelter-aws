@@ -178,6 +178,7 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
         </div>
         @endforeach
     </section>
+    @include('includes.footer')
 </div>
 @endsection
 

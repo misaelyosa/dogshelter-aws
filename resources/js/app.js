@@ -10,27 +10,27 @@ ScrollTrigger.defaults({
 });
 
 
-// gsap.fromTo(".loading-screen", {
-//   opacity: 1
-// },
-// {
-//   opacity: 0,
-//   duration : 2.5, //nnti ganti algo loading
-//   delay : 2,
-//   onComplete: () => {
-//     document.querySelector(".loading-screen").style.display = "none";
-//   }
-// });
+gsap.fromTo(".loading-screen", {
+  opacity: 1
+},
+{
+  opacity: 0,
+  duration : 2.5, //nnti ganti algo loading
+  delay : 2,
+  onComplete: () => {
+    document.querySelector(".loading-screen").style.display = "none";
+  }
+});
 
-// gsap.fromTo(".loading-text",{
-//   y : 50,
-//   opacity : 0,
-// },{
-//   y: 0,
-//   opacity : 1,
-//   duration : 1.5,
-//   delay : .5,
-// });
+gsap.fromTo(".loading-text",{
+  y : 50,
+  opacity : 0,
+},{
+  y: 0,
+  opacity : 1,
+  duration : 1.5,
+  delay : .5,
+});
 
 
 // Parallax effect for the quote
