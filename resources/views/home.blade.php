@@ -122,7 +122,7 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
      </section>
     </div>
     <section class="container-listDoge" id="adoptionlist">
-        <h1 class="font-dmsans text-3xl font-bold col-span-2 italic ps-1">Adopt Me!</h1>
+        <h1 class="font-dmsans text-3xl font-bold col-span-2 italic ps-1 lg:col-span-4 lg:text-5xl">Adopt Me!</h1>
         @foreach ($doges as $doge)
         <div class="card">
             <div class="card-overlay">

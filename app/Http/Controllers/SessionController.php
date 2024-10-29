@@ -21,17 +21,12 @@ class SessionController extends Controller
         if(Auth::attempt($data)){
             $request->session()->regenerate();
 
-            // $name = Auth::user()->name;
+            $user = Auth::user();
 
+            if($user->role === 'admin'){
+                return redirect()->intended('/admin');
+            }
             return redirect()->intended('/home');
-            // ->with('name', $name);
-
-            // if (Auth::User()->role === 'admin') {
-            //     return redirect()->intended('home');
-            // } elseif (Auth::User()->role === 'user') {
-            //     return redirect()->intended('home');
-            // }
-
         }
         else {
             return back()->withErrors([

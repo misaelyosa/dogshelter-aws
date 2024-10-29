@@ -12,4 +12,10 @@ class DogeController extends Controller
 
         return view('home', ['doges' => $doges]);
     }
+
+    public function fetchDogeAdmin(){
+        $doges = Doge::all();
+
+        return view('admin/index', ['doges' => $doges]);
+    }
 }

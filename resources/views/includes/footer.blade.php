@@ -1,6 +1,6 @@
-<section class="w-full h-[10%] bg-comp_orange border border-black border-t border-b-0 border-x-0">
+<section class="w-full h-[10%] bg-comp_orange border border-black border-t border-b-0 border-x-0 overflow-x-hidden">
     <div class="px-10 py-8 flex h-full items-center">
-        <h1 class="font-dmsans font-medium italic text-md text-black self-start items-start">Surabaya Paw Warriors </h1>
+        <h1 class="font-dmsans font-medium italic text-md text-black self-center items-start">Surabaya Paw Warriors </h1>
 
         <div class="ml-auto flex space-x-4">
             <a href="https://www.instagram.com/supaw_warriors" target="_blank" class="text-black hover:text-gray-600">

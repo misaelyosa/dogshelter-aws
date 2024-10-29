@@ -27,8 +27,15 @@ Route::middleware('guest')->group(function() {
 
 Route::middleware('auth')->group(function(){
     Route::post('/logout', [SessionController::class, 'logout'])->name('logout');
+
+    Route::middleware('role:admin')->group(function () {
+       Route::get('/admin', [DogeController::class, 'fetchDogeAdmin'])->name('admin');
+    });
+    // Route::middleware('role:user')->group(function () {
+    // });
 });
 
 Route::get('/home', [DogeController::class, 'fetch'])->name('home');
 Route::get('/', [DogeController::class, 'fetch'])->name('home');
+
 
