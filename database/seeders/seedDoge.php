@@ -17,6 +17,7 @@ class seedDoge extends Seeder
         $faker = Faker::create();
         $traits = ['friendly', 'big eater', 'love to play', 'calm'];
         $genders = ['male', 'female'];
+        $vaccinStatus = ['vaccinated', 'not yet'];
 
         for ($i = 0; $i < 10; $i++) {
             DB::table('doge')->insert([
@@ -24,7 +25,8 @@ class seedDoge extends Seeder
                 'dob' => $faker->dateTimeBetween('2019-01-01', '2023-12-31')->format('Y-m-d'),
                 'trait' => $faker->randomElement($traits),
                 'jenis_kelamin' => $faker->randomElement($genders),
-                'keterangan' => null,
+                'keterangan' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae elit eget nibh vehicula aliquet.",
+                'vaccin_status' => $faker->randomElement($vaccinStatus), 
                 'img_route' => null,
                 'created_at' => now(),
                 'updated_at' => now(),

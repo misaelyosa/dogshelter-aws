@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('trait', 100);
             $table->string('jenis_kelamin', 10);
             $table->string('keterangan')->nullable();
+            $table->string('vaccin_status')->nullable();
             $table->string('img_route')->nullable();
         });
     }

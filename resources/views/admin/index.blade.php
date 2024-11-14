@@ -3,7 +3,7 @@
 <section class="w-full h-full flex flex-col items-center">
     <h1 class="font-dmsans text-black text-xl font-bold my-5">Tabel Doge</h1>
     <div class="mb-8 w-full h-full">
-        <div class="relative overflow-x-auto">
+        <div class="relative overflow-x-auto  mx-10">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -20,7 +20,13 @@
                             Dob
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Vaccin Status
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Keterangan
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Actions
                         </th>
                     </tr>
                 </thead>
@@ -39,8 +45,20 @@
                         <td class="px-6 py-4">
                              {{ $doge->dob }}
                         </td>
-                        <td class="px-6 py-4">
+
+                        <td class="px-6 py-0">
+                             {{ $doge->vaccin_status }}
+                        </td>
+                        <td class="px-6 py-0">
                              {{ $doge->keterangan }}
+                        </td>
+                        <td class=" pe-2 py-4">
+                            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                               Edit
+                            </button>
+                             <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                Delete
+                            </button>
                         </td>
                     </tr>
                     @endforeach

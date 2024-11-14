@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DogeController;
 use App\Http\Controllers\RegisterController;
@@ -22,7 +23,6 @@ Route::middleware('guest')->group(function() {
     Route::get('/login', [SessionController::class, 'index'])->name('login'); //return view login
     Route::post('/login', [SessionController::class, 'login']);
     Route::get('/register', function () {return view('register.index');});
-    Route::post('/register.store', [RegisterController::class, 'store']);
 });
 
 Route::middleware('auth')->group(function(){
@@ -30,6 +30,10 @@ Route::middleware('auth')->group(function(){
 
     Route::middleware('role:admin')->group(function () {
        Route::get('/admin', [DogeController::class, 'fetchDogeAdmin'])->name('admin');
+       Route::get('/admin/edit', function(){
+        return view('admin.edit');
+       });
+       Route::post('/admin/edit', [AdminController::class, 'update']);
     });
     // Route::middleware('role:user')->group(function () {
     // });
