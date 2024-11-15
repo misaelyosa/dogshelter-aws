@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     public function edit(Request $request){
+        // dd('ballz');
         $user = Auth::user();
         if( $user->role === 'admin'){
             $doge = Doge::find($request->id);
@@ -19,9 +20,10 @@ class AdminController extends Controller
             $doge->jenis_kelamin = $request->jenis_kelamin;
             $doge->keterangan = $request->keterangan;
             $doge->vaccin_status = $request->vaccin_status;
+            // dd($request->all());
             $doge->save();
 
-            return redirect()->route("admin.index")->with("success", "ok");
+            return redirect()->route("admin")->with("success", "Data updated successfully.");
         } else {
             return back()->withErrors('cannot edit');
         }

@@ -10,4 +10,6 @@ class Doge extends Model
     use HasFactory;
 
     protected $table = 'doge';
+
+    protected $fillable = ['nama', 'dob', 'trait', 'jenis_kelamin', 'keterangan', 'vaccin_status'];
 }
