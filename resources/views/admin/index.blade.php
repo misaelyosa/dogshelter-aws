@@ -2,7 +2,6 @@
 
 @section('content')
 <section class="w-full h-full flex flex-col items-center">
-    <h1 class="font-dmsans text-black text-xl font-bold my-5">Tabel Doge</h1>
     @if (session('success'))
     <!-- TOAST -->
     <div id="toast-success" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
@@ -22,6 +21,15 @@
     </div>
     @endif
     
+    <div class="w-full grid gap-4 mb-4 sm:gap-6">        
+        <h1 class="font-dmsans text-black text-lg md:text-2xl font-bold mt-5  ps-6">Tabel Doge</h1>
+        <a href="{{route('formCreateDoge')}}"> 
+            <button type="button" class="h-[40px] ms-5 place-self-start md:place-self-end md:me-24 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
+                Add Doge
+            </button>
+        </a>
+    </div>
+
     <div class="mb-8 w-full h-full">
         <div class="relative overflow-x-auto  mx-10">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

@@ -29,6 +29,33 @@ class AdminController extends Controller
         }
     }
 
+    public function create(Request $request){
+        $user = Auth::user();
+        if ($user->role === 'admin') {
+            $request->validate([
+                'nama' => 'required|string|max:255',
+                'dob' => 'required|date',
+                'trait' => 'required|string|max:255',
+                'jenis_kelamin' => 'required|string|in:male,female',
+                'keterangan' => 'nullable|string',
+                'vaccin_status' => 'required|string',
+            ]);
+            // dd($request->all());
+            $doge = new Doge();
+            $doge->nama = $request->nama;
+            $doge->dob = $request->dob;
+            $doge->trait = $request->trait;
+            $doge->jenis_kelamin = $request->jenis_kelamin;
+            $doge->keterangan = $request->keterangan;
+            $doge->vaccin_status = $request->vaccin_status;
+            $doge->save(); //insert db 
+
+            return redirect()->route("admin")->with("success", "Doge added successfully.");
+        } else {
+            return back()->withErrors('You do not have permission to add a Doge.');
+        }
+    }
+
     public function delete($id){
         $doge = Doge::findorFail($id);
         $doge->delete();

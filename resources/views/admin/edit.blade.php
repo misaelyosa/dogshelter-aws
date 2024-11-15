@@ -10,11 +10,11 @@
             <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
                 <div class="sm:col-span-2">
                     <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Doge Name</label>
-                    <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $doge->nama}}" placeholder="Type product name" required="">
+                    <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $doge->nama}}" placeholder="Type doge's name" required="">
                 </div>
                 <div class="w-full">
                     <label for="trait" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Trait</label>
-                    <input type="text" name="trait" id="trait" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $doge->trait}}" placeholder="Product brand" required="">
+                    <input type="text" name="trait" id="trait" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $doge->trait}}" placeholder="Type doge's trait" required="">
                 </div>
                 <div class="w-full">
                     <label for="dob" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of Birth</label>
@@ -22,11 +22,11 @@
                 </div>
                 <div class="w-full">
                     <label for="jenis_kelamin" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Kelamin</label>
-                    <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $doge->jenis_kelamin}}" placeholder="yyyy-mm-dd" required="">
+                    <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $doge->jenis_kelamin}}" placeholder="male/female" required="">
                 </div>
                 <div class="w-full">
                     <label for="vaccin_status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vaccin Status</label>
-                    <input type="text" name="vaccin_status" id="vaccin_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $doge->vaccin_status}}" placeholder="yyyy-mm-dd" required="">
+                    <input type="text" name="vaccin_status" id="vaccin_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $doge->vaccin_status}}" placeholder="Input vaccine informations" required="">
                 </div>
                 <!-- <div>
                     <label for="vaccin_status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vaccin Status</label>
@@ -40,7 +40,7 @@
                 </div> -->
                 <div class="sm:col-span-2">
                     <label for="keterangan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
-                    <textarea id="keterangan" name="keterangan" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write a product description here..." >{{$doge->keterangan}}</textarea>
+                    <textarea id="keterangan" name="keterangan" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write more description here..." >{{$doge->keterangan}}</textarea>
                 </div>
             </div>
             <div class="flex items-center space-x-4">
