@@ -29,6 +29,12 @@ class AdminController extends Controller
         }
     }
 
+    public function delete($id){
+        $doge = Doge::findorFail($id);
+        $doge->delete();
+        return redirect()->route("admin")->with("success", "Data deleted successfully.");
+    }
+
     public function fetchEditDoge($id){
         $doge = Doge::findOrFail($id);
         return view('admin.edit', compact('doge'));

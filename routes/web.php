@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function(){
        Route::get('/admin', [DogeController::class, 'fetchDogeAdmin'])->name('admin');
        Route::get('/admin/edit/{id}', [AdminController::class, 'fetchEditDoge'])->name('fetchedit'); //return view edit + select id 
        Route::post('/admin/edit', [AdminController::class, 'edit'])->name('updatedoge'); //post edit
+       Route::get('/admin/delete/{id}', [AdminController::class, 'delete'])->name('deletedoge');
     });
     // Route::middleware('role:user')->group(function () {
     // });
