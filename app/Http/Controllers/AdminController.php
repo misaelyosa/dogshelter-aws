@@ -26,4 +26,9 @@ class AdminController extends Controller
             return back()->withErrors('cannot edit');
         }
     }
+
+    public function fetchEditDoge($id){
+        $doge = Doge::findOrFail($id);
+        return view('admin.edit', compact('doge'));
+    }
 }

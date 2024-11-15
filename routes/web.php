@@ -30,10 +30,8 @@ Route::middleware('auth')->group(function(){
 
     Route::middleware('role:admin')->group(function () {
        Route::get('/admin', [DogeController::class, 'fetchDogeAdmin'])->name('admin');
-       Route::get('/admin/edit', function(){
-        return view('admin.edit');
-       });
-       Route::post('/admin/edit', [AdminController::class, 'update']);
+       Route::get('/admin/edit/{id}', [AdminController::class, 'fetchEditDoge'])->name('fetchedit');
+       Route::post('/admin/edit', [AdminController::class, 'update'])->name('updatedoge');
     });
     // Route::middleware('role:user')->group(function () {
     // });
