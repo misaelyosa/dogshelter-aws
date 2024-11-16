@@ -194,5 +194,123 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
         }
 
         document.addEventListener('DOMContentLoaded', loadRandomDogImages);
+
+        // Parallax effect animations
+        function parallaxAnimations() {
+            gsap.to(".quote", {
+                y: 700, 
+                scrollTrigger: {
+                    trigger: ".bg", 
+                    start: "15% top", 
+                    end: "bottom top", 
+                    scrub: 3,
+                }
+            });
+
+            gsap.to(".doge", {
+                y: 500, 
+                scrollTrigger: {
+                    trigger: ".bg", 
+                    start: "20% top",
+                    end: "bottom top",
+                    scrub: 3, 
+                }
+            });
+
+            gsap.to(".bg_hz", {
+                y: 200, 
+                scrollTrigger: {
+                    trigger: ".bg", 
+                    start: "10% top",
+                    end: "bottom top",
+                    scrub: 0.01 
+                }
+            });
+
+            gsap.to(".bg_vert", {
+                y: 200, 
+                scrollTrigger: {
+                    trigger: ".bg", 
+                    start: "10% top",
+                    end: "bottom top",
+                    scrub: 0.01 
+                }
+            });
+        }
+
+        // Horizontal Scroll Animation
+        function horizontalScroll() {
+            const containerscrollx = document.querySelector('.containerscrollx');
+            const sections = gsap.utils.toArray('.containerscrollx section');
+
+            let scrollTween = gsap.to(sections, {
+                xPercent: -100 * (sections.length - 1),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: containerscrollx,
+                    pin: true,
+                    scrub: 1,
+                    end: () => "+=" + containerscrollx.offsetWidth,
+                    snap: {
+                        snapTo: 1 / (sections.length - 1), 
+                        duration: 0.3, 
+                        ease: "power1.inOut" 
+                    }
+                }
+            });
+        
+            const text = gsap.utils.toArray(".about h2, .about h3, .about p, .about img");
+
+            gsap.from(text, {
+                y: -120,
+                opacity: 0,
+                duration: 2,
+                ease: "elastic",
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: ".about",
+                    start: "top 70%",
+                    end: "right top",
+                    toggleActions: "play none replay reset",
+                }
+            });
+
+            const faq = gsap.utils.toArray(".faq h1, .faq h2, .faq p, .faq div");
+
+            gsap.from(faq, { 
+                y: -50,
+                opacity: 0,
+                duration: 1,
+                ease: "elastic",
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: ".faq",
+                    containerAnimation: scrollTween,
+                    start: "left center",
+                }
+            });
+
+            const textPrograms = gsap.utils.toArray(".programs h1, .programs p, .programs ul");
+
+            gsap.from(textPrograms, {
+                y: -50,
+                opacity: 0,
+                duration: 2,
+                ease: "elastic",
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: ".programs",
+                    containerAnimation: scrollTween,
+                    start: "left center",
+                    markers: true,
+                }
+            });
+        }
+    
+        // Call all animation functions
+        document.addEventListener('DOMContentLoaded', function () {
+            parallaxAnimations();
+            horizontalScroll();
+        });
     </script>
 @endsection
