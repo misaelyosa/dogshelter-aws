@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function(){
        })->name('formCreateDoge');
        Route::post('/admin/create', [AdminController::class, 'create'])->name('createDoge');
     });
+    
     // Route::middleware('role:user')->group(function () {
     // });
 });

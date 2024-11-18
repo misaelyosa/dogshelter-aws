@@ -66,4 +66,10 @@ class AdminController extends Controller
         $doge = Doge::findOrFail($id);
         return view('admin.edit', compact('doge'));
     }
+
+
+    public function fetchUser(){
+        $users = User::all();
+        return view('admin.tableUser', compact('users'));
+    }
 }

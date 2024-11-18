@@ -16,6 +16,6 @@ class DogeController extends Controller
     public function fetchDogeAdmin(){
         $doges = Doge::all();
 
-        return view('admin/index', ['doges' => $doges]);
+        return view('admin/tableDoge', ['doges' => $doges]);
     }
 }

@@ -39,21 +39,26 @@
                     <a href="#" class="nav_options">Adoption List</a>
                 </li>
                 @if (Auth::check())
-                <h1 class="md:hidden font-dmsans text-2xl italic font-semibold text-white absolute top-20 left-15">Hello, {{Auth::user()->name}}</h1>
+                    <h1 class="md:hidden font-dmsans text-2xl italic font-semibold text-white absolute top-20 left-15">Hello, {{Auth::user()->name}}</h1>
                                   
-                <li>
-                    <form id="logout-form" action="/logout" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                    <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav_options">
-                        Logout
-                    </a>
-                </li>
+                    <li>
+                        <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav_options">
+                            Logout
+                        </a>
+                    </li>
                 @else
-                <li>
-                    <a href="/login" class="nav_options">Login</a>
-                </li>
-                @endif`
+                    <li>
+                        <a href="/login" class="nav_options">Login</a>
+                    </li>
+                @endif
+                @if (Auth::Check() && Auth::user()->role === 'admin')
+                    <li>
+                        <a href="{{route('admin')}}" class="nav_options">Admin Page</a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>
@@ -110,19 +115,6 @@
         console.log('tutup')
     }
     });
-
-    // isNavOpen.addEventListener('click', () => {
-    //     isExpanded = false;
-    //     navHead.style.backgroundColor = 'transparent';  
-    //     isNavOpen.classList.add('hidden');
-    //     isNavOpen.classList.remove('slide-down');
-
-        
-    //     document.body.classList.remove('no-scroll');
-    //     navbarToggle.setAttribute('aria-expanded', 'false');
-    //     console.log(isExpanded)
-    //     console.log('tutup body')
-    // });
 
     var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
     var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
