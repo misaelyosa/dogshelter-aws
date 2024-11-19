@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DogeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,9 @@ Route::middleware('auth')->group(function(){
        //User table
        Route::get('admin/manageUser', [AdminController::class, 'fetchUser'])->name('fetchuser');
     });
+
+    Route::get('/adoptform/{id}', [UserController::class, 'fetchAdopt'])->name('fetchadoptform');
+    Route::post('/adoptform', [UserController::class, 'submitAdoptForm'])->name('submitadoptform');
 
     // Route::middleware('role:user')->group(function () {
     // });
