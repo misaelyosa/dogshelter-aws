@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/logout', [SessionController::class, 'logout'])->name('logout');
 
     Route::middleware('role:admin')->group(function () {
+        //Doge Table
        Route::get('/admin', [DogeController::class, 'fetchDogeAdmin'])->name('admin');
        Route::get('/admin/edit/{id}', [AdminController::class, 'fetchEditDoge'])->name('fetchedit'); //return view edit + select id 
        Route::post('/admin/edit', [AdminController::class, 'edit'])->name('updatedoge'); //post edit
@@ -37,8 +38,11 @@ Route::middleware('auth')->group(function(){
         return view('admin.create');
        })->name('formCreateDoge');
        Route::post('/admin/create', [AdminController::class, 'create'])->name('createDoge');
+
+       //User table
+       Route::get('admin/manageUser', [AdminController::class, 'fetchUser'])->name('fetchuser');
     });
-    
+
     // Route::middleware('role:user')->group(function () {
     // });
 });

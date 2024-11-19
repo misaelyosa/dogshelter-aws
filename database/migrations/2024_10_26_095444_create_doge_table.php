@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('keterangan')->nullable();
             $table->string('vaccin_status')->nullable();
             $table->string('img_route')->nullable();
+            $table->enum('adoption_status', ['available', 'pending', 'adopted'])->default('available');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
         });
     }
 

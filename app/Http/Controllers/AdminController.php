@@ -67,9 +67,14 @@ class AdminController extends Controller
         return view('admin.edit', compact('doge'));
     }
 
-
     public function fetchUser(){
         $users = User::all();
         return view('admin.tableUser', compact('users'));
+    }
+
+    public function fetchAdopt($id){
+        $doge = Doge::findOrFail($id);
+
+        return view('user.adoptForm', compact('doges'));
     }
 }
