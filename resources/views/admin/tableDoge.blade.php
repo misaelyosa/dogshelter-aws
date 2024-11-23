@@ -78,6 +78,9 @@
                             Vaccin Status
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Adoption Status
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Keterangan
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -105,6 +108,9 @@
                         </td>
                         <td class="px-6 py-0">
                              {{ $doge->vaccin_status }}
+                        </td>
+                        <td class="px-6 py-0">
+                             {{ $doge->adoption_status }}
                         </td>
                         <td class="px-6 py-0">
                              {{ $doge->keterangan }}

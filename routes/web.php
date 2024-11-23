@@ -36,12 +36,13 @@ Route::middleware('auth')->group(function(){
        Route::post('/admin/edit', [AdminController::class, 'edit'])->name('updatedoge'); //post edit
        Route::get('/admin/delete/{id}', [AdminController::class, 'delete'])->name('deletedoge');
        Route::get('/admin/create', function(){
-        return view('admin.create');
-       })->name('formCreateDoge');
-       Route::post('/admin/create', [AdminController::class, 'create'])->name('createDoge');
-
-       //User table
-       Route::get('admin/manageUser', [AdminController::class, 'fetchUser'])->name('fetchuser');
+           return view('admin.create');
+        })->name('formCreateDoge');
+        Route::post('/admin/create', [AdminController::class, 'create'])->name('createDoge');
+        
+        //User table
+        Route::get('admin/manageUser', [AdminController::class, 'fetchUser'])->name('fetchuser');
+        Route::get('/admin/banUser/{id}', [AdminController::class, 'banUser'])->name('banuser');
     });
 
     Route::get('/adoptform/{id}', [UserController::class, 'fetchAdopt'])->name('fetchadoptform');

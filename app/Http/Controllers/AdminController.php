@@ -68,7 +68,24 @@ class AdminController extends Controller
     }
 
     public function fetchUser(){
-        $users = User::all();
-        return view('admin.tableUser', compact('users'));
+        $admins = User::where('role', 'admin')->orderBy('name')->get();
+        $users = User::where('role', 'user')->orderBy('name')->get();
+       
+
+        return view('admin.tableUser', compact('admins','users'));
+    }
+
+    public function banUser($id){
+        $user = User::findorFail($id);
+
+        if($user->ban_status === 0){
+            $user->ban_status = 1;
+            $user->save();
+            return redirect()->back()->with('success', 'user successfully banned');
+        } else {
+            $user->ban_status = 0;
+            $user->save();
+            return redirect()->back()->with('success', 'user successfully unbanned');
+        }
     }
 }
