@@ -14,7 +14,11 @@
                 </div>
                 <div class="sm:col-span-2">
                     <label for="no_telp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No Telepon/Contact Adopter</label>
-                    <input type="text" name="no_telp" id="no_telp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{old('no_telp')}}" placeholder="Type your phone number" required="">
+                    @if (Auth::user()->no_telp != NULL)
+                        <input type="text" name="no_telp" id="no_telp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{Auth::user()->no_telp}}" placeholder="Type your phone number" required="">
+                    @else
+                        <input type="text" name="no_telp" id="no_telp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{old('no_telp')}}" placeholder="Type your phone number" required="">
+                    @endif
                 </div>
                 <div class="w-full">
                     <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Doge Name</label>

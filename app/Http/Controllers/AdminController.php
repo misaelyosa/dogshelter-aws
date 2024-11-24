@@ -67,11 +67,21 @@ class AdminController extends Controller
         return view('admin.edit', compact('doge'));
     }
 
-    public function fetchUser(){
-        $admins = User::where('role', 'admin')->orderBy('name')->get();
-        $users = User::where('role', 'user')->orderBy('name')->get();
-       
-
+    public function fetchUser(){   
+        $admins = User::where('role', 'admin')
+            ->with(['adoptedDoge' => function ($query) {
+                $query->select('id', 'user_id', 'nama');
+            }])
+            ->orderBy('name')
+            ->get();
+            
+        $users = User::where('role', 'user')
+            ->with(['adoptedDoge' => function ($query) {
+                $query->select('id', 'user_id', 'nama');
+            }])
+            ->orderBy('name')
+            ->get();
+        
         return view('admin.tableUser', compact('admins','users'));
     }
 

@@ -48,4 +48,7 @@ class User extends Authenticatable
         return $this->hasMany(Doge::class, 'user_id');
     }
     
+    public function adoptedDoge(): HasMany{
+        return $this->hasMany(Doge::class, 'user_id')->where('adoption_status', 'adopted');
+    }
 }

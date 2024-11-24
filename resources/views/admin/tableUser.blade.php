@@ -72,9 +72,8 @@
                         <td class="px-6 py-4">
                             {{ $user->ban_status }}
                         </td>
-
                         <td class="px-6 py-0">
-                             <!-- {{ $user->vaccin_status }} -->
+                            {{ $user->adoptedDoge->pluck('nama')->join(', ') ?: 'No adoptions' }}
                         </td>
                         <td class=" pe-2 py-4">
                         @if ($user->ban_status === 0)    
@@ -129,7 +128,7 @@
                             {{ $admin->email }}
                         </td>
                         <td class="px-6 py-0">
-                            
+                            {{ $admin->adoptedDoge->pluck('nama')->join(', ') ?: 'No adoptions' }}
                         </td>
                     </tr>
                     @endforeach

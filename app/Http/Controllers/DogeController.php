@@ -23,7 +23,7 @@ class DogeController extends Controller
     public function fetchAdoptionRequest(){
         $doges = Doge::whereNotNull('user_id')->get();
 
-        $userIds = $doges->pluck('user_id');
+        $userIds = $doges->pluck('user_id')->filter();
         $adopters = User::whereIn('id', $userIds)->get();
         // dd($doges, $adopters);
 
@@ -34,13 +34,13 @@ class DogeController extends Controller
         $doge = Doge::find($request->id); 
 
         if ($doge && $doge->adoption_status === 'pending') {
-            $doge->adoption_status = 'not available';
+            $doge->adoption_status = 'adopted';
             // dd($doge);
             $doge->save(); 
     
-            return redirect()->route('reviewAdoptionRequest')->with('success', 'Adoption request approved.');
+            return redirect()->back()->with('success', 'Adoption request approved.');
         } else {
-            return redirect()->route('reviewAdoptionRequest')->with('error', 'Invalid request or doge is not in a pending state.');
+            return redirect()->back()->with('error', 'Invalid request or doge is not in a pending state.');
         }
     }
 
@@ -49,13 +49,14 @@ class DogeController extends Controller
 
         if ($doge && $doge->adoption_status === 'pending') {
             $doge->adoption_status = 'available'; 
-            $doge->user_id = null; 
+            $doge->user_id = null;
+            $doge->pesan_adopsi = null; 
             // dd($doge);
             $doge->save(); 
     
-            return redirect()->route('reviewAdoptionRequest')->with('success', 'Adoption request declined.');
+            return redirect()->back()->with('success', 'Adoption request declined.');
         } else {
-            return redirect()->route('reviewAdoptionRequest')->with('error', 'Invalid request or doge is not in a pending state.');
+            return redirect()->back()->with('error', 'Invalid request or doge is not in a pending state.');
         }
     }
 }
