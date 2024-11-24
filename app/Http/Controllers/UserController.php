@@ -18,6 +18,7 @@ class UserController extends Controller
             $user->save();
             $doge->user_id = $user->id;
             $doge->adoption_status = 'pending';
+            $doge->pesan_adopsi = $request->pesan;
             $doge->save();
     
             return redirect()->route("home")->with("success", "Form submitted successfully, admin will verify your request. Please wait, Admin will contact you later through your contacts.");

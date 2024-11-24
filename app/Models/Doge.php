@@ -11,7 +11,7 @@ class Doge extends Model
 
     protected $table = 'doge';
 
-    protected $fillable = ['nama', 'dob', 'trait', 'jenis_kelamin', 'keterangan', 'vaccin_status'];
+    protected $fillable = ['nama', 'dob', 'trait', 'jenis_kelamin', 'keterangan', 'vaccin_status', 'pesan_adopsi'];
 
     public function adopter(){
         return $this->belongsTo(User::class, 'user_id');
