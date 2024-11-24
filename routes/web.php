@@ -24,6 +24,7 @@ Route::middleware('guest')->group(function() {
     Route::get('/login', [SessionController::class, 'index'])->name('login'); //return view login
     Route::post('/login', [SessionController::class, 'login']);
     Route::get('/register', function () {return view('register.index');});
+    Route::post('/register', [RegisterController::class, 'store'])->name('registerstore');
 });
 
 Route::middleware('auth')->group(function(){
@@ -43,6 +44,9 @@ Route::middleware('auth')->group(function(){
         //User table
         Route::get('admin/manageUser', [AdminController::class, 'fetchUser'])->name('fetchuser');
         Route::get('/admin/banUser/{id}', [AdminController::class, 'banUser'])->name('banuser');
+
+        //Adoption Validation
+        Route::get('admin/adoptionRequest', [DogeController::class, 'fetchAdoptionRequest'])->name('fetchadoptionrequest');
     });
 
     Route::get('/adoptform/{id}', [UserController::class, 'fetchAdopt'])->name('fetchadoptform');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Doge;
+use App\Models\User;
 
 class DogeController extends Controller
 {
@@ -17,5 +18,15 @@ class DogeController extends Controller
         $doges = Doge::all();
 
         return view('admin/tableDoge', ['doges' => $doges]);
+    }
+
+    public function fetchAdoptionRequest(){
+        $doges = Doge::whereNotNull('user_id')->get();
+
+        $userIds = $doges->pluck('user_id');
+        $adopters = User::whereIn('id', $userIds)->get();
+        // dd($doges, $adopters);
+
+        return view('admin.reviewAdoptionRequest', compact('adopters', 'doges'));
     }
 }

@@ -13,9 +13,9 @@ class UserController extends Controller
         $doge = Doge::find($request->id);
 
         if($doge->adoption_status === 'available'){
-            $user = Auth::user();
-            $user->name = $request->name;
+            $user = User::find(Auth::id());
             $user->no_telp = $request->no_telp; 
+            $user->save();
             $doge->user_id = $user->id;
             $doge->adoption_status = 'pending';
             $doge->save();
