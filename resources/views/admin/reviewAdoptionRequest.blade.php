@@ -2,6 +2,30 @@
 @include('includes.sidebar')
 
 @section('content')
+    <!-- SWAL -->
+    @if (session('success'))  
+    <script>
+        // console.log('ballz');
+        document.addEventListener('DOMContentLoaded', function (){
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: "{{ session('success') }}",
+            });
+        });      
+    </script>   
+    @elseif (session('error'))
+    <script>
+            document.addEventListener('DOMContentLoaded', function (){
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "{{session('error')}}",
+                    });
+            });
+        </script>
+    @endif
+
 <section class="bg-white dark:bg-gray-800 min-h-screen">
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
         <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12 mb-8">
@@ -115,17 +139,17 @@
                     <!-- Modal footer -->
                     <div class="flex  p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                         <div class="me-2 sm:me-auto">
-                            <form action="{{route('acceptadopt')}}" method="post">
+                            <form id="approveForm-{{ $doge->id }}" action="{{ route('acceptadopt') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $doge->id }}">
-                                <button type="submit" class="w-full h-full focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5  dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Approve Adoption?</button>
+                                <button type="button" onclick="confirmAction('{{ $doge->id }}', 'approve')" class="w-full h-full focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Approve Adoption?</button>
                             </form>
                         </div>
                         <div class="sm:mx-auto">
-                            <form action="{{route('declineadopt')}}" method="post">
+                            <form id="declineForm-{{ $doge->id }}" action="{{ route('declineadopt') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $doge->id }}">
-                                <button type="submit" class="w-full h-full focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Decline Adoption Request</button>
+                                <button type="button" onclick="confirmAction('{{ $doge->id }}', 'decline')" class="w-full h-full focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Decline Adoption Request</button>
                             </form>
                         </div>
                         <div class="ms-2 sm:ms-auto">
@@ -139,4 +163,26 @@
 
     </div>
 </section>
+
+<!-- Swal confirmation -->
+<script>
+function confirmAction(id, action) {
+    let actionText = action === 'approve' ? 'Approve' : 'Decline';
+    let formId = action === 'approve' ? `approveForm-${id}` : `declineForm-${id}`;
+
+    Swal.fire({
+        title: `Are you sure you want to ${actionText}?`,
+        text: "This action cannot be undone!",
+        icon: action === 'approve' ? 'success' : 'warning',
+        showCancelButton: true,
+        confirmButtonColor: action === 'approve' ? '#385df8' : '#e11d48',
+        cancelButtonColor: '#6b7280',
+        confirmButtonText: `Yes, ${actionText.toLowerCase()} it!`
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById(formId).submit();
+        }
+    });
+}
+</script>
 @endsection

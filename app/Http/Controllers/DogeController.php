@@ -35,7 +35,7 @@ class DogeController extends Controller
 
         if ($doge && $doge->adoption_status === 'pending') {
             $doge->adoption_status = 'not available';
-            dd($doge);
+            // dd($doge);
             $doge->save(); 
     
             return redirect()->route('reviewAdoptionRequest')->with('success', 'Adoption request approved.');
@@ -50,7 +50,7 @@ class DogeController extends Controller
         if ($doge && $doge->adoption_status === 'pending') {
             $doge->adoption_status = 'available'; 
             $doge->user_id = null; 
-            dd($doge);
+            // dd($doge);
             $doge->save(); 
     
             return redirect()->route('reviewAdoptionRequest')->with('success', 'Adoption request declined.');
