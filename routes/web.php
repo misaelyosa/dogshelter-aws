@@ -49,6 +49,8 @@ Route::middleware('auth')->group(function(){
         Route::get('admin/adoptionRequest', [DogeController::class, 'fetchAdoptionRequest'])->name('fetchadoptionrequest');
         Route::post('/accept-adopt', [DogeController::class, 'acceptAdopt'])->name('acceptadopt');
         Route::post('/decline-adopt', [DogeController::class, 'declineAdopt'])->name('declineadopt');
+
+        Route::get('admin/testEmail', [DogeController::class, 'testEmail']);
     });
 
     Route::get('/adoptform/{id}', [UserController::class, 'fetchAdopt'])->name('fetchadoptform');

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdoptionNoticeEmail;
 use Illuminate\Http\Request;
 use App\Models\Doge;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class DogeController extends Controller
 {
@@ -37,6 +39,15 @@ class DogeController extends Controller
             $doge->adoption_status = 'adopted';
             // dd($doge);
             $doge->save(); 
+
+            // Send email notification
+
+            $adopter = User::find($doge->user_id); 
+            // dd($adopter->email);
+            if ($adopter && $adopter->email) {
+                $response = Mail::to($adopter->email)->send(new AdoptionNoticeEmail($doge));
+            }
+            dd($response);
     
             return redirect()->back()->with('success', 'Adoption request approved.');
         } else {
@@ -58,5 +69,15 @@ class DogeController extends Controller
         } else {
             return redirect()->back()->with('error', 'Invalid request or doge is not in a pending state.');
         }
+    }
+
+    public function testEmail(){
+        $doge = Doge::find( 1);
+        $adopter = User::find( 3); 
+        $response = Mail::to($adopter->email)->send(new AdoptionNoticeEmail($doge));
+
+        dd($response);
+
+        return 'ballz';
     }
 }
