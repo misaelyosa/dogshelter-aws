@@ -18,7 +18,7 @@ html, body {
         @apply font-dmsans text-2xl text-white font-semibold justify-self-start me-8;
     }
     .paw-icon{
-        @apply w-20 h-20 md:w-24 md:h-24 self-center justify-self-end me-6; 
+        @apply hidden md:block md:w-24 md:h-24 self-center justify-self-end me-6; 
         stroke: white;
         stroke-width: 10px;
         fill: none;
@@ -50,7 +50,7 @@ html, body {
         @apply block py-2 px-3 text-comp_orange text-4xl mx-8 md:text-xl 2xl:text-2xl first-letter:md:bg-transparent md:text-comp_orange md:p-0 md:dark:text-comp_orange;
     }
     .nav_options{
-        @apply block py-2 px-3 text-white text-4xl md:text-xl 2xl:text-2xl hover:bg-gray-100 mx-8 md:hover:bg-transparent md:hover:text-supaw_green md:p-0 md:dark:hover:text-white dark:text-supaw_green dark:hover:bg-gray-700 dark:hover:text-supaw_green md:dark:hover:bg-transparent dark:border-gray-700;
+        @apply block py-2 px-3 text-white text-4xl md:text-xl 2xl:text-2xl hover:bg-gray-100 mx-8 md:hover:bg-transparent md:hover:text-supaw_green md:p-0 md:dark:hover:text-supaw_green dark:text-white dark:hover:bg-gray-700 dark:hover:text-supaw_green md:dark:hover:bg-transparent dark:border-gray-700;
     }
     .nav-hidden {
         transform: translateY(-100%); /* Move the navbar out of view */
@@ -64,10 +64,10 @@ html, body {
         @apply w-full h-screen bg-cover absolute z-0 overflow-x-hidden overflow-y-hidden;
     }
     .bg_hz{
-        @apply hidden md:block md:object-cover md:absolute md:z-0;
+        @apply hidden w-[100vw] h-[100vh] md:block md:object-cover md:absolute md:z-0;
     }
     .bg_vert{
-        @apply object-cover w-full h-full absolute z-0 md:hidden;
+        @apply object-cover w-[100vw] h-[100vh] absolute z-0 md:hidden;
     }
     .doge{
         @apply w-full scale-125 bottom-1/4 md:w-3/5 md:bottom-10 md:right-0 2xl:w-2/3 absolute z-30;
