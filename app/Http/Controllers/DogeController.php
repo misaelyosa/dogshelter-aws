@@ -43,15 +43,15 @@ class DogeController extends Controller
             // Send email notification
 
             $adopter = User::find($doge->user_id); 
-            // dd($adopter->email);
-            if ($adopter && $adopter->email) {
-                $response = Mail::to($adopter->email)->send(new AdoptionNoticeEmail($doge));
-            }
-            dd($response);
+            // // dd($adopter->email);
+            // if ($adopter && $adopter->email) {
+            //     $response = Mail::to($adopter->email)->send(new AdoptionNoticeEmail($doge));
+            // }
+            // dd($response);
     
-            return redirect()->back()->with('success', 'Adoption request approved.');
         } else {
-            return redirect()->back()->with('error', 'Invalid request or doge is not in a pending state.');
+            return redirect()->back()->with('success', 'Adoption request approved.');
+        //     return redirect()->back()->with('error', 'Invalid request or doge is not in a pending state.');
         }
     }
 
