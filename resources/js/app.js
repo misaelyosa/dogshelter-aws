@@ -10,14 +10,14 @@ window.gsap = gsap;
 window.ScrollTrigger = ScrollTrigger;
 window.Swal = Swal;
 
-window.onload = function () {
+// window.onload = function () {
 
     gsap.fromTo(
         ".loading-screen",
         { opacity: 1 },
         {
             opacity: 0,
-            duration: 2, 
+            duration: 1.5, 
             delay: 1.5,
             onComplete: () => {
                 document.querySelector(".loading-screen").style.display = "none";
@@ -36,7 +36,7 @@ window.onload = function () {
             delay: 0.5,
         }
     );
-};
+//};
 
 
 
