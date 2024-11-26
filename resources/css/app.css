@@ -47,7 +47,7 @@ html, body {
         @apply bg-transparent dark:bg-transparent fixed w-[100vw] z-20 top-0 start-0;
     }
     .nav_current{
-        @apply block py-2 px-3 text-comp_orange text-4xl mx-8 md:text-xl 2xl:text-2xl first-letter:md:bg-transparent md:text-comp_orange md:p-0 md:dark:text-comp_orange;
+        @apply block py-2 px-3 text-white text-4xl mx-8 md:text-xl 2xl:text-2xl first-letter:md:bg-transparent md:text-white md:p-0 md:dark:text-white;
     }
     .nav_options{
         @apply block py-2 px-3 text-white text-4xl md:text-xl 2xl:text-2xl hover:bg-gray-100 mx-8 md:hover:bg-transparent md:hover:text-supaw_green md:p-0 md:dark:hover:text-supaw_green dark:text-white dark:hover:bg-gray-700 dark:hover:text-supaw_green md:dark:hover:bg-transparent dark:border-gray-700;
@@ -80,14 +80,14 @@ html, body {
     }
     /* About */
     .about{ 
-        @apply w-[100vw] h-screen max-w-full bg-comp_orange grid-rows-4 overflow-y-hidden lg:grid-rows-4 lg:grid-flow-col lg:gap-4;   
+        @apply w-[100vw] md:px-80 h-screen max-w-full bg-comp_orange grid-rows-4 overflow-y-hidden lg:grid-rows-4 lg:grid-cols-2 lg:grid-flow-col lg:gap-4;   
     }
     .title1{
         @apply font-dmsans text-3xl text-left px-6 lg:text-6xl font-extrabold text-black  mt-20 lg:col-span-2;
     }
     /* faq */
     .faq{
-        @apply w-[100vw] h-screen bg-supaw_green py-20 px-4;
+        @apply w-[100vw] h-screen bg-supaw_green py-20 px-4 lg:px-80;
     }
     .title2{
         @apply font-dmsans text-3xl font-extrabold text-center pb-6

@@ -27,8 +27,10 @@
         <div class="lg:col-span-2">
             <h3 class="font-dmsans tracking-wide px-6 text-left text-2xl mt-6 lg:text-4xl font-extrabold text-black">Surabaya Paw Warriors</h3>
         </div>
-        <p class="font-dmsans tracking-wide text-left px-6 py-4 leading-relaxed text-lg">"Supaw Warriors" adalah sebuah komunitas atau shelter yang berfokus pada penyelamatan anjing, terutama yang membutuhkan perhatian khusus, seperti anjing yang terlantar, sakit, atau terluka. Kami aktif di Instagram, membagikan kisah penyelamatan anjing-anjing tersebut, serta menggalang dukungan dan donasi untuk membantu operasional kebutuhan medis anjing-anjing.</p>
-        <img class="object-cover w-full h-1/5 my-4" src="{{asset('assets/images/splash_about.jpg')}}" alt="splash-about">
+        <div class="lg:col-span-1">
+            <p class="lg:col-span-1 lg:text-xl font-dmsans tracking-wide text-left md:text-justify px-6 py-4 leading-relaxed text-lg">"Supaw Warriors" adalah sebuah komunitas atau shelter yang berfokus pada penyelamatan anjing, terutama yang membutuhkan perhatian khusus, seperti anjing yang terlantar, sakit, atau terluka. Kami aktif di Instagram, membagikan kisah penyelamatan anjing-anjing tersebut, serta menggalang dukungan dan donasi untuk membantu operasional kebutuhan medis anjing-anjing.</p>
+        </div>
+            <img class="md:px-6 object-cover w-full h-1/5 my-4 md:h-3/5" src="{{asset('assets/images/splash_about.jpg')}}" alt="splash-about">
     </section>
 
     <!-- page 3 -->
