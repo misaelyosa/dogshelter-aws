@@ -47,7 +47,7 @@
         </h2>
         <div id="accordion-collapse-body-1" class="accordion-glass hidden" aria-labelledby="accordion-collapse-heading-1">
             <div class="p-5  ">
-            <p class="mb-2 text-gray-500 dark:text-gray-400">Mohon maaf tapi kami sengaja nggak membuka lokasi dan alamat supaya nggak disalahgunakan berbagai oknum. Disalahgunakan gimana? Ya macem-macem, orang bisa makin mudah buang anjing atau kucing di shelter kami atau bahkan ada yang jahat dan nggak suka mungkin berniat
+            <p class="mb-2 text-black dark:text-black">Mohon maaf tapi kami sengaja nggak membuka lokasi dan alamat supaya nggak disalahgunakan berbagai oknum. Disalahgunakan gimana? Ya macem-macem, orang bisa makin mudah buang anjing atau kucing di shelter kami atau bahkan ada yang jahat dan nggak suka mungkin berniat
             ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
             </div>
         </div>
@@ -61,7 +61,7 @@
         </h2>
         <div id="accordion-collapse-body-2" class="accordion-glass hidden" aria-labelledby="accordion-collapse-heading-2">
             <div class="p-5  ">
-            <p class="mb-2 text-gray-500 dark:text-gray-400">Bukannya tidak boleh, namun karena kami tidak disclose alamat maka akan cukup sulit. Kedepannya mungkin bisa direncanakan, ditunggu ya.</p>
+            <p class="mb-2 text-black dark:text-black">Bukannya tidak boleh, namun karena kami tidak disclose alamat maka akan cukup sulit. Kedepannya mungkin bisa direncanakan, ditunggu ya.</p>
             </div>
         </div>
         <h2 id="accordion-collapse-heading-3">
@@ -74,7 +74,7 @@
         </h2>
         <div id="accordion-collapse-body-3" class="accordion-glass hidden" aria-labelledby="accordion-collapse-heading-3">
             <div class="p-5 ">
-            <p class="mb-2 text-gray-500 dark:text-gray-400">Mohon maaf tapi kami sengaja nggak membuka lokasi dan alamat supaya nggak disalahgunakan berbagai oknum. Disalahgunakan gimana? Ya macem-macem, orang bisa makin mudah buang anjing atau kucing di shelter kami atau bahkan ada yang jahat dan nggak suka mungkin berniat
+            <p class="mb-2 text-black dark:text-black">Mohon maaf tapi kami sengaja nggak membuka lokasi dan alamat supaya nggak disalahgunakan berbagai oknum. Disalahgunakan gimana? Ya macem-macem, orang bisa makin mudah buang anjing atau kucing di shelter kami atau bahkan ada yang jahat dan nggak suka mungkin berniat
 ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
             </div>
         </div>
@@ -89,20 +89,22 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
         </h2>
         <div id="accordion-collapse-body-4" class="accordion-glass hidden rounded-b-lg" aria-labelledby="accordion-collapse-heading-4">
             <div class="p-5 ">
-            <p class="mb-2 text-gray-500 dark:text-gray-400">Supaw warriors bukan tempat penitipan anjing atau kucing. Kami memiliki kapasitas yang terbatas dan tidak bersedia bertanggung jawab atas anjing dan kucing teman-teman ya. Sebaiknya dititipkan di pet hotel saja yang lebih profesional dan aman. "Gapapa, saya bayar kok." Maaf tetap tidak bisa.</p>
+            <p class="mb-2 text-black dark:text-black">Supaw warriors bukan tempat penitipan anjing atau kucing. Kami memiliki kapasitas yang terbatas dan tidak bersedia bertanggung jawab atas anjing dan kucing teman-teman ya. Sebaiknya dititipkan di pet hotel saja yang lebih profesional dan aman. "Gapapa, saya bayar kok." Maaf tetap tidak bisa.</p>
             </div>
         </div>
         </div>
 
-        <h3 class="font-dmsans text-black italic font-black text-[10rem] absolute z-0 -rotate-12 -bottom-5 right-2 drop-shadow-xl">QNA</h3>
+        <h3 class="xl:hidden font-dmsans text-black italic font-black text-[10rem] absolute z-0 -rotate-12 -bottom-5 right-2 drop-shadow-xl">QNA</h3>
+        <h2 class="hidden xl:block font-dmsans text-black italic font-black text-[13rem] fixed z-0 -rotate-12 bottom-64 right-36 drop-shadow-xl">QUESTIONS</h2>
+        <h2 class="hidden xl:block font-dmsans text-black italic font-black text-[13rem] fixed z-0 -rotate-12 bottom-24 -right-16 drop-shadow-xl">&ANSWERS</h2>
     </section>
 
     <!-- page 4 -->
      <section class="programs" id="programs">
-        <h1 class="font-dmsans text-left text-3xl font-bold">Our Programs</h1>
+        <h1 class="font-dmsans text-left text-3xl font-bold md:text-4xl xl:mt-5">Our Programs</h1>
         <div>
-            <p class="font-dmsans text-left text-lg font-semibold mt-4">T&C Adoption</p>
-            <ul class="font-dmsans text-left text-md ps-2">
+            <p class="font-dmsans text-left text-lg font-semibold mt-4 md:text-2xl">T&C Adoption</p>
+            <ul class="font-dmsans text-left text-md ps-2 md:text-xl">
                 <li>1. Untuk disayang</li>
                 <li>2. Ditaruh dalam rumah</li>
                 <li>3. Tidak dikandang dan/atau dirantai</li>
@@ -342,7 +344,7 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
                     trigger: ".programs",
                     containerAnimation: scrollTween,
                     start: "left center",
-                    markers: true,
+                    // markers: true,
                 }
             });
         }
