@@ -1,7 +1,7 @@
 
 <nav class="nav_bg">
     <div id="nav_fullscreenmobile" class="flex flex-wrap items-center justify-between mx-auto p-4 md:bg-transparent">
-        <a href="" class="flex items-center space-x-3 rtl:space-x-reverse ms-2 md:ms-5 lg:ms-5">
+        <a href="https://www.instagram.com/supaw_warriors" class="flex items-center space-x-3 rtl:space-x-reverse ms-2 md:ms-5 lg:ms-5">
             <img src="{{ asset('assets/icons/supaw-logo.png') }}" class="w-10 md:w-16 lg:w-18 rounded-lg" alt="Flowbite Logo">
             <!-- <span class="self-center text-2xl font-bold whitespace-nowrap dark:text-white">Supaw Warriors</span> -->
         </a>

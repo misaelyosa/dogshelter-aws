@@ -1,5 +1,5 @@
 <!-- drawer init and show -->
-<div class="flex items-center justify-between pt-5 px-6 dark:bg-gray-800 fixed z-0 w-[100vw]">
+<div class="flex items-center justify-between pt-5 px-6 dark:bg-gray-800 w-[100vw] ">
     <button class="md:scale-125 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm p-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800" 
         type="button" 
         data-drawer-target="drawer-navigation" 

@@ -1,7 +1,7 @@
 @extends('base.base')
-@include('includes.sidebar')
 
 @section('content')
+@include('includes.sidebar')
     <!-- SWAL -->
     @if (session('success'))  
     <script>
