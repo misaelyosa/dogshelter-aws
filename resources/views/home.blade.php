@@ -19,8 +19,17 @@
 @endsection
 
 @section('content')
+
 <div class="wrapper">
-<div class="containerscrollx">
+    <div class="containerscrollx">
+
+    <div class="scrollnotice absolute z-50">
+        <div class="fixed top-7 left-[35vw] md:[55vw] lg:top-[50vh] lg:start-[90vw] flex items-center justify-center">
+            <img src="{{asset('assets/icons/mouse-cursor.png')}}"></img>
+            <p class="font-dmsans font-light text-center">Scroll Once</p>
+        </div>
+    </div>
+
     <!-- page 2 -->
     <section class="about" id="about">
         <h2 class="title1">About Us</h2>
@@ -30,7 +39,7 @@
         <div class="lg:col-span-1">
             <p class="lg:col-span-1 lg:text-xl font-dmsans tracking-wide text-left md:text-justify px-6 py-4 leading-relaxed text-lg">"Supaw Warriors" adalah sebuah komunitas atau shelter yang berfokus pada penyelamatan anjing, terutama yang membutuhkan perhatian khusus, seperti anjing yang terlantar, sakit, atau terluka. Kami aktif di Instagram, membagikan kisah penyelamatan anjing-anjing tersebut, serta menggalang dukungan dan donasi untuk membantu operasional kebutuhan medis anjing-anjing.</p>
         </div>
-            <img class="md:px-6 object-cover w-full h-1/5 my-4 md:h-3/5" src="{{asset('assets/images/splash_about.jpg')}}" alt="splash-about">
+            <img class="md:px-6 object-cover w-full h-1/5 my-4 md:h-[55%]" src="{{asset('assets/images/splash_about.jpg')}}" alt="splash-about">
     </section>
 
     <!-- page 3 -->
@@ -47,7 +56,7 @@
         </h2>
         <div id="accordion-collapse-body-1" class="accordion-glass hidden" aria-labelledby="accordion-collapse-heading-1">
             <div class="p-5  ">
-            <p class="mb-2 text-black dark:text-black">Mohon maaf tapi kami sengaja nggak membuka lokasi dan alamat supaya nggak disalahgunakan berbagai oknum. Disalahgunakan gimana? Ya macem-macem, orang bisa makin mudah buang anjing atau kucing di shelter kami atau bahkan ada yang jahat dan nggak suka mungkin berniat
+            <p class="mb-2 text-white">Mohon maaf tapi kami sengaja nggak membuka lokasi dan alamat supaya nggak disalahgunakan berbagai oknum. Disalahgunakan gimana? Ya macem-macem, orang bisa makin mudah buang anjing atau kucing di shelter kami atau bahkan ada yang jahat dan nggak suka mungkin berniat
             ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
             </div>
         </div>
@@ -61,7 +70,7 @@
         </h2>
         <div id="accordion-collapse-body-2" class="accordion-glass hidden" aria-labelledby="accordion-collapse-heading-2">
             <div class="p-5  ">
-            <p class="mb-2 text-black dark:text-black">Bukannya tidak boleh, namun karena kami tidak disclose alamat maka akan cukup sulit. Kedepannya mungkin bisa direncanakan, ditunggu ya.</p>
+            <p class="mb-2 text-white">Bukannya tidak boleh, namun karena kami tidak disclose alamat maka akan cukup sulit. Kedepannya mungkin bisa direncanakan, ditunggu ya.</p>
             </div>
         </div>
         <h2 id="accordion-collapse-heading-3">
@@ -74,7 +83,7 @@
         </h2>
         <div id="accordion-collapse-body-3" class="accordion-glass hidden" aria-labelledby="accordion-collapse-heading-3">
             <div class="p-5 ">
-            <p class="mb-2 text-black dark:text-black">Mohon maaf tapi kami sengaja nggak membuka lokasi dan alamat supaya nggak disalahgunakan berbagai oknum. Disalahgunakan gimana? Ya macem-macem, orang bisa makin mudah buang anjing atau kucing di shelter kami atau bahkan ada yang jahat dan nggak suka mungkin berniat
+            <p class="mb-2 text-white">Mohon maaf tapi kami sengaja nggak membuka lokasi dan alamat supaya nggak disalahgunakan berbagai oknum. Disalahgunakan gimana? Ya macem-macem, orang bisa makin mudah buang anjing atau kucing di shelter kami atau bahkan ada yang jahat dan nggak suka mungkin berniat
 ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
             </div>
         </div>
@@ -89,36 +98,33 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
         </h2>
         <div id="accordion-collapse-body-4" class="accordion-glass hidden rounded-b-lg" aria-labelledby="accordion-collapse-heading-4">
             <div class="p-5 ">
-            <p class="mb-2 text-black dark:text-black">Supaw warriors bukan tempat penitipan anjing atau kucing. Kami memiliki kapasitas yang terbatas dan tidak bersedia bertanggung jawab atas anjing dan kucing teman-teman ya. Sebaiknya dititipkan di pet hotel saja yang lebih profesional dan aman. "Gapapa, saya bayar kok." Maaf tetap tidak bisa.</p>
+            <p class="mb-2 text-white">Supaw warriors bukan tempat penitipan anjing atau kucing. Kami memiliki kapasitas yang terbatas dan tidak bersedia bertanggung jawab atas anjing dan kucing teman-teman ya. Sebaiknya dititipkan di pet hotel saja yang lebih profesional dan aman. "Gapapa, saya bayar kok." Maaf tetap tidak bisa.</p>
             </div>
         </div>
         </div>
 
         <h3 class="xl:hidden font-dmsans text-black italic font-black text-[10rem] absolute z-0 -rotate-12 -bottom-5 right-2 drop-shadow-xl">QNA</h3>
-        <h2 class="hidden xl:block font-dmsans text-black italic font-black text-[13rem] fixed z-0 -rotate-12 bottom-64 right-36 drop-shadow-xl">QUESTIONS</h2>
-        <h2 class="hidden xl:block font-dmsans text-black italic font-black text-[13rem] fixed z-0 -rotate-12 bottom-24 -right-16 drop-shadow-xl">&ANSWERS</h2>
+        <h3 class="hidden xl:block font-dmsans text-black italic font-black text-[13rem] fixed z-0 -rotate-12 bottom-64 right-36 drop-shadow-xl">QUESTIONS</h3>
+        <h3 class="hidden xl:block font-dmsans text-black italic font-black text-[13rem] fixed z-0 -rotate-12 bottom-24 -right-16 drop-shadow-xl">&ANSWERS</h3>
     </section>
 
     <!-- page 4 -->
      <section class="programs" id="programs">
         <h1 class="font-dmsans text-left text-3xl font-bold md:text-4xl xl:mt-5">Our Programs</h1>
         <div>
-            <p class="font-dmsans text-left text-lg font-semibold mt-4 md:text-2xl">T&C Adoption</p>
-            <ul class="font-dmsans text-left text-md ps-2 md:text-xl">
-                <li>1. Untuk disayang</li>
-                <li>2. Ditaruh dalam rumah</li>
-                <li>3. Tidak dikandang dan/atau dirantai</li>
-                <li>4. Tidak untuk dijualbelikan atau dihibahkan lagi</li>
-                <li>5. Wajib steril dan bersedia vaksin rutin</li>
-                <li>6. Seluruh anggota keluarga di rumah suka anjing dan setuju pelihara</li>
-                <li>7. Siap dengan segala biayanya</li>
-                <li>8. Siap merawat hingga tua dan meninggal</li>
-                <li>9. Rumah bersedia disurvey</li>
-                <li>10. Area Surabaya dan sekitarnya diutamakan</li>
-                <li>11. Rumah berpagar diutamakan</li>
-                <li>12. Bersedia melalui trial adopsi selama sebulan</li>
-                <li>13. Memberi kabar rutin setelah adopsi dan tidak putus komunikasi dengan pihak Supaw Warrior</li>
-                <li>14. Kita yang akan antar anabulnya ke rumah calon pawrent karena tidak menerima visitor</li>
+            <p class="font-dmsans text-left text-lg font-semibold mt-4 md:text-2xl">Terms and Conditions for Adoption</p>
+            <ul class="font-dmsans text-left text-md ps-2 md:text-xl md:leading-relaxed">
+                <li>1. Hewan yang diadopsi memiliki tujuan untuk disayang, bukan untuk disakiti dan ditelantarkan.</li>
+                <li>2. Hewan diletakkan di dalam rumah, tidak diletakkan di dalam kandang atau dirantai.</li>
+                <li>3. Tidak untuk dijualbelikan kembali dan tidak untuk dihibahkan kepada orang lain.</li>
+                <li>4. Hewan wajib disteril dan vaksin secara rutin.</li>
+                <li>5. Seluruh anggota keluarga yang akan tinggal bersama hewan adopsi harus menyukai anjing dan setuju untuk mengadopsi anjing.</li>
+                <li>6. Adopter harus bersedia dan siap dengan segala biaya yang ada.</li>
+                <li>7. Siap merawat hingga hewan tua dan meninggal.</li>
+                <li>8. Rumah adopter siap untuk disurvei.</li>
+                <li>9. Rumah berpagar diutamakan.</li>
+                <li>10. Bersedia melalui trial adopsi selama sebulan.</li>
+                <li>11. Memberi kabar rutin setelah adopsi.</li>
             </ul>
 
             <h1 class="font-dmsans text-xl text-left font-semibold mt-8 italic">To be announced, Program OTA (Orang Tua Asuh)</h1>
@@ -295,7 +301,7 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
                     end: () => "+=" + containerscrollx.offsetWidth,
                     snap: {
                         snapTo: 1 / (sections.length - 1), 
-                        duration: 0.3, 
+                        duration: 0.05, 
                         ease: "power1.inOut" 
                     }
                 }
@@ -348,11 +354,24 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
                 }
             });
         }
+
+        function scrollNoticeBlink(){
+            const notice = document.querySelector('.scrollNotice');
+
+            gsap.to(notice, {
+                opacity: 0, 
+                duration: 0.8,
+                repeat: -1, 
+                yoyo: true, 
+                ease: "power1.inOut"
+            });
+        }
     
         // Call all animation functions
         document.addEventListener('DOMContentLoaded', function () {
             parallaxAnimations();
             horizontalScroll();
+            scrollNoticeBlink();
         });
     </script>
 @endsection

@@ -93,13 +93,13 @@ html, body {
         @apply font-dmsans text-3xl font-extrabold text-center pb-6 md:text-4xl md:mb-5;
     }
     .accordion-head-top{
-        @apply flex items-center justify-between w-full p-5 font-medium md:text-lg rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4  gap-3;
+        @apply flex items-center justify-between w-full p-5 font-medium md:text-lg rtl:text-right text-white border border-b-0 border-gray-200 rounded-t-xl focus:ring-4  gap-3;
     }
     .accordion-head{
-        @apply flex items-center text-left justify-between w-full p-5 font-medium md:text-lg rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4  gap-3;
+        @apply flex items-center text-left justify-between w-full p-5 font-medium md:text-lg rtl:text-right text-white border border-b-0 border-gray-200 focus:ring-4  gap-3;
     }
     .accordion-head-bt{
-        @apply flex items-center text-left justify-between w-full p-5 font-medium md:text-lg rtl:text-right text-gray-500 border border-gray-200 focus:ring-4  gap-3;
+        @apply flex items-center text-left justify-between w-full p-5 font-medium md:text-lg rtl:text-right text-white border border-gray-200 focus:ring-4  gap-3;
     }
     /* Frosted Glass Effect */
     .accordion-glass {
