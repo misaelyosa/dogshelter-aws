@@ -59,6 +59,11 @@ html, body {
     .nav_bg {
         transition: transform 0.3s ease-out; /* Transition for showing/hiding */
     }
+    .no-scroll {
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+    }
     /* Home */
     .bg{
         @apply w-full h-screen bg-cover absolute z-0 overflow-x-hidden overflow-y-hidden;

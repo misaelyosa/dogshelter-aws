@@ -24,19 +24,19 @@
         <div class="items-center justify-between hidden w-full h-full bg-transparent lg:bg-transparent lg:flex lg:w-auto lg:order-1 transition-all duration-500 ease-in-out" id="navbar-sticky">
             <ul class="flex flex-col h-[100vh] lg:h-full justify-center p-4 lg:p-0 mt-4 font-medium lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0">
                 <li>
-                    <a href="#" class="nav_current" aria-current="page">Home</a>
+                    <a href="#container" class="nav_current line-through md:no-underline" aria-current="page">Home</a>
                 </li>
                 <li>
-                    <a href="#" class="nav_options">About</a>
+                    <a href="#about" class="nav_options line-through md:no-underline">About</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="#" class="nav_options">FAQ</a>
                 </li>
                 <li>
                     <a href="#" class="nav_options">Programs</a>
-                </li>
+                </li> -->
                 <li>
-                    <a href="#" class="nav_options">Adoption List</a>
+                    <a href="#adoptionlist" class="nav_options line-through md:no-underline">Adoption List</a>
                 </li>
                 @if (Auth::check())
                     <h1 class="lg:hidden font-dmsans text-2xl italic font-semibold text-white absolute top-20 left-15">Hello, {{Auth::user()->name}}</h1>
@@ -88,6 +88,27 @@
     const navbarToggle = document.getElementById('navbar-toggle');
     const isNavOpen = document.getElementById('navbar-sticky');
     var isExpanded = navbarToggle.getAttribute('aria-expanded') === 'true';
+
+    console.log(isExpanded)
+    //buggy af
+    // const navLinks = document.querySelectorAll('.nav_options');
+
+    // function closeNavMenu() {
+    //     isExpanded = false; 
+    //     navHead.style.backgroundColor = 'transparent';  
+    //     isNavOpen.classList.remove('slide-down');
+    //     isNavOpen.classList.add('hidden');
+
+    //     navbarToggle.setAttribute('aria-expanded', 'false');
+    //     document.body.classList.remove('no-scroll'); 
+    //     console.log(isExpanded)
+    //     console.log('tutup')
+    // }      
+
+    // navLinks.forEach(link => {
+    //     link.addEventListener('click', closeNavMenu);
+    // });
+
 
     navbarToggle.addEventListener('click', () => {
     
