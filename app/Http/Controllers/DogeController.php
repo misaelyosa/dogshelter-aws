@@ -49,9 +49,9 @@ class DogeController extends Controller
             // }
             // dd($response);
     
-        } else {
             return redirect()->back()->with('success', 'Adoption request approved.');
-        //     return redirect()->back()->with('error', 'Invalid request or doge is not in a pending state.');
+        } else {
+            return redirect()->back()->with('error', 'Invalid request or doge is not in a pending state.');
         }
     }
 
