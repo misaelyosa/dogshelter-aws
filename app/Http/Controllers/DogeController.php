@@ -74,9 +74,14 @@ class DogeController extends Controller
     public function testEmail(){
         $doge = Doge::find( 1);
         $adopter = User::find( 3); 
-        $response = Mail::to($adopter->email)->send(new AdoptionNoticeEmail($doge));
-
-        dd($response);
+        // dd(config('mail.from'));
+        // dd($adopter->email);
+        try {
+            Mail::to('misaelyosa101@gmail.com')->send(new AdoptionNoticeEmail($doge));
+            dd('Email sent successfully!');
+        } catch (\Exception $e) {
+            dd('Email failed to send. Error: ' . $e->getMessage());
+        }
 
         return 'ballz';
     }
