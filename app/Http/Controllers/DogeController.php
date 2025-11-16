@@ -44,13 +44,13 @@ class DogeController extends Controller
 
             $adopter = User::find($doge->user_id); 
             // // dd($adopter->email);
-            if ($adopter && $adopter->email) {
-                try {
-                    Mail::to($adopter->email)->send(new AdoptionNoticeEmail($doge));
-                } catch (\Exception $e){
-                    return redirect()->back()->with('error', $e);
-                }
-            }
+            // if ($adopter && $adopter->email) {
+            //     try {
+            //         Mail::to($adopter->email)->send(new AdoptionNoticeEmail($doge));
+            //     } catch (\Exception $e){
+            //         return redirect()->back()->with('error', $e);
+            //     }
+            // }
             // dd($response);
     
             return redirect()->back()->with('success', 'Adoption request approved.');
