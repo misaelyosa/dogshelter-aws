@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DogeController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 
@@ -20,27 +21,29 @@ use App\Http\Controllers\UserController;
 
 
 
-Route::middleware('guest')->group(function() {
+Route::middleware('guest')->group(function () {
     Route::get('/login', [SessionController::class, 'index'])->name('login'); //return view login
     Route::post('/login', [SessionController::class, 'login']);
-    Route::get('/register', function () {return view('register.index');});
+    Route::get('/register', function () {
+        return view('register.index');
+    });
     Route::post('/register', [RegisterController::class, 'store'])->name('registerstore');
 });
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::post('/logout', [SessionController::class, 'logout'])->name('logout');
 
     Route::middleware('role:admin')->group(function () {
         //Doge Table
-       Route::get('/admin', [DogeController::class, 'fetchDogeAdmin'])->name('admin');
-       Route::get('/admin/edit/{id}', [AdminController::class, 'fetchEditDoge'])->name('fetchedit'); //return view edit + select id 
-       Route::post('/admin/edit', [AdminController::class, 'edit'])->name('updatedoge'); //post edit
-       Route::get('/admin/delete/{id}', [AdminController::class, 'delete'])->name('deletedoge');
-       Route::get('/admin/create', function(){
-           return view('admin.create');
+        Route::get('/admin', [DogeController::class, 'fetchDogeAdmin'])->name('admin');
+        Route::get('/admin/edit/{id}', [AdminController::class, 'fetchEditDoge'])->name('fetchedit'); //return view edit + select id 
+        Route::post('/admin/edit', [AdminController::class, 'edit'])->name('updatedoge'); //post edit
+        Route::get('/admin/delete/{id}', [AdminController::class, 'delete'])->name('deletedoge');
+        Route::get('/admin/create', function () {
+            return view('admin.create');
         })->name('formCreateDoge');
         Route::post('/admin/create', [AdminController::class, 'create'])->name('createDoge');
-        
+
         //User table
         Route::get('admin/manageUser', [AdminController::class, 'fetchUser'])->name('fetchuser');
         Route::get('/admin/banUser/{id}', [AdminController::class, 'banUser'])->name('banuser');
@@ -50,17 +53,21 @@ Route::middleware('auth')->group(function(){
         Route::post('/accept-adopt', [DogeController::class, 'acceptAdopt'])->name('acceptadopt');
         Route::post('/decline-adopt', [DogeController::class, 'declineAdopt'])->name('declineadopt');
 
+        //Reports
+        // Admin - Report management
+        Route::get('/admin/reports', [AdminController::class, 'fetchReports'])->name('admin.reports');
+        Route::get('/admin/reports/{id}', [AdminController::class, 'showReport'])->name('admin.reports.show');
+        Route::post('/admin/reports/{id}/accept', [AdminController::class, 'acceptReport'])->name('admin.reports.accept');
+        Route::post('/admin/reports/{id}/decline', [AdminController::class, 'declineReport'])->name('admin.reports.decline');
         Route::get('admin/testEmail', [DogeController::class, 'testEmail']);
     });
-
+    Route::post('/report', [ReportController::class, 'store'])->name('reportSubmit');
     Route::get('/adoptform/{id}', [UserController::class, 'fetchAdopt'])->name('fetchadoptform');
     Route::post('/adoptform', [UserController::class, 'submitAdoptForm'])->name('submitadoptform');
 
+    Route::get('/dogReport', [DogeController::class, 'fetchReport'])->name('reportdog');
     // Route::middleware('role:user')->group(function () {
     // });
 });
-
 Route::get('/home', [DogeController::class, 'fetch'])->name('home');
 Route::get('/', [DogeController::class, 'fetch'])->name('home');
-
-

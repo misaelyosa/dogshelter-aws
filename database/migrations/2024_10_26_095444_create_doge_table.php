@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('img_route')->nullable();
             $table->enum('adoption_status', ['available', 'pending', 'adopted'])->default('available');
             $table->string('pesan_adopsi')->nullable();
+            $table->string('breed_type')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
         });
     }
