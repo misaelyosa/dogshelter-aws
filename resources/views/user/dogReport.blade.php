@@ -98,8 +98,8 @@
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label for="detail_lokasi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lokasi</label>
-                    <input type="text" name="detail_lokasi" id="detail_lokasi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Lokasi" required="">
+                    <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lokasi</label>
+                    <input type="text" name="location" id="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Lokasi" required="">
                 </div>
                 <!-- Description -->
                 <div class="sm:col-span-2">
@@ -109,12 +109,12 @@
                 <!-- Upload Photo -->
                 <div class="sm:col-span-2">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Dog Photo</label>
-                    <input type="file" name="doge_pic"
+                    <input type="file" name="doge_pic" id="doge_pic"
                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 dark:text-white"
                         required>
                 </div>
                 <div class="sm:col-span-2 mt-3">
-                    <img id="preview-image" class="hidden w-48 h-48 object-cover rounded-lg border" />
+                    <img id="preview-image" class="hidden w-auto  h-48 object-fit rounded-lg border" />
                 </div>
             </div>
             <div class="flex items-center space-x-4">
@@ -133,20 +133,38 @@
 </section>
 
 <script>
-    const previewImage = document.getElementById("preview-image");
-    const fileInput = document.getElementById("doge_pic");
+    document.addEventListener('DOMContentLoaded', function() {
+        const previewImage = document.getElementById("preview-image");
+        const fileInput = document.getElementById("doge_pic");
 
-    fileInput.addEventListener("change", function() {
-        const file = fileInput.files[0];
-        const reader = new FileReader();
+        if (!previewImage || !fileInput) return; // safety
 
-        reader.addEventListener("load", function() {
-            previewImage.src = reader.result;
-        });
+        // ketika ada perubahan file
+        fileInput.addEventListener("change", function() {
+            const file = fileInput.files[0];
 
-        if (file) {
+            if (!file) {
+                // kalau tidak ada file, sembunyikan preview
+                previewImage.src = '';
+                previewImage.classList.add('hidden');
+                return;
+            }
+
+            // opsi 1: FileReader (compatible)
+            const reader = new FileReader();
+            reader.addEventListener("load", function() {
+                previewImage.src = reader.result;
+                previewImage.classList.remove('hidden');
+            });
             reader.readAsDataURL(file);
-        }
+
+            // --- atau alternatif lebih cepat:
+            // const url = URL.createObjectURL(file);
+            // previewImage.src = url;
+            // previewImage.classList.remove('hidden');
+            // // revoke ketika tidak diperlukan lagi
+            // previewImage.onload = () => URL.revokeObjectURL(url);
+        });
     });
 </script>
 @endsection

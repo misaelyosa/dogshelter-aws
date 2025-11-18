@@ -17,6 +17,7 @@ return new class extends Migration
             $table->decimal('latitude', 10, 7)->nullable();
             $table->decimal('longitude', 10, 7)->nullable();
             $table->dateTime('time_found');
+            $table->string('location');
             $table->string('description');
             $table->string('doge_pic');
             $table->string('status');

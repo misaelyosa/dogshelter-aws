@@ -46,6 +46,7 @@ class ReportController extends Controller
             'name' => 'required|string|max:255',
             'no_telp' => 'required|string|max:50',
             // 'nama' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
             'time_found' => 'required',
@@ -91,6 +92,7 @@ class ReportController extends Controller
                 'longitude' => $request->input('longitude'),
                 'time_found' => $timeFound,
                 'description' => $request->input('description'),
+                'location' => $request->input('location'),
                 'doge_pic' => $publicPath,
                 'status' => 'pending', // default
             ]);

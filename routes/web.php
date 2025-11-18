@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
 
         //Reports
         // Admin - Report management
-        Route::get('/admin/reports', [AdminController::class, 'fetchReports'])->name('admin.reports');
+        Route::get('/admin/reports', [AdminController::class, 'fetchReports'])->name('reportsAdmin');
         Route::get('/admin/reports/{id}', [AdminController::class, 'showReport'])->name('admin.reports.show');
         Route::post('/admin/reports/{id}/accept', [AdminController::class, 'acceptReport'])->name('admin.reports.accept');
         Route::post('/admin/reports/{id}/decline', [AdminController::class, 'declineReport'])->name('admin.reports.decline');

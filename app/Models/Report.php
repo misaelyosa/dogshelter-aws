@@ -17,6 +17,7 @@ class Report extends Model
         'longitude',
         'time_found',
         'description',
+        'location',
         'doge_pic',
         'status',
     ];

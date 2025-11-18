@@ -128,7 +128,7 @@ class AdminController extends Controller
         $report->status = 'accepted';
         $report->save();
 
-        return redirect()->route('admin.reports')->with('success', 'Report #' . $report->id . ' accepted.');
+        return redirect()->route('reportsAdmin')->with('success', 'Report #' . $report->id . ' accepted.');
     }
 
     // Decline report (update status)
@@ -138,6 +138,6 @@ class AdminController extends Controller
         $report->status = 'declined';
         $report->save();
 
-        return redirect()->route('admin.reports')->with('success', 'Report #' . $report->id . ' declined.');
+        return redirect()->route('reportsAdmin')->with('success', 'Report #' . $report->id . ' declined.');
     }
 }
