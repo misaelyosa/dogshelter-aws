@@ -2,29 +2,29 @@
 
 @section('content')
 @include('includes.sidebar')
-    <!-- SWAL -->
-    @if (session('success'))  
-    <script>
-        // console.log('ballz');
-        document.addEventListener('DOMContentLoaded', function (){
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: "{{ session('success') }}",
-            });
-        });      
-    </script>   
-    @elseif (session('error'))
-    <script>
-            document.addEventListener('DOMContentLoaded', function (){
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "{{session('error')}}",
-                    });
-            });
-        </script>
-    @endif
+<!-- SWAL -->
+@if (session('success'))
+<script>
+    // console.log('ballz');
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: "{{ session('success') }}",
+        });
+    });
+</script>
+@elseif (session('error'))
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "{{session('error')}}",
+        });
+    });
+</script>
+@endif
 
 <section class="bg-white dark:bg-gray-800 min-h-screen">
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
@@ -38,24 +38,28 @@
         <div class="grid md:grid-cols-2 gap-8">
             @foreach($doges as $doge)
             @php
-                $adopter = $adopters->firstWhere('id', $doge->user_id);
+            $adopter = $adopters->firstWhere('id', $doge->user_id);
             @endphp
             <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
                 <h2 class="text-gray-900 dark:text-white text-3xl font-extrabold mb-3">Request Adopsi {{$doge->nama}}</h2>
                 <p class="text-lg font-bold text-gray-500 dark:text-gray-400 mb-1">Data Calon Adopter</p>
                 <p class="text-lg font-normal text-gray-500 dark:text-gray-400 mb-1">Nama : {{$adopter->name}}</p>
-                <a href="mailto:{{$adopter->email}}" class="hover:text-blue-500 hover:underline text-lg font-normal text-gray-500 dark:text-gray-400 mb-1"><p>Email : {{$adopter->email}}</p></a>
-                <a href="tel:+62{{ ltrim($adopter->no_telp, '0') }}" class="hover:text-blue-500 hover:underline text-lg font-normal text-gray-500 dark:text-gray-400 mb-1"><p>No Telepon : {{$adopter->no_telp}}</p></a>
+                <a href="mailto:{{$adopter->email}}" class="hover:text-blue-500 hover:underline text-lg font-normal text-gray-500 dark:text-gray-400 mb-1">
+                    <p>Email : {{$adopter->email}}</p>
+                </a>
+                <a href="tel:+62{{ ltrim($adopter->no_telp, '0') }}" class="hover:text-blue-500 hover:underline text-lg font-normal text-gray-500 dark:text-gray-400 mb-1">
+                    <p>No Telepon : {{$adopter->no_telp}}</p>
+                </a>
                 @if ($doge->adoption_status === 'adopted' )
-                    <p class="text-lg font-bold dark:text-white text-black mb-1">Form Status : Approved</p>
+                <p class="text-lg font-bold dark:text-white text-black mb-1">Form Status : Approved</p>
                 @elseif ($doge->adoption_status === 'pending' )
-                    <p class="text-lg font-bold dark:text-white text-black mb-1">Form Status : Waiting Approval</p>
-                @else 
-                    <p class="text-lg font-bold dark:text-white text-black mb-1">Form Status : Rejected</p>
+                <p class="text-lg font-bold dark:text-white text-black mb-1">Form Status : Waiting Approval</p>
+                @else
+                <p class="text-lg font-bold dark:text-white text-black mb-1">Form Status : Rejected</p>
                 @endif
-                <button data-modal-target="modal_verify-{{$doge->id}}" data-modal-toggle="modal_verify-{{$doge->id}}"  class="text-white hover:underline bg-blue-700 hover:bg-blue-800  inline-flex items-center font-medium rounded-lg text-md mt-4 px-5 py-2.5 text-center focus:ring-4 focus:outline-none focus:<!-- ring-blue-300 ">Details
-                    <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"> 
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                <button data-modal-target="modal_verify-{{$doge->id}}" data-modal-toggle="modal_verify-{{$doge->id}}" class="text-white hover:underline bg-blue-700 hover:bg-blue-800  inline-flex items-center font-medium rounded-lg text-md mt-4 px-5 py-2.5 text-center focus:ring-4 focus:outline-none focus:<!-- ring-blue-300 ">Details
+                    <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
                     </svg>
                 </button>
             </div>
@@ -75,7 +79,7 @@
                         </h3>
                         <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="static-modal">
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                             </svg>
                             <span class="sr-only">Close modal</span>
                         </button>
@@ -108,9 +112,9 @@
         </div>
 
         @foreach($doges as $doge)
-            @php
-                $adopter = $adopters->firstWhere('id', $doge->user_id);
-            @endphp
+        @php
+        $adopter = $adopters->firstWhere('id', $doge->user_id);
+        @endphp
         <!-- Data modal -->
         <div id="modal_verify-{{$doge->id}}" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-2xl max-h-full">
@@ -123,14 +127,14 @@
                         </h3>
                         <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="modal_verify-{{$doge->id}}">
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                             </svg>
                             <span class="sr-only">Close modal</span>
                         </button>
                     </div>
                     <!-- Modal body -->
                     <div class="p-4 md:p-5 space-y-4">
-                        <ul class="text-base leading-relaxed text-gray-500 dark:text-gray-400 text-md ps-2"> 
+                        <ul class="text-base leading-relaxed text-gray-500 dark:text-gray-400 text-md ps-2">
                             <p class="text-base font-bold leading-relaxed text-black dark:text-white text-md">Data Anjing</p>
                             <li>1. Nama : {{ $doge->nama }} </li>
                             <li>2. Date of Birth : {{ $doge->dob }} </li>
@@ -138,7 +142,7 @@
                             <li>4. Jenis Kelamin : {{ $doge->jenis_kelamin }} </li>
                             <li>5. Adoption Status : {{ $doge->adoption_status }} </li>
                         </ul>
-                        <ul class="text-base leading-relaxed text-gray-500 dark:text-gray-400 text-md ps-2"> 
+                        <ul class="text-base leading-relaxed text-gray-500 dark:text-gray-400 text-md ps-2">
                             <p class="text-base font-bold leading-relaxed text-black dark:text-white text-md">Data Calon Adopter</p>
                             <li>1. Nama : {{ $adopter->name }} </li>
                             <li>2. No Telepon : {{ $adopter->no_telp }} </li>
@@ -148,28 +152,28 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="flex  p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                    @if ($doge->adoption_status === 'pending' )
-                    <div class="me-2 sm:me-auto">
-                        <form id="approveForm-{{ $doge->id }}" action="{{ route('acceptadopt') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $doge->id }}">
-                            <button type="button" onclick="confirmAction('{{ $doge->id }}', 'approve')" class="w-full h-full focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Approve Adoption?</button>
-                        </form>
-                    </div>
-                    <div class="sm:mx-auto">
-                        <form id="declineForm-{{ $doge->id }}" action="{{ route('declineadopt') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $doge->id }}">
-                            <button type="button" onclick="confirmAction('{{ $doge->id }}', 'decline')" class="w-full h-full focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Decline Adoption Request</button>
-                        </form>
-                    </div>
-                    @else 
+                        @if ($doge->adoption_status === 'pending' )
+                        <div class="me-2 sm:me-auto">
+                            <form id="approveForm-{{ $doge->id }}" action="{{ route('acceptadopt') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $doge->id }}">
+                                <button type="button" onclick="confirmAction('{{ $doge->id }}', 'approve')" class="w-full h-full focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Approve Adoption?</button>
+                            </form>
+                        </div>
+                        <div class="sm:mx-auto">
+                            <form id="declineForm-{{ $doge->id }}" action="{{ route('declineadopt') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $doge->id }}">
+                                <button type="button" onclick="confirmAction('{{ $doge->id }}', 'decline')" class="w-full h-full focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Decline Adoption Request</button>
+                            </form>
+                        </div>
+                        @else
                         <p class="text-lg font-bold dark:text-white text-black mb-1">Actions unavailable</p>
-                    @endif
-                    <div class="ms-2 sm:ms-auto">
-                        <button data-modal-hide="modal_verify-{{$doge->id}}" type="button" class="w-full h-full text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Cancel</button>
+                        @endif
+                        <div class="ms-2 sm:ms-auto">
+                            <button data-modal-hide="modal_verify-{{$doge->id}}" type="button" class="w-full h-full text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Cancel</button>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -180,23 +184,23 @@
 
 <!-- Swal confirmation -->
 <script>
-function confirmAction(id, action) {
-    let actionText = action === 'approve' ? 'Approve' : 'Decline';
-    let formId = action === 'approve' ? `approveForm-${id}` : `declineForm-${id}`;
+    function confirmAction(id, action) {
+        let actionText = action === 'approve' ? 'Approve' : 'Decline';
+        let formId = action === 'approve' ? `approveForm-${id}` : `declineForm-${id}`;
 
-    Swal.fire({
-        title: `Are you sure you want to ${actionText}?`,
-        text: "This action cannot be undone!",
-        icon: action === 'approve' ? 'success' : 'warning',
-        showCancelButton: true,
-        confirmButtonColor: action === 'approve' ? '#385df8' : '#e11d48',
-        cancelButtonColor: '#6b7280',
-        confirmButtonText: `Yes, ${actionText.toLowerCase()} it!`
-    }).then((result) => {
-        if (result.isConfirmed) {
-            document.getElementById(formId).submit();
-        }
-    });
-}
+        Swal.fire({
+            title: `Are you sure you want to ${actionText}?`,
+            text: "This action cannot be undone!",
+            icon: action === 'approve' ? 'success' : 'warning',
+            showCancelButton: true,
+            confirmButtonColor: action === 'approve' ? '#385df8' : '#e11d48',
+            cancelButtonColor: '#6b7280',
+            confirmButtonText: `Yes, ${actionText.toLowerCase()} it!`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById(formId).submit();
+            }
+        });
+    }
 </script>
 @endsection
