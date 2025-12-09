@@ -16,4 +16,10 @@ class Doge extends Model
     public function adopter(){
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function shelter()
+    {
+        return $this->belongsTo(Shelter::class);
+    }
+
 }

@@ -19,15 +19,24 @@ class seedDoge extends Seeder
         $genders = ['male', 'female'];
         $vaccinStatus = ['vaccinated', 'not yet'];
 
-        for ($i = 0; $i < 10; $i++) {
+        // dd(DB::table('shelters')->pluck('id')->toArray());
+        $shelterIds = DB::table('shelters')->pluck('id')->toArray();
+        $rand = [1,2,3,4,5,6,7,8];
+        // dd($shelterIds);
+
+        for ($i = 0; $i < 15; $i++) {
             DB::table('doge')->insert([
                 'nama' => $faker->firstName,
-                'dob' => $faker->dateTimeBetween('2019-01-01', '2023-12-31')->format('Y-m-d'),
+                'dob' => $faker->dateTimeBetween('-5 years', '-6 months')->format('Y-m-d'),
                 'trait' => $faker->randomElement($traits),
                 'jenis_kelamin' => $faker->randomElement($genders),
-                'keterangan' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae elit eget nibh vehicula aliquet.",
-                'vaccin_status' => $faker->randomElement($vaccinStatus), 
+                'keterangan' => $faker->paragraph,
+                'vaccin_status' => $faker->randomElement($vaccinStatus),
                 'img_route' => null,
+
+                'user_id' => null,
+                'shelter_id' => $rand[array_rand($rand)],
+
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
