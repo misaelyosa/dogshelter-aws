@@ -1,9 +1,13 @@
 <section class="w-full h-[10%] bg-comp_orange border border-black border-t border-b-0 border-x-0 overflow-x-hidden">
     <div class="px-10 py-8 flex h-full items-center">
-        <h1 class="font-dmsans font-medium italic text-md text-black self-center items-start">Surabaya Paw Warriors </h1>
+    
+        <div class="flex flex-col">
+            <h1 class="font-dmsans font-medium italic text-md text-black self-start items-start">PawCloud</h1>
+            <h1 class="font-dmsans font-small italic text-md text-black self-center items-start">A global cloud platform for lost dogs, rescue, and adoption</h1>
+        </div>
 
         <div class="ml-auto flex space-x-4">
-            <a href="https://www.instagram.com/supaw_warriors" target="_blank" class="text-black hover:text-gray-600">
+            <a href="" target="_blank" class="text-black hover:text-gray-600">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 fill-current" viewBox="0 0 24 24">
                     <path d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2zm0 2A3.76 3.76 0 0 0 4 7.75v8.5A3.76 3.76 0 0 0 7.75 20h8.5A3.76 3.76 0 0 0 20 16.25v-8.5A3.76 3.76 0 0 0 16.25 4h-8.5zm10.5 1.75a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 1 .75-.75zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
                 </svg>

@@ -33,73 +33,141 @@
     <!-- page 2 -->
     <section class="about" id="about">
         <h2 class="title1">About Us</h2>
-        <div class="lg:col-span-2">
-            <h3 class="font-dmsans tracking-wide px-6 text-left text-2xl mt-6 lg:text-4xl font-extrabold text-black">Surabaya Paw Warriors</h3>
-        </div>
         <div class="lg:col-span-1">
-            <p class="lg:col-span-1 lg:text-xl font-dmsans tracking-wide text-left md:text-justify px-6 py-4 leading-relaxed text-lg">"Supaw Warriors" adalah sebuah komunitas atau shelter yang berfokus pada penyelamatan anjing, terutama yang membutuhkan perhatian khusus, seperti anjing yang terlantar, sakit, atau terluka. Kami aktif di Instagram, membagikan kisah penyelamatan anjing-anjing tersebut, serta menggalang dukungan dan donasi untuk membantu operasional kebutuhan medis anjing-anjing.</p>
+            <p class="lg:col-span-1 lg:text-xl font-dmsans tracking-wide text-left md:text-justify px-6 py-4 leading-relaxed text-lg">PawCloud is a global cloud-based platform dedicated to reuniting lost dogs with their families, supporting shelters, and making dog adoption accessible worldwide.
+
+                Built on modern cloud infrastructure, PawCloud connects communities across countries in real time—allowing lost dog reports, shelter updates, and adoption listings to be accessible anytime, anywhere. Whether you're searching for a missing dog, looking to adopt, or supporting a local shelter, PawCloud provides a safe, reliable, and transparent space to take action.
+
+                We believe that technology should be used not only for innovation—but also for compassion.
+                Through PawCloud, we turn data into hope, and connections into new beginnings.</p>
         </div>
             <img class="md:px-6 object-cover w-full h-1/5 my-4 md:h-[55%]" src="{{asset('assets/images/splash_about.jpg')}}" alt="splash-about">
     </section>
 
     <!-- page 3 -->
     <section class="faq" id="faq">
-        <h1 class="title2">Frequently Asked Question</h1>
+    <h1 class="title2">Frequently Asked Question</h1>
         <div id="accordion-collapse" class="mb-4 relative z-20" data-accordion="collapse">
         <h2 id="accordion-collapse-heading-1">
             <button type="button" class="accordion-head-top" data-accordion-target="#accordion-collapse-body-1" aria-expanded="false" aria-controls="accordion-collapse-body-1">
-            <span>Dimana alamat shelter supaw? </span>
+            <span>What is PawCloud?</span>
             <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
             </svg>
             </button>
         </h2>
         <div id="accordion-collapse-body-1" class="accordion-glass hidden" aria-labelledby="accordion-collapse-heading-1">
-            <div class="p-5  ">
-            <p class="mb-2 text-white">Mohon maaf tapi kami sengaja nggak membuka lokasi dan alamat supaya nggak disalahgunakan berbagai oknum. Disalahgunakan gimana? Ya macem-macem, orang bisa makin mudah buang anjing atau kucing di shelter kami atau bahkan ada yang jahat dan nggak suka mungkin berniat
-            ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
+            <div class="p-5">
+            <p class="mb-2 text-white">PawCloud is a global cloud-based platform for reporting lost dogs, supporting shelters through donations, and connecting adopters with dogs in need.</p>
             </div>
         </div>
+
         <h2 id="accordion-collapse-heading-2">
             <button type="button" class="accordion-head" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
-            <span>Bolehkah kalau ingin visit shelter? Mungkin bisa bantu bantu disana.</span>
+            <span>Is PawCloud free to use?</span>
             <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
             </svg>
             </button>
         </h2>
         <div id="accordion-collapse-body-2" class="accordion-glass hidden" aria-labelledby="accordion-collapse-heading-2">
-            <div class="p-5  ">
-            <p class="mb-2 text-white">Bukannya tidak boleh, namun karena kami tidak disclose alamat maka akan cukup sulit. Kedepannya mungkin bisa direncanakan, ditunggu ya.</p>
+            <div class="p-5">
+            <p class="mb-2 text-white">Yes. PawCloud is completely free for reporting lost dogs and viewing adoption listings. Donations are optional and go directly to shelters.</p>
             </div>
         </div>
+
         <h2 id="accordion-collapse-heading-3">
             <button type="button" class="accordion-head" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-            <span>Dimana alamat shelter supaw? </span>
+            <span>How do I report a lost dog?</span>
             <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
             </svg>
             </button>
         </h2>
         <div id="accordion-collapse-body-3" class="accordion-glass hidden" aria-labelledby="accordion-collapse-heading-3">
-            <div class="p-5 ">
-            <p class="mb-2 text-white">Mohon maaf tapi kami sengaja nggak membuka lokasi dan alamat supaya nggak disalahgunakan berbagai oknum. Disalahgunakan gimana? Ya macem-macem, orang bisa makin mudah buang anjing atau kucing di shelter kami atau bahkan ada yang jahat dan nggak suka mungkin berniat
-ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
+            <div class="p-5">
+            <p class="mb-2 text-white">Create an account, open the Report Lost Dog page, upload details and photos, and your post will be shared instantly across the network.</p>
             </div>
         </div>
 
         <h2 id="accordion-collapse-heading-4">
-            <button type="button" class="accordion-head-bt" data-accordion-target="#accordion-collapse-body-4" aria-expanded="true" aria-controls="accordion-collapse-body-4">
-            <span>Apakah bisa menitipkan anjing di sini?</span>
+            <button type="button" class="accordion-head" data-accordion-target="#accordion-collapse-body-4" aria-expanded="false" aria-controls="accordion-collapse-body-4">
+            <span>Are shelters on PawCloud verified?</span>
             <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
             </svg>
             </button>
         </h2>
-        <div id="accordion-collapse-body-4" class="accordion-glass hidden rounded-b-lg" aria-labelledby="accordion-collapse-heading-4">
-            <div class="p-5 ">
-            <p class="mb-2 text-white">Supaw warriors bukan tempat penitipan anjing atau kucing. Kami memiliki kapasitas yang terbatas dan tidak bersedia bertanggung jawab atas anjing dan kucing teman-teman ya. Sebaiknya dititipkan di pet hotel saja yang lebih profesional dan aman. "Gapapa, saya bayar kok." Maaf tetap tidak bisa.</p>
+        <div id="accordion-collapse-body-4" class="accordion-glass hidden" aria-labelledby="accordion-collapse-heading-4">
+            <div class="p-5">
+            <p class="mb-2 text-white">Yes. We manually verify shelter profiles to prevent fraud and ensure legitimate operations.</p>
             </div>
+        </div>
+
+        <h2 id="accordion-collapse-heading-5">
+            <button type="button" class="accordion-head" data-accordion-target="#accordion-collapse-body-5">
+            <span>Can I donate to a specific shelter?</span>
+        </button>
+        </h2>
+            <div id="accordion-collapse-body-5" class="accordion-glass hidden">
+                <div class="p-5">
+                <p class="text-white">Yes. PawCloud allows you to donate directly to the shelter you choose.</p>
+            </div>
+        </div>
+
+        <h2 id="accordion-collapse-heading-6">
+            <button type="button" class="accordion-head" data-accordion-target="#accordion-collapse-body-6">
+                <span>Is PawCloud available worldwide?</span>
+            </button>
+        </h2>
+        <div id="accordion-collapse-body-6" class="accordion-glass hidden">
+            <div class="p-5">
+                <p class="text-white">Yes. PawCloud is built on cloud infrastructure and supports users globally.</p>
+            </div>
+        </div>
+
+        <h2 id="accordion-collapse-heading-7">
+            <button type="button" class="accordion-head" data-accordion-target="#accordion-collapse-body-7">
+                <span>Is my data secure?</span>
+            </button>
+        </h2>
+        <div id="accordion-collapse-body-7" class="accordion-glass hidden">
+            <div class="p-5">
+                <p class="text-white">Yes. We use encryption and secure cloud storage for all user data.</p>
+            </div>
+        </div>
+
+        <h2 id="accordion-collapse-heading-8">
+            <button type="button" class="accordion-head" data-accordion-target="#accordion-collapse-body-8">
+            <span>Can I adopt a dog from another country?</span>
+        </button>
+        </h2>
+            <div id="accordion-collapse-body-8" class="accordion-glass hidden">
+                <div class="p-5">
+                <p class="text-white">Yes. However, adoption policies and transportation depend on the shelter.</p>
+            </div>
+        </div>
+
+        <h2 id="accordion-collapse-heading-9">
+            <button type="button" class="accordion-head" data-accordion-target="#accordion-collapse-body-9">
+            <span>Do I need an account?</span>
+            </button>
+        </h2>
+        <div id="accordion-collapse-body-9" class="accordion-glass hidden">
+            <div class="p-5">
+            <p class="text-white">An account is required for posting reports, donations, and contacting shelters.</p>
+            </div>
+        </div>
+
+        <h2 id="accordion-collapse-heading-10">
+            <button type="button" class="accordion-head-bt" data-accordion-target="#accordion-collapse-body-10">
+            <span>How else can I help?</span>
+            </button>
+        </h2>
+        <div id="accordion-collapse-body-10" class="accordion-glass hidden rounded-b-lg">
+            <div class="p-5">
+            <p class="text-white">Share posts, volunteer at shelters, foster dogs, or help raise awareness.</p>
+            </div> 
         </div>
         </div>
 
@@ -110,24 +178,29 @@ ngeracun.Kita cuma bisa hati-hati. Semoga bisa dipahami yaa</p>
 
     <!-- page 4 -->
      <section class="programs" id="programs">
-        <h1 class="font-dmsans text-left text-3xl font-bold md:text-4xl xl:mt-5">Our Programs</h1>
+         <h1 class="font-dmsans text-left text-3xl font-bold md:text-4xl xl:mt-5">Our Programs</h1>
+        <div>
+            <p class="font-dmsans text-left text-lg font-semibold mt-4 md:text-2xl">Shelter Support System</p>
+            <p class="font-dmsans text-left text-md ps-2 md:text-xl md:leading-relaxed">Tools for shelters to manage profiles, accept donations transparently, and showcase dogs in need of care.</p>
+            
+            <p class="font-dmsans text-left text-lg font-semibold mt-4 md:text-2xl">Community Watch Group</p>
+            <p class="font-dmsans text-left text-md ps-2 md:text-xl md:leading-relaxed">Local and regional communities that collaborate on rescue efforts, awareness campaigns, and urgent cases.</p>
+        </div>
         <div>
             <p class="font-dmsans text-left text-lg font-semibold mt-4 md:text-2xl">Terms and Conditions for Adoption</p>
             <ul class="font-dmsans text-left text-md ps-2 md:text-xl md:leading-relaxed">
-                <li>1. Hewan yang diadopsi memiliki tujuan untuk disayang, bukan untuk disakiti dan ditelantarkan.</li>
-                <li>2. Hewan diletakkan di dalam rumah, tidak diletakkan di dalam kandang atau dirantai.</li>
-                <li>3. Tidak untuk dijualbelikan kembali dan tidak untuk dihibahkan kepada orang lain.</li>
-                <li>4. Hewan wajib disteril dan vaksin secara rutin.</li>
-                <li>5. Seluruh anggota keluarga yang akan tinggal bersama hewan adopsi harus menyukai anjing dan setuju untuk mengadopsi anjing.</li>
-                <li>6. Adopter harus bersedia dan siap dengan segala biaya yang ada.</li>
-                <li>7. Siap merawat hingga hewan tua dan meninggal.</li>
-                <li>8. Rumah adopter siap untuk disurvei.</li>
-                <li>9. Rumah berpagar diutamakan.</li>
-                <li>10. Bersedia melalui trial adopsi selama sebulan.</li>
-                <li>11. Memberi kabar rutin setelah adopsi.</li>
+                <li>1. The adopted animal must be treated with love, care, and responsibility — never abused or abandoned.</li>
+                <li>2. The animal must be kept indoors as a family member, not confined permanently in cages or tied up.</li>
+                <li>3. The animal may not be sold, traded, or given to another person without prior approval.</li>
+                <li>4. The adopter agrees to keep the animal vaccinated and sterilized as recommended.</li>
+                <li>5. All family members living with the animal must agree to and support the adoption.</li>
+                <li>6. The adopter must be financially capable of providing food, healthcare, and daily needs.</li>
+                <li>7. The adopter commits to caring for the animal throughout its lifetime.</li>
+                <li>8. The adopter agrees to a home-check or virtual inspection if requested.</li>
+                <li>9. A safe and secure home environment is required (fenced homes preferred).</li>
+                <li>10. A trial adoption period may be required before the final adoption is approved.</li>
+                <li>11. The adopter agrees to provide regular updates after the adoption.</li>
             </ul>
-
-            <h1 class="font-dmsans text-xl text-left font-semibold mt-8 italic">To be announced, Program OTA (Orang Tua Asuh)</h1>
         </div>
      </section>
     </div>
