@@ -127,29 +127,29 @@ body {
     }
     /* faq */
     .faq{
-        @apply w-[100vw] h-screen bg-supaw_green py-20 px-4 lg:px-80;
+        @apply w-[100vw] h-screen bg-icon_black py-20 px-4 lg:px-80;
     }
     .title2{
         @apply font-dmsans text-3xl font-extrabold text-center pb-6 md:text-4xl md:mb-5;
     }
     .accordion-head-top{
-        @apply flex items-center justify-between w-full p-5 font-medium md:text-lg rtl:text-right text-gray-800 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4  gap-3;
+        @apply flex items-center justify-between w-full p-5 font-medium md:text-lg rtl:text-right text-white border border-b-0 border-gray-400 rounded-t-xl focus:ring-4  gap-3;
     }
     .accordion-head{
-        @apply flex items-center text-left justify-between w-full p-5 font-medium md:text-lg rtl:text-right text-gray-800 border border-b-0 border-gray-200 focus:ring-4  gap-3;
+        @apply flex items-center text-left justify-between w-full p-5 font-medium md:text-lg rtl:text-right text-white border border-b-0 border-gray-400 focus:ring-4  gap-3;
     }
     .accordion-head-bt{
-        @apply flex items-center text-left justify-between w-full p-5 font-medium md:text-lg rtl:text-right text-gray-800 border border-gray-200 focus:ring-4  gap-3;
+        @apply flex items-center text-left justify-between w-full p-5 font-medium md:text-lg rtl:text-right text-white border border-gray-400 focus:ring-4  gap-3;
     }
     /* Frosted Glass Effect */
     .accordion-glass {
-        @apply p-5 border border-gray-200;
+        @apply p-5 border border-gray-400;
         background: rgba(255, 255, 255, 0.15); /* Light frosted background for light theme */
         backdrop-filter: blur(10px); /* Frosted glass effect */
         -webkit-backdrop-filter: blur(10px); /* Frosted glass effect for Safari */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
     }
-    .accordion-glass .text-gray-800 {
+    .accordion-glass .text-white {
         color: rgba(255, 255, 255, 0.9); 
     }
 
@@ -162,7 +162,7 @@ body {
         @apply w-[100vw] min-h-[100vh] grid grid-cols-2 grid-flow-row gap-3 lg:grid-cols-4 lg:gap-5 bg-comp_orange overflow-y-auto overflow-x-hidden py-8 px-6;
     }
     .card{
-        @apply w-full h-[30vh] rounded-xl bg-cover bg-center relative border border-black z-0;
+        @apply w-full h-[30vh] rounded-xl bg-contain bg-no-repeat bg-center relative border border-black z-0;
     }
     .card-overlay {
         @apply absolute inset-0 bg-black bg-opacity-35 pb-4 rounded-xl flex items-end;

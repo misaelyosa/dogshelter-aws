@@ -46,7 +46,7 @@
 
     <!-- page 3 -->
     <section class="faq" id="faq">
-    <h1 class="title2">Frequently Asked Question</h1>
+    <h1 class="title2 text-white">Frequently Asked Question</h1>
         <div id="accordion-collapse" class="mb-4 relative z-20" data-accordion="collapse">
         <h2 id="accordion-collapse-heading-1">
             <button type="button" class="accordion-head-top" data-accordion-target="#accordion-collapse-body-1" aria-expanded="false" aria-controls="accordion-collapse-body-1">
@@ -107,6 +107,9 @@
         <h2 id="accordion-collapse-heading-5">
             <button type="button" class="accordion-head" data-accordion-target="#accordion-collapse-body-5">
             <span>Can I donate to a specific shelter?</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
         </button>
         </h2>
             <div id="accordion-collapse-body-5" class="accordion-glass hidden">
@@ -118,6 +121,9 @@
         <h2 id="accordion-collapse-heading-6">
             <button type="button" class="accordion-head" data-accordion-target="#accordion-collapse-body-6">
                 <span>Is PawCloud available worldwide?</span>
+                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
             </button>
         </h2>
         <div id="accordion-collapse-body-6" class="accordion-glass hidden">
@@ -129,6 +135,9 @@
         <h2 id="accordion-collapse-heading-7">
             <button type="button" class="accordion-head" data-accordion-target="#accordion-collapse-body-7">
                 <span>Is my data secure?</span>
+                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
             </button>
         </h2>
         <div id="accordion-collapse-body-7" class="accordion-glass hidden">
@@ -140,6 +149,9 @@
         <h2 id="accordion-collapse-heading-8">
             <button type="button" class="accordion-head" data-accordion-target="#accordion-collapse-body-8">
             <span>Can I adopt a dog from another country?</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
         </button>
         </h2>
             <div id="accordion-collapse-body-8" class="accordion-glass hidden">
@@ -151,6 +163,9 @@
         <h2 id="accordion-collapse-heading-9">
             <button type="button" class="accordion-head" data-accordion-target="#accordion-collapse-body-9">
             <span>Do I need an account?</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
             </button>
         </h2>
         <div id="accordion-collapse-body-9" class="accordion-glass hidden">
@@ -162,6 +177,9 @@
         <h2 id="accordion-collapse-heading-10">
             <button type="button" class="accordion-head-bt" data-accordion-target="#accordion-collapse-body-10">
             <span>How else can I help?</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
             </button>
         </h2>
         <div id="accordion-collapse-body-10" class="accordion-glass hidden rounded-b-lg">
@@ -270,6 +288,9 @@
             </div>
         </div>
         @endforeach
+
+
+        <!-- List Shelter -->
     </section>
     @include('includes.footer')
 </div>

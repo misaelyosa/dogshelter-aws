@@ -17,8 +17,8 @@ $(window).on("load", function() {
         { opacity: 1 },
         {
             opacity: 0,
-            duration: 2, 
-            delay: 1.5,
+            duration: 1, 
+            delay: 1,
             onComplete: () => {
                 document.querySelector(".loading-screen").style.display = "none";
                 // document.querySelector("body").style.visibility = "visible";

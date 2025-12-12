@@ -11,6 +11,7 @@ module.exports = {
       colors: {
         'darkgreen' : '#052E16',
         'supaw_green' : '#31DB7A',
+        'icon_black'  : '#202120',
         'comp_orange' : '#FF934F',
       },
       spacing: {
