@@ -179,6 +179,12 @@ body {
     .btn-moreinfo{
         @apply text-white text-xs lg:text-base text-center font-dmsans font-extralight italic self-start bg-comp_orange hover:bg-gray-700 rounded-full py-1 px-2;
     }
+
+    .map-disabled {
+        pointer-events: none;
+        touch-action: none;
+    }
+
 }
 
 

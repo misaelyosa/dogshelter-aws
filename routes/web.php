@@ -7,6 +7,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ShelterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,5 +70,6 @@ Route::middleware('auth')->group(function () {
     // Route::middleware('role:user')->group(function () {
     // });
 });
+Route::get('/shelters', [ShelterController::class, 'index'])->name('shelters');
 Route::get('/home', [DogeController::class, 'fetch'])->name('home');
 Route::get('/', [DogeController::class, 'fetch'])->name('home');

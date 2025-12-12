@@ -7,8 +7,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     @vite(['resources/css/app.css','resources/js/app.js'])
-    <title>Supaw</title>
-    <link rel="icon" href="{{asset('assets/icons/supaw-logo.png')}}" type="image/x-icon"/>
+    <title>PawCloud</title>
+    <link rel="icon" href="{{asset('assets/icons/supaw-logo.jpg')}}" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 
     <script>    
         // On page load or when changing themes, best to add inline in `head` to avoid FOUC

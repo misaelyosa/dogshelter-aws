@@ -222,6 +222,8 @@
         </div>
      </section>
     </div>
+    
+    <!-- DOGE LIST -->
     <section class="container-listDoge" id="adoptionlist">
         <h1 class="font-dmsans text-3xl font-bold col-span-2 italic ps-1 lg:col-span-4 lg:text-5xl">Adopt Me!</h1>
         @foreach ($doges as $doge)
@@ -230,7 +232,7 @@
                 <div class="card-content">
                     <h1 class="nama-doge">{{ $doge->nama }}</h1>
                     <h1 class="dob-doge">{{ $doge->dob }}</h1>
-                    <h1 class="trait">{{ $doge->trait }}</h1>
+                    <h1 class="trait">{{ $doge->shelter?->name ?? 'No shelter assigned' }}</h1>
                     <button data-modal-target="modal-{{ $doge->id }}" data-modal-toggle="modal-{{ $doge->id }}" class="btn-moreinfo">more info...</button>
                 </div>
             </div>
@@ -288,10 +290,34 @@
             </div>
         </div>
         @endforeach
-
-
-        <!-- List Shelter -->
     </section>
+
+    <!-- List Shelter -->
+    <section class="bg-icon_black py-8 px-6">
+        <h1 class="font-dmsans text-2xl text-white font-bold col-span-2 italic ps-1 mb-4 lg:col-span-4 lg:text-5xl">Dog Shelter List</h1>
+
+        @foreach ($shelters as $shelter)
+        <div class="bg-icon_black flex items-center justify-between p-4 mb-3 rounded-xl shadow-lg">
+
+            <div>
+                <h2 class="text-lg font-bold text-white">{{ $shelter->name }}</h2>
+                <p class="text-sm text-gray-300">{{ $shelter->location }}</p>
+            </div>
+
+            <button 
+                type="button"
+                onclick="showShelterMap({{ $shelter->latitude }}, {{ $shelter->longitude }}, '{{ $shelter->name }}')"
+                class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm shadow-md hover:bg-blue-700">
+                View Map
+            </button>
+
+        </div>
+        @endforeach
+        
+        <div id="shelterMap" class="map-disabled w-full h-[40vh] mt-10 rounded-xl"></div>
+
+    </section>
+
     @include('includes.footer')
 </div>
 @endsection
@@ -460,12 +486,27 @@
                 ease: "power1.inOut"
             });
         }
-    
         // Call all animation functions
         document.addEventListener('DOMContentLoaded', function () {
             parallaxAnimations();
             horizontalScroll();
             scrollNoticeBlink();
         });
-    </script>
+
+        //MAP
+        let map = L.map('shelterMap').setView([-6.2, 106.8], 10);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+        }).addTo(map);
+
+        function showShelterMap(lat, lng, name) {
+            map.setView([lat, lng], 16);
+
+            L.marker([lat, lng])
+                .addTo(map)
+                .bindPopup(name)
+                .openPopup();
+        }
+</script>
 @endsection

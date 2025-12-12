@@ -12,9 +12,10 @@ class DogeController extends Controller
 {
     public function fetch()
     {
-        $doges = Doge::all();
+        $doges = Doge::with('shelter')->get();
+        $shelters = \App\Models\Shelter::all();
 
-        return view('home', ['doges' => $doges]);
+        return view('home', compact('doges', 'shelters'));
     }
 
     public function fetchDogeAdmin()
