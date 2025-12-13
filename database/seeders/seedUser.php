@@ -25,5 +25,21 @@ class seedUser extends Seeder
             'password' => bcrypt('password'),
             'role' => 'user',
         ]]);
+
+        // Create a shelter owner and link them to an existing shelter (first shelter)
+        $shelterOwnerId = DB::table('users')->insertGetId([
+            'name' => 'ShelterOwner1',
+            'email' => 'owner1@gmail.com',
+            'password' => bcrypt('password'),
+            'role' => 'shelter_owner',
+        ]);
+
+        $firstShelterId = DB::table('shelters')->value('id');
+        if ($firstShelterId) {
+            DB::table('shelters')->where('id', $firstShelterId)->update([
+                'user_id' => $shelterOwnerId,
+                'owner' => 'ShelterOwner1'
+            ]);
+        }
     }
 }

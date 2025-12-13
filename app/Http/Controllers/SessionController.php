@@ -26,6 +26,9 @@ class SessionController extends Controller
             if($user->role === 'admin'){
                 return redirect()->intended('/admin');
             }
+            if ($user->role === 'shelter_owner') {
+                return redirect()->intended('/shelter');
+            }
             return redirect()->intended('/home');
         }
         else {

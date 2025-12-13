@@ -6,7 +6,10 @@ use App\Mail\AdoptionNoticeEmail;
 use Illuminate\Http\Request;
 use App\Models\Doge;
 use App\Models\User;
+use App\Models\Shelter;
+use App\Models\Report;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class DogeController extends Controller
 {
@@ -20,9 +23,53 @@ class DogeController extends Controller
 
     public function fetchDogeAdmin()
     {
-        $doges = Doge::all();
+        // Group doges per shelter for admin overview
+        $shelters = Shelter::with('dogs')->get();
 
-        return view('admin/tableDoge', ['doges' => $doges]);
+        // Cluster reports to nearest shelter
+        $reports = Report::all();
+        $reportsByShelter = [];
+        foreach ($reports as $report) {
+            $closestShelterId = null;
+            $closestDist = null;
+            if ($report->latitude !== null && $report->longitude !== null) {
+                foreach ($shelters as $shelter) {
+                    if ($shelter->latitude === null || $shelter->longitude === null) continue;
+                    $dx = $shelter->latitude - $report->latitude;
+                    $dy = $shelter->longitude - $report->longitude;
+                    $dist = ($dx * $dx) + ($dy * $dy);
+                    if ($closestDist === null || $dist < $closestDist) {
+                        $closestDist = $dist;
+                        $closestShelterId = $shelter->id;
+                    }
+                }
+            }
+
+            $key = $closestShelterId ?? 'unassigned';
+            if (!isset($reportsByShelter[$key])) {
+                $reportsByShelter[$key] = [];
+            }
+            $reportsByShelter[$key][] = $report;
+        }
+
+        return view('admin.dashboard', compact('shelters', 'reportsByShelter'));
+    }
+
+    /**
+     * Fetch doges for the shelter owner (only doges belonging to the owner's shelter)
+     */
+    public function fetchDogeOwner()
+    {
+        $user = Auth::user();
+        $shelter = Shelter::where('user_id', $user->id)->first();
+
+        if (!$shelter) {
+            return redirect()->back()->with('error', 'No shelter linked to your account.');
+        }
+
+        $doges = Doge::where('shelter_id', $shelter->id)->get();
+
+        return view('shelter.tableDoge', ['doges' => $doges]);
     }
 
     public function fetchAdoptionRequest()
@@ -31,7 +78,26 @@ class DogeController extends Controller
 
         $userIds = $doges->pluck('user_id')->filter();
         $adopters = User::whereIn('id', $userIds)->get();
-        // dd($doges, $adopters);
+
+        return view('admin.reviewAdoptionRequest', compact('adopters', 'doges'));
+    }
+
+    /**
+     * Fetch adoption requests only for doges that belong to the shelter owner's shelter
+     */
+    public function fetchAdoptionRequestForOwner()
+    {
+        $user = Auth::user();
+        $shelter = Shelter::where('user_id', $user->id)->first();
+
+        if (!$shelter) {
+            return redirect()->back()->with('error', 'No shelter linked to your account.');
+        }
+
+        $doges = Doge::where('shelter_id', $shelter->id)->whereNotNull('user_id')->get();
+
+        $userIds = $doges->pluck('user_id')->filter();
+        $adopters = User::whereIn('id', $userIds)->get();
 
         return view('admin.reviewAdoptionRequest', compact('adopters', 'doges'));
     }

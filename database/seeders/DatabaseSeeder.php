@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             seedShelter::class,
+            seedReports::class,
             seedDoge::class,
             seedUser::class
         ]);

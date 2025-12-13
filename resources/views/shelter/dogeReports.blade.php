@@ -26,7 +26,7 @@
 
         <!-- Close Button -->
         <button onclick="closeReportModal()"
-            class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
+            class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 dark:text-gray-300">
             ✕
         </button>
 
@@ -44,58 +44,6 @@
         </div>
     </div>
 </div>
-<!-- Clustered reports by nearest shelter -->
-@if(isset($reportsByShelter) && isset($shelters))
-    @php
-        $currentUserShelterId = null;
-        if(auth()->check() && auth()->user()->role === 'shelter_owner') {
-            $currentUserShelterId = \App\Models\Shelter::where('user_id', auth()->id())->value('id');
-        }
-    @endphp
-    <div class="w-full grid gap-4 px-8 mb-6">
-        <div>
-            <h2 class="font-bold text-lg dark:text-white">Reports clustered by nearest shelter</h2>
-        </div>
-
-        @foreach($reportsByShelter as $shelterId => $rpts)
-            @if($currentUserShelterId && $shelterId != $currentUserShelterId)
-                @continue
-            @endif
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
-            @if($shelterId === 'unassigned')
-                <h3 class="font-semibold">Unassigned / No nearby shelter</h3>
-            @else
-                @php $s = $shelters->firstWhere('id', $shelterId); @endphp
-                <h3 class="font-semibold dark:text-white">{{ $s ? $s->name : 'Shelter '.$shelterId }} <span class="text-sm text-gray-500">(ID: {{ $shelterId }})</span></h3>
-            @endif
-            <div class="mt-3">
-                <table class="w-full text-sm text-left">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th class="px-3 py-2 dark:text-white">#</th>
-                            <th class="px-3 py-2 dark:text-white">Reporter</th>
-                            <th class="px-3 py-2 dark:text-white">Location</th>
-                            <th class="px-3 py-2 dark:text-white">Time Found</th>
-                            <th class="px-3 py-2 dark:text-white">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($rpts as $report)
-                        <tr class="border-b">
-                            <td class="px-3 py-2 dark:text-white">{{ $loop->iteration }}</td>
-                            <td class="px-3 py-2 dark:text-white">{{ $report->reporter_name }}</td>
-                            <td class="px-3 py-2 dark:text-white">{{ $report->location ?? ($report->latitude && $report->longitude ? $report->latitude . ', ' . $report->longitude : '-') }}</td>
-                            <td class="px-3 py-2 dark:text-white">{{ $report->time_found }}</td>
-                            <td class="px-3 py-2 dark:text-white">{{ $report->status }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        @endforeach
-    </div>
-@endif
 <div class="mb-8 w-full h-full">
     <div class="relative overflow-x-auto mx-10 bg-white shadow rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 min-w-full divide-y divide-gray-200">
@@ -114,11 +62,11 @@
             <tbody class="divide-y divide-gray-100">
                 @forelse ($reports as $report)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50">
-                    <td class="ps-3 px-4 py-4 text-sm text-gray-900 dark:text-white">{{ $report->id }}</td>
-                    <td class="px-6 py-4 text-sm dark:text-white">{{ $report->reporter_name }}</td>
-                    <td class="px-6 py-4 text-sm dark:text-white">{{ $report->description }}</td>
-                    <td class="px-6 py-4 text-sm dark:text-white">{{ $report->time_found ? \Carbon\Carbon::parse($report->time_found)->format('d M Y H:i') : '-' }}</td>
-                    <td class="px-6 py-4 text-sm dark:text-white">
+                    <td class="ps-3 px-4 py-4 text-sm text-gray-900">{{ $report->id }}</td>
+                    <td class="px-6 py-4 text-sm">{{ $report->reporter_name }}</td>
+                    <td class="px-6 py-4 text-sm">{{ $report->description }}</td>
+                    <td class="px-6 py-4 text-sm">{{ $report->time_found ? \Carbon\Carbon::parse($report->time_found)->format('d M Y H:i') : '-' }}</td>
+                    <td class="px-6 py-4 text-sm">
                         @if($report->latitude && $report->longitude)
                         <a href="https://www.google.com/maps?q={{ $report->latitude }},{{ $report->longitude }}" target="_blank" class="text-blue-600 hover:underline">
                             {{ $report->latitude }}, {{ $report->longitude }}
@@ -154,27 +102,23 @@
                         </button>
 
 
-                        <!-- Hanya tampilkan Accept / Decline jika status = pending dan user adalah shelter_owner -->
+                        <!-- Hanya tampilkan Accept / Decline jika status = pending -->
                         @if($report->status === 'pending')
-                            @if(auth()->check() && auth()->user()->role === 'shelter_owner')
-                                <form action="{{ route('shelter.reports.accept', $report->id) }}" method="POST" class="inline-block">
-                                    @csrf
-                                    <button type="submit" onclick="return confirm('Accept report #{{ $report->id }}?')"
-                                        class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
-                                        Accept
-                                    </button>
-                                </form>
+                        <form action="{{ route('shelter.reports.accept', $report->id) }}" method="POST" class="inline-block">
+                            @csrf
+                            <button type="submit" onclick="return confirm('Accept report #{{ $report->id }}?')"
+                                class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
+                                Accept
+                            </button>
+                        </form>
 
-                                <form action="{{ route('shelter.reports.decline', $report->id) }}" method="POST" class="inline-block">
-                                    @csrf
-                                    <button type="submit" onclick="return confirm('Decline report #{{ $report->id }}?')"
-                                        class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-900">
-                                        Decline
-                                    </button>
-                                </form>
-                            @else
-                                <span class="inline-block px-3 py-2 text-sm text-gray-500">Pending</span>
-                            @endif
+                        <form action="{{ route('shelter.reports.decline', $report->id) }}" method="POST" class="inline-block">
+                            @csrf
+                            <button type="submit" onclick="return confirm('Decline report #{{ $report->id }}?')"
+                                class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-900">
+                                Decline
+                            </button>
+                        </form>
                         @endif
                     </td>
                 </tr>
@@ -188,9 +132,7 @@
     </div>
 
     <div class="mt-4 ps-6">
-        @if(method_exists($reports, 'links'))
-            {{ $reports->links() }}
-        @endif
+        {{ $reports->links() }}
     </div>
 </div>
 @endsection
@@ -208,27 +150,27 @@
         content.innerHTML = `
         ${foto}
         <div>
-            <p class="text-sm text-gray-600">Nama Pelapor</p>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Nama Pelapor</p>
             <p class="font-semibold">${report.reporter_name}</p>
         </div>
 
         <div>
-            <p class="text-sm text-gray-600">Nomor Telepon</p>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Nomor Telepon</p>
             <p class="font-semibold">${report.notelp}</p>
         </div>
 
         <div>
-            <p class="text-sm text-gray-600">Status</p>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Status</p>
             <p class="font-semibold">${report.status}</p>
         </div>
 
         <div>
-            <p class="text-sm text-gray-600">Lokasi</p>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Lokasi</p>
             <p class="font-semibold">${report.latitude}, ${report.longitude}</p>
         </div>
 
         <div>
-            <p class="text-sm text-gray-600">Deskripsi</p>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Deskripsi</p>
             <p class="font-semibold">${report.description}</p>
         </div>
     `;

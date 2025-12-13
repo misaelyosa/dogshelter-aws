@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Doge;
 use App\Models\Report;
 use App\Models\User;
+use App\Models\Shelter;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class AdminController extends Controller
 {
@@ -14,27 +16,43 @@ class AdminController extends Controller
     {
         // dd('ballz');
         $user = Auth::user();
-        if ($user->role === 'admin') {
-            $doge = Doge::find($request->id);
-            $doge->nama = $request->nama;
-            $doge->dob = $request->dob;
-            $doge->trait = $request->trait;
-            $doge->jenis_kelamin = $request->jenis_kelamin;
-            $doge->keterangan = $request->keterangan;
-            $doge->vaccin_status = $request->vaccin_status;
-            // dd($request->all());
-            $doge->save();
+        $doge = Doge::find($request->id);
 
-            return redirect()->route("admin")->with("success", "Data updated successfully.");
+        if (!$doge) {
+            return back()->withErrors('Doge not found');
+        }
+
+        // Admin can edit any doge
+        if ($user->role === 'admin') {
+            // proceed
+        } elseif ($user->role === 'shelter_owner') {
+            $shelter = Shelter::where('user_id', $user->id)->first();
+            if (!$shelter || $doge->shelter_id !== $shelter->id) {
+                return back()->withErrors('You do not have permission to edit this doge.');
+            }
         } else {
             return back()->withErrors('cannot edit');
         }
+
+        $doge->nama = $request->nama;
+        $doge->dob = $request->dob;
+        $doge->trait = $request->trait;
+        $doge->jenis_kelamin = $request->jenis_kelamin;
+        $doge->keterangan = $request->keterangan;
+        $doge->vaccin_status = $request->vaccin_status;
+        $doge->save();
+
+        if ($user->role === 'admin') {
+            return redirect()->route("fetchuser")->with("success", "Data updated successfully.");
+        }
+
+        return redirect()->route("shelter.dashboard")->with("success", "Data updated successfully.");
     }
 
     public function create(Request $request)
     {
         $user = Auth::user();
-        if ($user->role === 'admin') {
+        if ($user->role === 'admin' || $user->role === 'shelter_owner') {
             $request->validate([
                 'nama' => 'required|string|max:255',
                 'dob' => 'required|date',
@@ -51,9 +69,20 @@ class AdminController extends Controller
             $doge->jenis_kelamin = $request->jenis_kelamin;
             $doge->keterangan = $request->keterangan;
             $doge->vaccin_status = $request->vaccin_status;
+            // If shelter owner, associate doge with their shelter
+            if ($user->role === 'shelter_owner') {
+                $shelter = Shelter::where('user_id', $user->id)->first();
+                if ($shelter) {
+                    $doge->shelter_id = $shelter->id;
+                }
+            }
             $doge->save(); //insert db 
 
-            return redirect()->route("admin")->with("success", "Doge added successfully.");
+            if ($user->role === 'admin') {
+                return redirect()->route("fetchuser")->with("success", "Doge added successfully.");
+            }
+
+            return redirect()->route("shelter.dashboard")->with("success", "Doge added successfully.");
         } else {
             return back()->withErrors('You do not have permission to add a Doge.');
         }
@@ -61,15 +90,46 @@ class AdminController extends Controller
 
     public function delete($id)
     {
+        $user = Auth::user();
         $doge = Doge::findorFail($id);
-        $doge->delete();
-        return redirect()->route("admin")->with("success", "Data deleted successfully.");
+
+        if ($user->role === 'admin') {
+            $doge->delete();
+            return redirect()->route("fetchuser")->with("success", "Data deleted successfully.");
+        }
+
+        if ($user->role === 'shelter_owner') {
+            $shelter = Shelter::where('user_id', $user->id)->first();
+            if (!$shelter || $doge->shelter_id !== $shelter->id) {
+                return back()->withErrors('You do not have permission to delete this doge.');
+            }
+
+            $doge->delete();
+            return redirect()->route("shelter.dashboard")->with("success", "Data deleted successfully.");
+        }
+
+        return back()->withErrors('You do not have permission to delete this doge.');
     }
 
     public function fetchEditDoge($id)
     {
+        $user = Auth::user();
         $doge = Doge::findOrFail($id);
-        return view('admin.edit', compact('doge'));
+
+        if ($user->role === 'admin') {
+            return view('admin.edit', compact('doge'));
+        }
+
+        if ($user->role === 'shelter_owner') {
+            $shelter = Shelter::where('user_id', $user->id)->first();
+            if (!$shelter || $doge->shelter_id !== $shelter->id) {
+                return back()->withErrors('You do not have permission to edit this doge.');
+            }
+
+            return view('admin.edit', compact('doge'));
+        }
+
+        return back()->withErrors('You do not have permission to edit this doge.');
     }
 
     public function fetchUser()
@@ -88,7 +148,14 @@ class AdminController extends Controller
             ->orderBy('name')
             ->get();
 
-        return view('admin.tableUser', compact('admins', 'users'));
+        $shelterOwners = User::where('role', 'shelter_owner')
+            ->with(['adoptedDoge' => function ($query) {
+                $query->select('id', 'user_id', 'nama');
+            }])
+            ->orderBy('name')
+            ->get();
+
+        return view('admin.tableUser', compact('admins', 'users', 'shelterOwners'));
     }
 
     public function banUser($id)
@@ -110,7 +177,48 @@ class AdminController extends Controller
         // optional: filter by status ? q ? order
         $reports = Report::orderBy('created_at', 'desc')->paginate(15);
 
-        return view('admin.reports', compact('reports'));
+        // For clustering: load shelters and cluster all reports to nearest shelter
+        $shelters = Shelter::all();
+        $allReports = Report::all();
+        $reportsByShelter = [];
+
+        foreach ($allReports as $report) {
+            $closestShelterId = null;
+            $closestDist = null;
+            if ($report->latitude !== null && $report->longitude !== null) {
+                foreach ($shelters as $shelter) {
+                    if ($shelter->latitude === null || $shelter->longitude === null) continue;
+                    $dx = $shelter->latitude - $report->latitude;
+                    $dy = $shelter->longitude - $report->longitude;
+                    $dist = ($dx * $dx) + ($dy * $dy);
+                    if ($closestDist === null || $dist < $closestDist) {
+                        $closestDist = $dist;
+                        $closestShelterId = $shelter->id;
+                    }
+                }
+            }
+
+            $key = $closestShelterId ?? 'unassigned';
+            if (!isset($reportsByShelter[$key])) {
+                $reportsByShelter[$key] = [];
+            }
+            $reportsByShelter[$key][] = $report;
+        }
+
+        // If current user is a shelter owner, only return reports assigned to their shelter
+        $user = Auth::user();
+        if ($user && $user->role === 'shelter_owner') {
+            $shelter = Shelter::where('user_id', $user->id)->first();
+            $ownerReports = [];
+            if ($shelter) {
+                $ownerReports = $reportsByShelter[$shelter->id] ?? [];
+            }
+
+            // use a collection for owner (no pagination)
+            $reports = collect($ownerReports);
+        }
+
+        return view('admin.reports', compact('reports', 'shelters', 'reportsByShelter'));
     }
 
     // Show single report detail
@@ -128,7 +236,19 @@ class AdminController extends Controller
         $report->status = 'accepted';
         $report->save();
 
-        return redirect()->route('reportsAdmin')->with('success', 'Report #' . $report->id . ' accepted.');
+        $user = Auth::user();
+        if ($user && $user->role === 'shelter_owner') {
+            return redirect()->route('reportsShelter')->with('success', 'Report #' . $report->id . ' accepted.');
+        }
+
+        // fallback for admin or others
+        if (
+            Route::has('reportsAdmin')
+        ) {
+            return redirect()->route('reportsAdmin')->with('success', 'Report #' . $report->id . ' accepted.');
+        }
+
+        return redirect()->back()->with('success', 'Report #' . $report->id . ' accepted.');
     }
 
     // Decline report (update status)
@@ -138,6 +258,18 @@ class AdminController extends Controller
         $report->status = 'declined';
         $report->save();
 
-        return redirect()->route('reportsAdmin')->with('success', 'Report #' . $report->id . ' declined.');
+        $user = Auth::user();
+        if ($user && $user->role === 'shelter_owner') {
+            return redirect()->route('reportsShelter')->with('success', 'Report #' . $report->id . ' declined.');
+        }
+
+        // fallback for admin or others
+        if (
+            Route::has('reportsAdmin')
+        ) {
+            return redirect()->route('reportsAdmin')->with('success', 'Report #' . $report->id . ' declined.');
+        }
+
+        return redirect()->back()->with('success', 'Report #' . $report->id . ' declined.');
     }
 }

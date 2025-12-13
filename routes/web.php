@@ -35,32 +35,21 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [SessionController::class, 'logout'])->name('logout');
 
     Route::middleware('role:admin')->group(function () {
-        //Doge Table
+        // Admin dashboard (all doges)
         Route::get('/admin', [DogeController::class, 'fetchDogeAdmin'])->name('admin');
-        Route::get('/admin/edit/{id}', [AdminController::class, 'fetchEditDoge'])->name('fetchedit'); //return view edit + select id 
-        Route::post('/admin/edit', [AdminController::class, 'edit'])->name('updatedoge'); //post edit
-        Route::get('/admin/delete/{id}', [AdminController::class, 'delete'])->name('deletedoge');
-        Route::get('/admin/create', function () {
-            return view('admin.create');
-        })->name('formCreateDoge');
-        Route::post('/admin/create', [AdminController::class, 'create'])->name('createDoge');
-
         //User table
         Route::get('admin/manageUser', [AdminController::class, 'fetchUser'])->name('fetchuser');
         Route::get('/admin/banUser/{id}', [AdminController::class, 'banUser'])->name('banuser');
 
         //Adoption Validation
-        Route::get('admin/adoptionRequest', [DogeController::class, 'fetchAdoptionRequest'])->name('fetchadoptionrequest');
-        Route::post('/accept-adopt', [DogeController::class, 'acceptAdopt'])->name('acceptadopt');
-        Route::post('/decline-adopt', [DogeController::class, 'declineAdopt'])->name('declineadopt');
+        Route::get('admin/adoptionRequest', [DogeController::class, 'fetchAdoptionRequest'])->name('admin.fetchadoptionrequest');
+        
+        Route::get('admin/testEmail', [DogeController::class, 'testEmail']);
 
-        //Reports
-        // Admin - Report management
+        // Reports (admin)
         Route::get('/admin/reports', [AdminController::class, 'fetchReports'])->name('reportsAdmin');
         Route::get('/admin/reports/{id}', [AdminController::class, 'showReport'])->name('admin.reports.show');
-        Route::post('/admin/reports/{id}/accept', [AdminController::class, 'acceptReport'])->name('admin.reports.accept');
-        Route::post('/admin/reports/{id}/decline', [AdminController::class, 'declineReport'])->name('admin.reports.decline');
-        Route::get('admin/testEmail', [DogeController::class, 'testEmail']);
+        // Admins can view reports but cannot accept/decline them via routes.
     });
     Route::post('/report', [ReportController::class, 'store'])->name('reportSubmit');
     Route::get('/adoptform/{id}', [UserController::class, 'fetchAdopt'])->name('fetchadoptform');
@@ -73,3 +62,26 @@ Route::middleware('auth')->group(function () {
 Route::get('/shelters', [ShelterController::class, 'index'])->name('shelters');
 Route::get('/home', [DogeController::class, 'fetch'])->name('home');
 Route::get('/', [DogeController::class, 'fetch'])->name('home');
+
+// Shelter owner routes: doge CRUD + adoption requests (for their shelter only)
+Route::middleware(['auth', 'role:shelter_owner'])->group(function () {
+    Route::get('/shelter', [DogeController::class, 'fetchDogeOwner'])->name('shelter.dashboard');
+    Route::get('/shelter/edit/{id}', [AdminController::class, 'fetchEditDoge'])->name('fetchedit');
+    Route::post('/shelter/edit', [AdminController::class, 'edit'])->name('updatedoge');
+    Route::get('/shelter/delete/{id}', [AdminController::class, 'delete'])->name('deletedoge');
+    Route::get('/shelter/create', function () {
+        return view('admin.create');
+    })->name('formCreateDoge');
+    Route::post('/shelter/create', [AdminController::class, 'create'])->name('createDoge');
+
+    // Adoption requests for shelter owner (only for doges in their shelter)
+    Route::get('shelter/adoptionRequest', [DogeController::class, 'fetchAdoptionRequestForOwner'])->name('shelter.fetchadoptionrequest');
+    Route::post('/shelter/accept-adopt', [DogeController::class, 'acceptAdopt'])->name('acceptadopt');
+    Route::post('/shelter/decline-adopt', [DogeController::class, 'declineAdopt'])->name('declineadopt');
+    
+    // Reports management for shelter owner
+    Route::get('/shelter/reports', [AdminController::class, 'fetchReports'])->name('reportsShelter');
+    Route::get('/shelter/reports/{id}', [AdminController::class, 'showReport'])->name('shelter.reports.show');
+    Route::post('/shelter/reports/{id}/accept', [AdminController::class, 'acceptReport'])->name('shelter.reports.accept');
+    Route::post('/shelter/reports/{id}/decline', [AdminController::class, 'declineReport'])->name('shelter.reports.decline');
+});
