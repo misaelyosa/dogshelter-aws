@@ -42,7 +42,7 @@
                     <a href="/dogReport" class="nav_options line-through md:no-underline">Report Lost Dog</a>
                 </li>
                 <li>
-                    <a href="#" class="nav_options">Shelter List</a>
+                    <a href="#shelter_list2" class="nav_options">Shelter List</a>
                 </li>
                 @if (Auth::check())
                 <h1 class="lg:hidden font-dmsans text-2xl italic font-semibold text-white absolute top-20 left-15">Hello, {{Auth::user()->name}}</h1>

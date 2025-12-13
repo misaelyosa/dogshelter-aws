@@ -30,7 +30,7 @@ class seedDoge extends Seeder
                 'dob' => $faker->dateTimeBetween('-5 years', '-6 months')->format('Y-m-d'),
                 'trait' => $faker->randomElement($traits),
                 'jenis_kelamin' => $faker->randomElement($genders),
-                'keterangan' => $faker->paragraph,
+                'keterangan' => $faker->sentence,
                 'vaccin_status' => $faker->randomElement($vaccinStatus),
                 'img_route' => null,
 

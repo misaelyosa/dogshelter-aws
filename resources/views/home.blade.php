@@ -273,6 +273,9 @@
                         <p class="text-base font-bold leading-relaxed text-black dark:text-white">
                             Adoption Status : {{ $doge->adoption_status }}
                         </p>
+                        <p class="text-base leading-relaxed text-black dark:text-white">
+                            Lokasi Shelter : {{ $doge->shelter?->name ?? 'No shelter assigned' }}, {{$doge->shelter?->location ?? ''}}
+                        </p>
                         <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                             Keterangan : {{ $doge->keterangan }}
                         </p>
@@ -293,7 +296,7 @@
     </section>
 
     <!-- List Shelter -->
-    <section class="bg-icon_black py-8 px-6">
+    <section class="bg-icon_black py-8 px-6" id="shelter_list">
         <h1 class="font-dmsans text-2xl text-white font-bold col-span-2 italic ps-1 mb-4 lg:col-span-4 lg:text-5xl">Dog Shelter List</h1>
 
         @foreach ($shelters as $shelter)
