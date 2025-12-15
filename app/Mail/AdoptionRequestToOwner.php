@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Mail;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+use App\Models\Doge;
+
+class AdoptionRequestToOwner extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    public $doge;
+
+    public function __construct(Doge $doge)
+    {
+        $this->doge = $doge;
+    }
+
+    public function build()
+    {
+        return $this->subject('New Adoption Request for Your Dog')
+                    ->view('emails.adoption_request_to_owner');
+    }
+}

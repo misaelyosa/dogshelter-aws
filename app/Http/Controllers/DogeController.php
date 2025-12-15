@@ -124,6 +124,12 @@ class DogeController extends Controller
             // }
             // dd($response);
 
+            // Notify user the adoption was accepted
+            $adopter = User::find($doge->user_id);
+            if ($adopter && $adopter->email) {
+                try { Mail::to($adopter->email)->send(new \App\Mail\AdoptionResultToUser($doge, true)); } catch (\Exception $e) {}
+            }
+
             return redirect()->back()->with('success', 'Adoption request approved.');
         } else {
             return redirect()->back()->with('error', 'Invalid request or doge is not in a pending state.');
@@ -140,6 +146,12 @@ class DogeController extends Controller
             $doge->pesan_adopsi = null;
             // dd($doge);
             $doge->save();
+
+            // Notify user the adoption was declined
+            $adopter = User::find($doge->user_id);
+            if ($adopter && $adopter->email) {
+                try { Mail::to($adopter->email)->send(new \App\Mail\AdoptionResultToUser($doge, false)); } catch (\Exception $e) {}
+            }
 
             return redirect()->back()->with('success', 'Adoption request declined.');
         } else {

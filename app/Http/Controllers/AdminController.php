@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Shelter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OwnerShelterStatus;
 
 class AdminController extends Controller
 {
@@ -77,6 +79,14 @@ class AdminController extends Controller
                 }
             }
             $doge->save(); //insert db 
+
+            // Notify all users about new dog
+            try {
+                $users = User::where('role', 'user')->pluck('email')->filter();
+                foreach ($users as $email) {
+                    Mail::to($email)->send(new \App\Mail\NewDogeAdded($doge));
+                }
+            } catch (\Exception $e) {}
 
             if ($user->role === 'admin') {
                 return redirect()->route("fetchuser")->with("success", "Doge added successfully.");
@@ -250,6 +260,13 @@ class AdminController extends Controller
         $shelter->is_verified = true;
         $shelter->save();
 
+        // Notify owner
+        try {
+            if ($shelter->user_id) {
+                Mail::to($shelter->user->email)->send(new OwnerShelterStatus($shelter, true));
+            }
+        } catch (\Exception $e) {}
+
         return redirect()->route('admin.shelter_verifications')->with('success', 'Shelter #' . $shelter->id . ' verified.');
     }
 
@@ -260,6 +277,13 @@ class AdminController extends Controller
         // Keep record but not verified
         $shelter->is_verified = false;
         $shelter->save();
+
+        // Notify owner
+        try {
+            if ($shelter->user_id) {
+                Mail::to($shelter->user->email)->send(new OwnerShelterStatus($shelter, false));
+            }
+        } catch (\Exception $e) {}
 
         return redirect()->route('admin.shelter_verifications')->with('success', 'Shelter #' . $shelter->id . ' declined.');
     }

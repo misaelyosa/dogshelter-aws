@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewReportToOwner;
+use App\Models\Shelter;
+use App\Models\User;
 
 class ReportController extends Controller
 {
@@ -97,6 +101,22 @@ class ReportController extends Controller
                 'status' => 'pending', // default
             ]);
 
+            // Notify nearest shelter owner if any
+            if ($request->filled('latitude') && $request->filled('longitude')) {
+                $lat = (float)$request->input('latitude');
+                $lon = (float)$request->input('longitude');
+                $shelters = Shelter::whereNotNull('latitude')->whereNotNull('longitude')->get();
+                $closest = null; $closestDist = null;
+                foreach ($shelters as $sh) {
+                    $dx = $sh->latitude - $lat;
+                    $dy = $sh->longitude - $lon;
+                    $dist = ($dx*$dx)+($dy*$dy);
+                    if ($closestDist === null || $dist < $closestDist) { $closestDist = $dist; $closest = $sh; }
+                }
+                if ($closest && $closest->user_id) {
+                    try { Mail::to($closest->user->email)->send(new NewReportToOwner(Report::latest()->first())); } catch (\Exception $e) {}
+                }
+            }
             return redirect()->route('home') // sesuaikan route tujuanmu
                 ->with('success', 'Laporan berhasil dikirim. Terima kasih!');
         } catch (\Exception $e) {

@@ -7,6 +7,9 @@ use App\Models\Shelter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AdminNewShelterRequest;
+use App\Models\User;
 
 class ShelterController extends Controller
 {
@@ -64,6 +67,12 @@ class ShelterController extends Controller
         }
 
         // Redirect back to the verification page with a submitted notice
+        // Notify admins about new shelter request
+        $adminEmails = User::where('role', 'admin')->pluck('email')->filter()->toArray();
+        foreach ($adminEmails as $email) {
+            try { Mail::to($email)->send(new AdminNewShelterRequest($shelter)); } catch (\Exception $e) { /* ignore mail errors for now */ }
+        }
+
         return redirect()->route('shelter.verify.form')->with(['submitted' => true, 'success' => 'Shelter details submitted. Please wait for admin approval and check your email.']);
     }
 }

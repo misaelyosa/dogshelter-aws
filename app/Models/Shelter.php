@@ -30,4 +30,9 @@ class Shelter extends Model
     {
         return $this->hasMany(Doge::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class, 'user_id');
+    }
 }

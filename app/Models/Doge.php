@@ -17,6 +17,12 @@ class Doge extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    // alias for convenience
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function shelter()
     {
         return $this->belongsTo(Shelter::class);
