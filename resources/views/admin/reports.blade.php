@@ -76,7 +76,7 @@
                             <th class="px-3 py-2 dark:text-white">Reporter</th>
                             <th class="px-3 py-2 dark:text-white">Location</th>
                             <th class="px-3 py-2 dark:text-white">Time Found</th>
-                            <th class="px-3 py-2 dark:text-white">Status</th>
+                            <th class="px-3 py-2 dark:text-white">Status</th> 
                         </tr>
                     </thead>
                     <tbody>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Doge;
 use App\Models\Shelter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ShelterController extends Controller
 {
@@ -14,5 +16,54 @@ class ShelterController extends Controller
         $shelters = Shelter::all();
 
         return view('home', compact('doges', 'shelters'));
+    }
+
+    public function showVerifyForm()
+    {
+        $user = Auth::user();
+        if (!$user || $user->role !== 'shelter_owner') {
+            return redirect()->route('home')->withErrors('Unauthorized');
+        }
+
+        // If shelter already exists for this user, load it
+        $shelter = Shelter::where('user_id', $user->id)->first();
+
+        return view('shelter.verify', compact('shelter'));
+    }
+
+    public function submitVerify(Request $request)
+    {
+        $user = Auth::user();
+        if (!$user || $user->role !== 'shelter_owner') {
+            return redirect()->route('home')->withErrors('Unauthorized');
+        }
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'owner' => 'required|string|max:255',
+            'contact' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'latitude' => 'nullable|numeric|required_with:longitude',
+            'longitude' => 'nullable|numeric|required_with:latitude',
+            'capacity' => 'required|integer|min:0',
+            'description' => 'nullable|string',
+            'website' => 'nullable|url',
+            'email' => 'nullable|email',
+            'image' => 'nullable|image|max:2048',
+        ]);
+
+        $shelter = Shelter::updateOrCreate(
+            ['user_id' => $user->id],
+            array_merge($validated, ['user_id' => $user->id, 'is_verified' => false])
+        );
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('shelter_images', 'public');
+            $shelter->image = $path;
+            $shelter->save();
+        }
+
+        // Redirect back to the verification page with a submitted notice
+        return redirect()->route('shelter.verify.form')->with(['submitted' => true, 'success' => 'Shelter details submitted. Please wait for admin approval and check your email.']);
     }
 }

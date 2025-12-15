@@ -229,6 +229,41 @@ class AdminController extends Controller
         return view('admin.reports.show', compact('report'));
     }
 
+    // List shelter verification requests (pending)
+    public function listPendingShelters()
+    {
+        $pending = Shelter::where('is_verified', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.shelter_verifications', compact('pending'));
+    }
+
+    // Show single shelter verification detail
+    public function showShelterVerification($id)
+    {
+        $shelter = Shelter::findOrFail($id);
+        return view('admin.shelter_verification_show', compact('shelter'));
+    }
+
+    // Accept shelter verification
+    public function acceptShelter(Request $request, $id)
+    {
+        $shelter = Shelter::findOrFail($id);
+        $shelter->is_verified = true;
+        $shelter->save();
+
+        return redirect()->route('admin.shelter_verifications')->with('success', 'Shelter #' . $shelter->id . ' verified.');
+    }
+
+    // Decline shelter verification
+    public function declineShelter(Request $request, $id)
+    {
+        $shelter = Shelter::findOrFail($id);
+        // Keep record but not verified
+        $shelter->is_verified = false;
+        $shelter->save();
+
+        return redirect()->route('admin.shelter_verifications')->with('success', 'Shelter #' . $shelter->id . ' declined.');
+    }
+
     // Accept report (update status)
     public function acceptReport(Request $request, $id)
     {

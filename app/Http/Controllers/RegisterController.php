@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -20,8 +21,17 @@ class RegisterController extends Controller
         if (empty($validatedData['role'])) {
             $validatedData['role'] = 'user';
         }
-        User::create($validatedData);
 
+        $user = User::create($validatedData);
+
+        // Log in the user so shelter owners can submit verification details immediately
+        Auth::login($user);
+
+        if ($user->role === 'shelter_owner') {
+            return redirect()->route('shelter.verify.form')->with('success', 'Please complete your shelter details to finish registration.');
+        }
+
+        Auth::logout();
         return redirect('/login')->with('success', 'User Berhasil Ditambahkan, Silahkan Login');
     }
 }

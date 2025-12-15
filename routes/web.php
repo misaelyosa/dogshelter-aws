@@ -49,6 +49,11 @@ Route::middleware('auth')->group(function () {
         // Reports (admin)
         Route::get('/admin/reports', [AdminController::class, 'fetchReports'])->name('reportsAdmin');
         Route::get('/admin/reports/{id}', [AdminController::class, 'showReport'])->name('admin.reports.show');
+        // Admin shelter verification review
+        Route::get('/admin/shelter-verifications', [AdminController::class, 'listPendingShelters'])->name('admin.shelter_verifications');
+        Route::get('/admin/shelter-verifications/{id}', [AdminController::class, 'showShelterVerification'])->name('admin.shelter_verifications.show');
+        Route::post('/admin/shelter-verifications/{id}/accept', [AdminController::class, 'acceptShelter'])->name('admin.shelter_verifications.accept');
+        Route::post('/admin/shelter-verifications/{id}/decline', [AdminController::class, 'declineShelter'])->name('admin.shelter_verifications.decline');
         // Admins can view reports but cannot accept/decline them via routes.
     });
     Route::post('/report', [ReportController::class, 'store'])->name('reportSubmit');
@@ -65,23 +70,30 @@ Route::get('/', [DogeController::class, 'fetch'])->name('home');
 
 // Shelter owner routes: doge CRUD + adoption requests (for their shelter only)
 Route::middleware(['auth', 'role:shelter_owner'])->group(function () {
-    Route::get('/shelter', [DogeController::class, 'fetchDogeOwner'])->name('shelter.dashboard');
-    Route::get('/shelter/edit/{id}', [AdminController::class, 'fetchEditDoge'])->name('fetchedit');
-    Route::post('/shelter/edit', [AdminController::class, 'edit'])->name('updatedoge');
-    Route::get('/shelter/delete/{id}', [AdminController::class, 'delete'])->name('deletedoge');
-    Route::get('/shelter/create', function () {
-        return view('admin.create');
-    })->name('formCreateDoge');
-    Route::post('/shelter/create', [AdminController::class, 'create'])->name('createDoge');
+    // Shelter owner verification form (accessible to shelter_owner even if not verified)
+    Route::get('/shelter/verify', [\App\Http\Controllers\ShelterController::class, 'showVerifyForm'])->name('shelter.verify.form');
+    Route::post('/shelter/verify', [\App\Http\Controllers\ShelterController::class, 'submitVerify'])->name('shelter.verify.submit');
 
-    // Adoption requests for shelter owner (only for doges in their shelter)
-    Route::get('shelter/adoptionRequest', [DogeController::class, 'fetchAdoptionRequestForOwner'])->name('shelter.fetchadoptionrequest');
-    Route::post('/shelter/accept-adopt', [DogeController::class, 'acceptAdopt'])->name('acceptadopt');
-    Route::post('/shelter/decline-adopt', [DogeController::class, 'declineAdopt'])->name('declineadopt');
-    
-    // Reports management for shelter owner
-    Route::get('/shelter/reports', [AdminController::class, 'fetchReports'])->name('reportsShelter');
-    Route::get('/shelter/reports/{id}', [AdminController::class, 'showReport'])->name('shelter.reports.show');
-    Route::post('/shelter/reports/{id}/accept', [AdminController::class, 'acceptReport'])->name('shelter.reports.accept');
-    Route::post('/shelter/reports/{id}/decline', [AdminController::class, 'declineReport'])->name('shelter.reports.decline');
+    // Routes that require the shelter to be verified
+    Route::middleware('shelter.verified')->group(function () {
+        Route::get('/shelter', [DogeController::class, 'fetchDogeOwner'])->name('shelter.dashboard');
+        Route::get('/shelter/edit/{id}', [AdminController::class, 'fetchEditDoge'])->name('fetchedit');
+        Route::post('/shelter/edit', [AdminController::class, 'edit'])->name('updatedoge');
+        Route::get('/shelter/delete/{id}', [AdminController::class, 'delete'])->name('deletedoge');
+        Route::get('/shelter/create', function () {
+            return view('admin.create');
+        })->name('formCreateDoge');
+        Route::post('/shelter/create', [AdminController::class, 'create'])->name('createDoge');
+
+        // Adoption requests for shelter owner (only for doges in their shelter)
+        Route::get('shelter/adoptionRequest', [DogeController::class, 'fetchAdoptionRequestForOwner'])->name('shelter.fetchadoptionrequest');
+        Route::post('/shelter/accept-adopt', [DogeController::class, 'acceptAdopt'])->name('acceptadopt');
+        Route::post('/shelter/decline-adopt', [DogeController::class, 'declineAdopt'])->name('declineadopt');
+        
+        // Reports management for shelter owner
+        Route::get('/shelter/reports', [AdminController::class, 'fetchReports'])->name('reportsShelter');
+        Route::get('/shelter/reports/{id}', [AdminController::class, 'showReport'])->name('shelter.reports.show');
+        Route::post('/shelter/reports/{id}/accept', [AdminController::class, 'acceptReport'])->name('shelter.reports.accept');
+        Route::post('/shelter/reports/{id}/decline', [AdminController::class, 'declineReport'])->name('shelter.reports.decline');
+    });
 });
