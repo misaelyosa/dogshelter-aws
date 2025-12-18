@@ -22,7 +22,7 @@
 <!-- Modal Background -->
 <div id="reportModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
     <!-- Modal Box -->
-    <div class="bg-white dark:bg-gray-800 dark:text-white w-full max-w-lg rounded-lg p-6 relative">
+    <div class="bg-white dark:bg-gray-800 dark:text-white w-full max-w-lg rounded-lg p-6 relative max-h-[90vh] overflow-auto">
 
         <!-- Close Button -->
         <button onclick="closeReportModal()"
@@ -218,7 +218,7 @@
         let content = document.getElementById('modalContent');
 
         let foto = imageUrl ?
-            `<img src="${imageUrl}" class="w-full rounded-lg mb-3">` :
+            `<img src="${imageUrl}" style="max-width:100%; max-height:80vh; object-fit:contain;" class="mx-auto rounded-lg mb-3">` :
             '';
 
         content.innerHTML = `
