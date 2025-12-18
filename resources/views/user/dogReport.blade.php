@@ -18,49 +18,7 @@
     </ul>
 </div>
 @endif
-<script>
-    window.onload = function() {
-        const latInput = document.getElementById("latitude");
-        const lngInput = document.getElementById("longitude");
-        const statusText = document.getElementById("location-status");
-
-        if (!navigator.geolocation) {
-            statusText.textContent = "Browser Anda tidak mendukung geolocation.";
-            statusText.classList.add("text-red-600");
-            return;
-        }
-
-        navigator.geolocation.getCurrentPosition(
-            // SUCCESS
-            (position) => {
-                latInput.value = position.coords.latitude;
-                lngInput.value = position.coords.longitude;
-
-                statusText.textContent = "Lokasi berhasil didapatkan.";
-                statusText.classList.remove("text-red-600");
-                statusText.classList.add("text-green-600");
-            },
-
-            // ERROR
-            (error) => {
-                switch (error.code) {
-                    case error.PERMISSION_DENIED:
-                        statusText.textContent = "Anda menolak memberikan izin lokasi. Harap klik 'Allow' agar lokasi bisa diproses.";
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        statusText.textContent = "Lokasi tidak tersedia. Coba aktifkan GPS atau periksa sinyal.";
-                        break;
-                    case error.TIMEOUT:
-                        statusText.textContent = "Gagal mendapatkan lokasi (timeout). Coba lagi.";
-                        break;
-                    default:
-                        statusText.textContent = "Terjadi kesalahan saat mengambil lokasi.";
-                }
-                statusText.classList.add("text-red-600");
-            }
-        );
-    }
-</script>
+{{-- Map picker will be shown below; browser geolocation on HTTP is unreliable so we provide a manual picker. --}}
 <!-- Hidden location -->
 <section class="min-h-screen bg-white dark:bg-gray-900">
     <div class="max-w-2xl px-4 py-8 mx-auto lg:py-16">
@@ -99,7 +57,9 @@
 
                 <div class="sm:col-span-2">
                     <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lokasi</label>
-                    <input type="text" name="location" id="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Lokasi" required="">
+                    <div id="report-map" class="mt-2 mb-2" style="height:300px;"></div>
+                    <p class="text-sm text-gray-500 mb-2">Click on the map to pick the location (will populate the hidden lat/lon and the location field).</p>
+                    <input type="text" name="location" id="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Lokasi (click map)" required="">
                 </div>
                 <!-- Description -->
                 <div class="sm:col-span-2">
@@ -164,6 +124,71 @@
             // previewImage.classList.remove('hidden');
             // // revoke ketika tidak diperlukan lagi
             // previewImage.onload = () => URL.revokeObjectURL(url);
+        });
+    });
+</script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Map picker for report location
+        var mapContainer = document.getElementById('report-map');
+        if (!mapContainer) return;
+
+        var map = L.map('report-map').setView([0,0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+
+        var marker = null;
+        function setMarker(lat, lon) {
+            if (marker) {
+                marker.setLatLng([lat, lon]);
+            } else {
+                marker = L.marker([lat, lon]).addTo(map);
+            }
+            map.setView([lat, lon], 15);
+        }
+
+        var latInput = document.getElementById('latitude');
+        var lonInput = document.getElementById('longitude');
+        var locInput = document.getElementById('location');
+        var status = document.getElementById('location-status');
+
+        // If values exist (old form) show marker
+        if (latInput.value && lonInput.value) {
+            setMarker(latInput.value, lonInput.value);
+        }
+
+        map.on('click', function(e) {
+            var lat = e.latlng.lat;
+            var lon = e.latlng.lng;
+            latInput.value = lat;
+            lonInput.value = lon;
+            locInput.value = lat.toFixed(6) + ', ' + lon.toFixed(6);
+            setMarker(lat, lon);
+            if (status) { status.textContent = 'Location selected on map'; status.classList.remove('text-red-600'); status.classList.add('text-green-600'); }
+        });
+
+        // Optional "Use my location" button (may be blocked on HTTP)
+        var useBtn = document.createElement('button');
+        useBtn.type = 'button';
+        useBtn.textContent = 'Use my location';
+        useBtn.className = 'mt-2 px-3 py-2 bg-gray-200 rounded';
+        mapContainer.parentNode.insertBefore(useBtn, mapContainer.nextSibling);
+        useBtn.addEventListener('click', function() {
+            if (!navigator.geolocation) { alert('Browser does not support geolocation'); return; }
+            useBtn.disabled = true; useBtn.textContent = 'Locating...';
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var lat = position.coords.latitude; var lon = position.coords.longitude;
+                latInput.value = lat; lonInput.value = lon;
+                locInput.value = lat.toFixed(6) + ', ' + lon.toFixed(6);
+                setMarker(lat, lon);
+                if (status) { status.textContent = 'Location acquired'; status.classList.remove('text-red-600'); status.classList.add('text-green-600'); }
+                useBtn.textContent = 'Location set';
+            }, function(err) {
+                alert('Unable to retrieve location: ' + err.message);
+                useBtn.disabled = false; useBtn.textContent = 'Use my location';
+            }, { enableHighAccuracy: true, timeout: 10000 });
         });
     });
 </script>
