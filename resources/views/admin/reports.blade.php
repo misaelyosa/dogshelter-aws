@@ -130,8 +130,8 @@
                         @endif
                     </td>
                     <td class="px-6 py-4 text-sm">
-                        @if($report->doge_pic && Storage::disk('public')->exists($report->doge_pic))
-                        <img src="{{ Storage::url($report->doge_pic) }}" alt="report photo" class="w-20 h-20 object-cover rounded" loading="lazy">
+                        @if($report->doge_pic && Storage::disk('s3')->exists($report->doge_pic))
+                        <img src="{{ Storage::disk('s3')->url($report->doge_pic) }}" alt="report photo" class="w-20 h-20 object-cover rounded" loading="lazy">
                         @else
                         <span class="text-gray-500">No photo</span>
                         @endif
@@ -149,7 +149,7 @@
                     </td>
                     <td class="pe-2 py-4 text-right">
 
-                        <button type="button" onclick='openReportModal(@json($report))' class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        <button type="button" onclick='openReportModal(@json($report), "{{ $report->doge_pic && Storage::disk('s3')->exists($report->doge_pic) ? Storage::disk('s3')->url($report->doge_pic) : '' }}")' class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                             View
                         </button>
 
@@ -196,13 +196,13 @@
 @endsection
 
 <script>
-    function openReportModal(report) {
+    function openReportModal(report, imageUrl) {
         console.log(report)
         let modal = document.getElementById('reportModal');
         let content = document.getElementById('modalContent');
 
-        let foto = report.foto ?
-            `<img src="/storage/${report.foto}" class="w-full rounded-lg mb-3">` :
+        let foto = imageUrl ?
+            `<img src="${imageUrl}" class="w-full rounded-lg mb-3">` :
             '';
 
         content.innerHTML = `
@@ -214,7 +214,7 @@
 
         <div>
             <p class="text-sm text-gray-600">Nomor Telepon</p>
-            <p class="font-semibold">${report.notelp}</p>
+            <p class="font-semibold">${report.no_telp || report.notelp || '-'}</p>
         </div>
 
         <div>
@@ -224,12 +224,12 @@
 
         <div>
             <p class="text-sm text-gray-600">Lokasi</p>
-            <p class="font-semibold">${report.latitude}, ${report.longitude}</p>
+            <p class="font-semibold">${report.latitude || '-'}, ${report.longitude || '-'}</p>
         </div>
 
         <div>
             <p class="text-sm text-gray-600">Deskripsi</p>
-            <p class="font-semibold">${report.description}</p>
+            <p class="font-semibold">${report.description || '-'}</p>
         </div>
     `;
 

@@ -71,11 +71,10 @@ class ReportController extends Controller
                 // Buat nama file aman
                 $filename = 'report_' . time() . '_' . Str::random(6) . '.' . $file->getClientOriginalExtension();
 
-                // Simpan di storage/app/public/reports
-                $path = $file->storeAs('public/reports', $filename);
+                // Store file on the configured S3 disk under 'reports/'
+                $path = $file->storeAs('reports', $filename, 's3');
 
-                // Buat path yang disimpan di DB (public path)
-                // Jika ingin simpan tanpa 'public/' prefix:
+                // Path stored in DB (keep it as reports/filename so existing code works)
                 $publicPath = 'reports/' . $filename;
             } else {
                 $publicPath = null;

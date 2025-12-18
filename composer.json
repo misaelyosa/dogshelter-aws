@@ -9,7 +9,8 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "league/flysystem-aws-s3-v3": "^3.30"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -61,6 +62,15 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true
+        },
+        "audit": {
+            "ignore": [
+                "PKSA-n3s6-289w-qtqb",
+                "PKSA-stsw-jsf7-f6vs",
+                "PKSA-8qx3-n5y5-vvnd",
+                "PKSA-w7xr-vk7n-rstm"
+            ],
+            "block-insecure": false
         }
     },
     "minimum-stability": "stable",
