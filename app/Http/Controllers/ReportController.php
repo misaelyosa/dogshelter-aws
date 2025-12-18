@@ -72,7 +72,7 @@ class ReportController extends Controller
                 
                     // store with explicit public visibility so the file is accessible via URL
                     try {
-                        $path = $file->storePubliclyAs('reports/', $filename, 's3');
+                        $path = $file->storeAs('reports/', $filename, 's3');
                     } catch (\Exception $e) {
                         return back()->withInput()->with('error', 'Gagal mengunggah gambar: ' . $e->getMessage());
                     }
