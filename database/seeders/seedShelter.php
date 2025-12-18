@@ -21,16 +21,14 @@ class seedShelter extends Seeder
             ['city' => 'Malang', 'lat' => -7.9666, 'lng' => 112.6326],
             ['city' => 'Denpasar', 'lat' => -8.6705, 'lng' => 115.2126],
             ['city' => 'Semarang', 'lat' => -6.9667, 'lng' => 110.4167],
-            ['city' => 'Medan', 'lat' => 3.5952, 'lng' => 98.6722],
-            ['city' => 'Makassar', 'lat' => -5.1477, 'lng' => 119.4327],
-            ['city' => 'Palembang', 'lat' => -2.9909, 'lng' => 104.7566],
-            ['city' => 'Batam', 'lat' => 1.0456, 'lng' => 104.0305],
-            ['city' => 'Bogor', 'lat' => -6.5950, 'lng' => 106.8166],
+            // ['city' => 'Medan', 'lat' => 3.5952, 'lng' => 98.6722],
+            // ['city' => 'Makassar', 'lat' => -5.1477, 'lng' => 119.4327],
+            // ['city' => 'Palembang', 'lat' => -2.9909, 'lng' => 104.7566],
+            // ['city' => 'Batam', 'lat' => 1.0456, 'lng' => 104.0305],
+            // ['city' => 'Bogor', 'lat' => -6.5950, 'lng' => 106.8166],
         ];
 
-        for ($i = 0; $i < 8; $i++) {
-
-            $c = $faker->randomElement($cities);
+        foreach ($cities as $c) {
 
             // Add slight random offset so shelters are not stacked on the exact same point
             $lat = $c['lat'] + $faker->randomFloat(4, -0.02, 0.02);
@@ -48,7 +46,7 @@ class seedShelter extends Seeder
                 'capacity' => $faker->numberBetween(20, 70),
                 'current_occupancy' => $faker->numberBetween(5, 30),
 
-                'is_verified' => $faker->boolean(70),
+                'is_verified' => 1,
 
                 'description' => $faker->sentence,
                 'website' => $faker->optional()->url,

@@ -16,7 +16,11 @@
         <p class="mt-2">Description: {{ $shelter->description }}</p>
         @if($shelter->image)
             <div class="mt-4">
-                <img src="{{ Storage::url($shelter->image) }}" class="w-64 h-48 object-cover rounded">
+                @if(Storage::disk('s3')->exists($shelter->image))
+                    <img src="{{ Storage::disk('s3')->url($shelter->image) }}" class="w-64 h-48 object-cover rounded">
+                @else
+                    <img src="{{ Storage::url($shelter->image) }}" class="w-64 h-48 object-cover rounded">
+                @endif
             </div>
         @endif
 
@@ -39,15 +43,21 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
-    var lat = {{ $shelter->latitude ?? 'null' }};
-    var lon = {{ $shelter->longitude ?? 'null' }};
-    var map = L.map('shelter-map');
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
-    if (lat && lon) {
-        map.setView([lat, lon], 15);
-        L.marker([lat, lon]).addTo(map).bindPopup("{{ addslashes($shelter->name) }}");
-    } else {
-        map.setView([0,0], 2);
-    }
+    document.addEventListener('DOMContentLoaded', function () {
+        var container = document.getElementById('shelter-map');
+        if (!container) return; // avoid "container not found" errors
+
+        var lat = {{ $shelter->latitude ?? 'null' }};
+        var lon = {{ $shelter->longitude ?? 'null' }};
+
+        var map = L.map('shelter-map');
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+        if (lat && lon) {
+            map.setView([lat, lon], 15);
+            L.marker([lat, lon]).addTo(map).bindPopup("{{ addslashes($shelter->name) }}");
+        } else {
+            map.setView([0,0], 2);
+        }
+    });
 </script>
 @endsection

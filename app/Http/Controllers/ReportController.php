@@ -67,21 +67,19 @@ class ReportController extends Controller
             // Process uploaded file
             if ($request->hasFile('doge_pic')) {
                 $file = $request->file('doge_pic');
-
-                // Buat nama file aman
                 $filename = 'report_' . time() . '_' . Str::random(6) . '.' . $file->getClientOriginalExtension();
-
-                // Store file on the configured S3 disk under 'reports/'
-                $path = $file->storeAs('reports', $filename, 's3');
-
-                // Path stored in DB (keep it as reports/filename so existing code works)
-                $publicPath = 'reports/' . $filename;
+                
+                    // store with explicit public visibility so the file is accessible via URL
+                    try {
+                        \Illuminate\Support\Facades\Storage::disk('s3')->putFileAs('reports', $file, $filename, 'public');
+                        $publicPath = 'reports/' . $filename;
+                    } catch (\Exception $e) {
+                        return back()->withInput()->with('error', 'Gagal mengunggah gambar: ' . $e->getMessage());
+                    }
             } else {
                 $publicPath = null;
             }
-
-            // Konversi time_found dari input datetime-local (format: yyyy-mm-ddThh:mm) -> datetime
-            // Gunakan Carbon agar aman
+            
             $timeFound = null;
             if ($request->filled('time_found')) {
                 $timeFound = Carbon::parse($request->input('time_found'))->toDateTimeString();

@@ -21,7 +21,7 @@ class seedDoge extends Seeder
 
         // dd(DB::table('shelters')->pluck('id')->toArray());
         $shelterIds = DB::table('shelters')->pluck('id')->toArray();
-        $rand = [1,2,3,4,5,6,7,8];
+        $rand = [1,2,3,4,5,6];
         // dd($shelterIds);
 
         for ($i = 0; $i < 15; $i++) {

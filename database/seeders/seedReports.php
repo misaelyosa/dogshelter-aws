@@ -19,9 +19,9 @@ class seedReports extends Seeder
         $shelters = DB::table('shelters')->get();
 
         foreach ($shelters as $shelter) {
-            $count = rand(2, 3);
+            // $count = rand(2, 3);
 
-            for ($i = 0; $i < $count; $i++) {
+            for ($i = 0; $i < 2; $i++) {
                 // small random offset so reports are near the shelter
                 $lat = $shelter->latitude !== null ? $shelter->latitude + $faker->randomFloat(6, -0.01, 0.01) : null;
                 $lng = $shelter->longitude !== null ? $shelter->longitude + $faker->randomFloat(6, -0.01, 0.01) : null;
