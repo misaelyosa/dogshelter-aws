@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
         // Reports (admin)
         Route::get('/admin/reports', [AdminController::class, 'fetchReports'])->name('reportsAdmin');
         Route::get('/admin/reports/{id}', [AdminController::class, 'showReport'])->name('admin.reports.show');
+        Route::post('/admin/deleteUser/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteuser');
         // Admin shelter verification review
         Route::get('/admin/shelter-verifications', [AdminController::class, 'listPendingShelters'])->name('admin.shelter_verifications');
         Route::get('/admin/shelter-verifications/{id}', [AdminController::class, 'showShelterVerification'])->name('admin.shelter_verifications.show');

@@ -182,6 +182,28 @@ class AdminController extends Controller
             return redirect()->back()->with('success', 'user successfully unbanned');
         }
     }
+
+    public function deleteUser(Request $request, $id)
+    {
+        $current = Auth::user();
+        $user = User::findOrFail($id);
+
+        if ($user->id === $current->id) {
+            return redirect()->back()->with('error', 'You cannot delete yourself.');
+        }
+
+        if ($user->role === 'admin') {
+            return redirect()->back()->with('error', 'Cannot delete another admin.');
+        }
+
+        // perform deletion
+        try {
+            $user->delete();
+            return redirect()->back()->with('success', 'User deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to delete user: ' . $e->getMessage());
+        }
+    }
     public function fetchReports(Request $request)
     {
         // optional: filter by status ? q ? order

@@ -76,15 +76,20 @@
                             {{ $user->adoptedDoge->pluck('nama')->join(', ') ?: 'No adoptions' }}
                         </td>
                         <td class=" pe-2 py-4">
-                        @if ($user->ban_status === 0)    
-                            <button type="button" class="btnBan focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                                <a href="{{ route('banuser' , ['id'=> $user->id])}}">Ban</a>
-                            </button>
+                        @if ($user->ban_status === 0)
+                            <a href="{{ route('banuser' , ['id'=> $user->id])}}" class="inline-block">
+                                <button type="button" class="btnBan focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Ban</button>
+                            </a>
                         @else
-                            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                <a href="{{ route('banuser' , ['id'=> $user->id])}}">Unban</a>
-                            </button>
+                            <a href="{{ route('banuser' , ['id'=> $user->id])}}" class="inline-block">
+                                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Unban</button>
+                            </a>
                         @endif
+
+                        <form action="{{ route('admin.deleteuser', ['id' => $user->id]) }}" method="POST" onsubmit="return confirm('Delete user {{ $user->name }}? This cannot be undone.');" class="inline-block">
+                            @csrf
+                            <button type="submit" class="text-white bg-red-600 hover:bg-red-700 font-medium rounded-lg text-sm px-4 py-2">Delete</button>
+                        </form>
                         </td>
                     </tr>
                     @endforeach
@@ -122,14 +127,19 @@
                         </td>
                         <td class=" pe-2 py-4">
                             @if ($owner->ban_status === 0)
-                                <button type="button" class="btnBan focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                                    <a href="{{ route('banuser' , ['id'=> $owner->id])}}">Ban</a>
-                                </button>
+                                <a href="{{ route('banuser' , ['id'=> $owner->id])}}" class="inline-block">
+                                    <button type="button" class="btnBan focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Ban</button>
+                                </a>
                             @else
-                                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    <a href="{{ route('banuser' , ['id'=> $owner->id])}}">Unban</a>
-                                </button>
+                                <a href="{{ route('banuser' , ['id'=> $owner->id])}}" class="inline-block">
+                                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Unban</button>
+                                </a>
                             @endif
+
+                            <form action="{{ route('admin.deleteuser', ['id' => $owner->id]) }}" method="POST" onsubmit="return confirm('Delete user {{ $owner->name }}? This cannot be undone.');" class="inline-block">
+                                @csrf
+                                <button type="submit" class="text-white bg-red-600 hover:bg-red-700 font-medium rounded-lg text-sm px-4 py-2">Delete</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

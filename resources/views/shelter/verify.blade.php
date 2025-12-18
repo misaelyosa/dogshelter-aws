@@ -78,10 +78,8 @@
 @endsection
 
 @section('script')
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-   integrity="sha256-sA+e2bM0GQv3x5xgkGq2Y3qkQKk9o8mL9H+v/J6pXcA=" crossorigin=""/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-   integrity="sha256-pvRtf8m2r3vYvR4Fv+6eQvQp1Kj7K+Xb+Yc1ZQm3zR0=" crossorigin=""></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
     // Map init
@@ -121,7 +119,7 @@
                     document.getElementById('longitude').value = lon;
                     setMarker(lat, lon);
                     // reverse geocode to fill readable location
-                    fetch('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat='+lat+'&lon='+lon)
+                    fetch('/geo/reverse?format=jsonv2&lat='+lat+'&lon='+lon)
                         .then(res => res.json())
                         .then(data => {
                             var display = data.display_name || (lat+", "+lon);
@@ -147,7 +145,7 @@
         document.getElementById('longitude').value = lon;
         setMarker(lat, lon);
         // reverse geocode using Nominatim
-        fetch('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat='+lat+'&lon='+lon)
+        fetch('/geo/reverse?format=jsonv2&lat='+lat+'&lon='+lon)
             .then(res => res.json())
             .then(data => {
                 var display = data.display_name || (lat+", "+lon);
@@ -172,8 +170,8 @@
             document.getElementById('latitude').value = lat;
             document.getElementById('longitude').value = lon;
             setMarker(lat, lon);
-            // reverse geocode
-            fetch('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat='+lat+'&lon='+lon)
+            // reverse geocode via server proxy
+            fetch('/geo/reverse?format=jsonv2&lat='+lat+'&lon='+lon)
                 .then(res => res.json())
                 .then(data => {
                     var display = data.display_name || (lat+", "+lon);
@@ -195,7 +193,7 @@
     // Text search input (Nominatim) - search and center map
     function doSearch(query) {
         if (!query || query.length < 2) return;
-        fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&q=' + encodeURIComponent(query))
+        fetch('/geo/search?format=jsonv2&q=' + encodeURIComponent(query))
             .then(res => res.json())
             .then(results => {
                 if (!results || results.length === 0) {
