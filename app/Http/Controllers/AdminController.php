@@ -264,7 +264,7 @@ class AdminController extends Controller
     // List shelter verification requests (pending)
     public function listPendingShelters()
     {
-        $pending = Shelter::where('is_verified', false)->orderBy('created_at', 'desc')->get();
+        $pending = Shelter::where('verification_status', 'pending')->orderBy('created_at', 'desc')->get();
         return view('admin.shelter_verifications', compact('pending'));
     }
 
@@ -280,6 +280,7 @@ class AdminController extends Controller
     {
         $shelter = Shelter::findOrFail($id);
         $shelter->is_verified = true;
+        $shelter->verification_status = 'accepted';
         $shelter->save();
 
         // Notify owner
@@ -296,8 +297,9 @@ class AdminController extends Controller
     public function declineShelter(Request $request, $id)
     {
         $shelter = Shelter::findOrFail($id);
-        // Keep record but not verified
+        // Mark as declined and keep record (not shown in pending list)
         $shelter->is_verified = false;
+        $shelter->verification_status = 'declined';
         $shelter->save();
 
         // Notify owner

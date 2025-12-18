@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\NewReportToOwner;
 use App\Models\Shelter;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {

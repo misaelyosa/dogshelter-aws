@@ -6,11 +6,17 @@
 
 @section('dataTable')
 <div class="w-full mx-auto bg-white dark:bg-gray-800 px-12 py-6 rounded-lg shadow">
-    @if(session('submitted'))
+    @if(isset($shelter) && $shelter->verification_status === 'pending')
         <div class="p-6 text-center">
             <h2 class="text-xl font-semibold">Verification Submitted</h2>
             <p class="mt-3 text-gray-600">Your shelter verification request has been submitted. Please wait for an administrator to review and approve your account. Check your email for updates.</p>
             <a href="{{ route('home') }}" class="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded">Go to Home</a>
+        </div>
+    @elseif(isset($shelter) && $shelter->verification_status === 'declined')
+        <div class="p-6 text-center">
+            <h2 class="text-xl font-semibold text-red-600">Verification Declined</h2>
+            <p class="mt-3 text-gray-600">Your shelter verification request was declined by the administrator. Please review your submission and try again later.</p>
+            <a href="{{ route('shelter.verify.form') }}" class="inline-block mt-4 px-4 py-2 bg-gray-600 text-white rounded">Try Again</a>
         </div>
     @else
     <form action="{{ route('shelter.verify.submit') }}" method="POST" enctype="multipart/form-data">
@@ -119,7 +125,7 @@
                     document.getElementById('longitude').value = lon;
                     setMarker(lat, lon);
                     // reverse geocode to fill readable location
-                    fetch('/geo/reverse?format=jsonv2&lat='+lat+'&lon='+lon)
+                    fetch('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat='+lat+'&lon='+lon)
                         .then(res => res.json())
                         .then(data => {
                             var display = data.display_name || (lat+", "+lon);
@@ -145,7 +151,7 @@
         document.getElementById('longitude').value = lon;
         setMarker(lat, lon);
         // reverse geocode using Nominatim
-        fetch('/geo/reverse?format=jsonv2&lat='+lat+'&lon='+lon)
+        fetch('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat='+lat+'&lon='+lon)
             .then(res => res.json())
             .then(data => {
                 var display = data.display_name || (lat+", "+lon);
@@ -170,8 +176,8 @@
             document.getElementById('latitude').value = lat;
             document.getElementById('longitude').value = lon;
             setMarker(lat, lon);
-            // reverse geocode via server proxy
-            fetch('/geo/reverse?format=jsonv2&lat='+lat+'&lon='+lon)
+            // reverse geocode
+            fetch('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat='+lat+'&lon='+lon)
                 .then(res => res.json())
                 .then(data => {
                     var display = data.display_name || (lat+", "+lon);
@@ -193,7 +199,7 @@
     // Text search input (Nominatim) - search and center map
     function doSearch(query) {
         if (!query || query.length < 2) return;
-        fetch('/geo/search?format=jsonv2&q=' + encodeURIComponent(query))
+        fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&q=' + encodeURIComponent(query))
             .then(res => res.json())
             .then(results => {
                 if (!results || results.length === 0) {

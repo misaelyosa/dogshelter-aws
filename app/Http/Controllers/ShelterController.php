@@ -58,7 +58,7 @@ class ShelterController extends Controller
 
         $shelter = Shelter::updateOrCreate(
             ['user_id' => $user->id],
-            array_merge($validated, ['user_id' => $user->id, 'is_verified' => false])
+            array_merge($validated, ['user_id' => $user->id, 'is_verified' => false, 'verification_status' => 'pending'])
         );
 
         if ($request->hasFile('image')) {
