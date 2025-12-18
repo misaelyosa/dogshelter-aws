@@ -44,6 +44,7 @@ class ReportController extends Controller
     {
 
         print($request);
+        $user = Auth::user();
         // Validasi input
         $validator = Validator::make($request->all(), [
             'id' => 'nullable|integer',
@@ -67,12 +68,11 @@ class ReportController extends Controller
             // Process uploaded file
             if ($request->hasFile('doge_pic')) {
                 $file = $request->file('doge_pic');
-                $filename = 'report_' . time() . '_' . Str::random(6) . '.' . $file->getClientOriginalExtension();
+                $filename = 'report_' . $user->id . '_' . $user->name . '_' . Str::random(6) . '.' . $file->getClientOriginalExtension();
                 
                     // store with explicit public visibility so the file is accessible via URL
                     try {
-                        \Illuminate\Support\Facades\Storage::disk('s3')->putFileAs('reports', $file, $filename, 'public');
-                        $publicPath = 'reports/' . $filename;
+                        $path = $file->storePubliclyAs('reports/', $filename, 's3');
                     } catch (\Exception $e) {
                         return back()->withInput()->with('error', 'Gagal mengunggah gambar: ' . $e->getMessage());
                     }
@@ -94,7 +94,7 @@ class ReportController extends Controller
                 'time_found' => $timeFound,
                 'description' => $request->input('description'),
                 'location' => $request->input('location'),
-                'doge_pic' => $publicPath,
+                'doge_pic' => $path,
                 'status' => 'pending', // default
             ]);
 

@@ -66,7 +66,12 @@
                 <h3 class="font-semibold">Unassigned / No nearby shelter</h3>
             @else
                 @php $s = $shelters->firstWhere('id', $shelterId); @endphp
-                <h3 class="font-semibold dark:text-white">{{ $s ? $s->name : 'Shelter '.$shelterId }} <span class="text-sm text-gray-500">(ID: {{ $shelterId }})</span></h3>
+               <div class="h-12 flex items-center">
+                    <h3 class="font-semibold dark:text-white truncate">
+                        {{ $s ? $s->name : 'Shelter '.$shelterId }}
+                        <span class="text-sm text-gray-500">(ID: {{ $shelterId }})</span>
+                    </h3>
+                </div>
             @endif
             <div class="mt-3">
                 <table class="w-full text-sm text-left">
@@ -130,10 +135,15 @@
                         @endif
                     </td>
                     <td class="px-6 py-4 text-sm">
-                        @if($report->doge_pic && Storage::disk('s3')->exists($report->doge_pic))
-                        <img src="{{ Storage::disk('s3')->url($report->doge_pic) }}" alt="report photo" class="w-20 h-20 object-cover rounded" loading="lazy">
+                        @if($report->doge_pic)
+                            <img
+                                src="{{ Storage::disk('s3')->url($report->doge_pic) }}"
+                                alt="report photo"
+                                class="w-20 h-20 object-cover rounded"
+                                loading="lazy"
+                            >
                         @else
-                        <span class="text-gray-500">No photo</span>
+                            <span class="text-gray-500">No photo</span>
                         @endif
                     </td>
                     <td class="px-6 py-4 text-sm">
@@ -149,9 +159,15 @@
                     </td>
                     <td class="pe-2 py-4 text-right">
 
-                        <button type="button" onclick='openReportModal(@json($report), "{{ $report->doge_pic && Storage::disk('s3')->exists($report->doge_pic) ? Storage::disk('s3')->url($report->doge_pic) : '' }}")' class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                            View
-                        </button>
+                    <button
+                        type="button"
+                        class="view-report-btn text-white bg-blue-700 hover:bg-blue-800 ..."
+                        data-report='@json($report)'
+                        data-image="{{ $report->doge_pic ? Storage::disk('s3')->url($report->doge_pic) : '' }}"
+                    >
+                        View
+                    </button>
+
 
 
                         <!-- Hanya tampilkan Accept / Decline jika status = pending dan user adalah shelter_owner -->
@@ -239,4 +255,14 @@
     function closeReportModal() {
         document.getElementById('reportModal').classList.add('hidden');
     }
+
+    document.addEventListener('click', function (e) {
+        const btn = e.target.closest('.view-report-btn');
+        if (!btn) return;
+
+        const report = JSON.parse(btn.dataset.report);
+        const imageUrl = btn.dataset.image || '';
+
+        openReportModal(report, imageUrl);
+    });
 </script>

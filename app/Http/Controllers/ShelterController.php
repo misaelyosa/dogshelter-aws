@@ -63,9 +63,9 @@ class ShelterController extends Controller
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename = 'shelter_' . $user->id . '_' . time() . '_' . Str::random(6) . '.' . $file->getClientOriginalExtension();
+            $filename = 'shelter_' . $user->id . '_' . $user->name . '_' . Str::random(6) . '.' . $file->getClientOriginalExtension();
             // store under 'sheltersVerif/' prefix on the s3 disk
-            $path = $file->storeAs('sheltersVerif', $filename, 's3');
+            $path = $file->storePubliclyAs('sheltersVerif', $filename, 's3');
             // save DB path as sheltersVerif/filename
             $shelter->image = 'sheltersVerif/' . $filename;
             $shelter->save();

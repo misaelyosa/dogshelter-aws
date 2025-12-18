@@ -15,13 +15,8 @@
         <p>Capacity: {{ $shelter->capacity }}</p>
         <p class="mt-2">Description: {{ $shelter->description }}</p>
         @if($shelter->image)
-            <div class="mt-4">
-                @if(Storage::disk('s3')->exists($shelter->image))
-                    <img src="{{ Storage::disk('s3')->url($shelter->image) }}" class="w-64 h-48 object-cover rounded">
-                @else
-                    <img src="{{ Storage::url($shelter->image) }}" class="w-64 h-48 object-cover rounded">
-                @endif
-            </div>
+            <img src="{{ Storage::disk('s3')->url($shelter->image) }}"
+                class="w-64 h-48 object-cover rounded">
         @endif
 
         <div class="mt-4">
