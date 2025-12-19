@@ -33,7 +33,7 @@ class seedReports extends Seeder
                     'time_found' => $faker->dateTimeBetween('-1 month', 'now')->format('Y-m-d H:i:s'),
                     'location' => $shelter->location ?? $faker->address,
                     'description' => $faker->sentence,
-                    'doge_pic' => 'https://dogshelter-images-s3.s3.us-east-1.amazonaws.com/reports/no-image.png',
+                    'doge_pic' => 'reports/no-image.png',
                     'status' => 'pending',
                     'created_at' => now(),
                     'updated_at' => now(),

@@ -20,8 +20,8 @@ class seedUser extends Seeder
             'password' => bcrypt('password'),
             'role' => 'admin',
         ], [
-            'name' => 'Budi',
-            'email' => 'budi@gmail.com',
+            'name' => 'user1',
+            'email' => 'user1@gmail.com',
             'password' => bcrypt('password'),
             'role' => 'user',
         ]]);
